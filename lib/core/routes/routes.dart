@@ -1,3 +1,3 @@
 class Routes {
-  static const String register = '/onboarding';
+  static const String onboarding = '/onboarding';
 }

@@ -20,7 +20,6 @@ class RemoteAuthDataSourceImp extends RemoteAuthDataSource {
   //         await _apiService.function(ModelRequestDto());
   //     return response;
   //   });
-
   //   switch (result) {
   //     case SuccessResult<ModelResponseDto>():
   //       return SuccessResult<ModelResponseEntity>(result.data.toEntity());

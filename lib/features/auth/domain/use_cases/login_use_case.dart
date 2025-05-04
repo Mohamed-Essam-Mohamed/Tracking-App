@@ -3,7 +3,7 @@ import 'package:tracking_app/features/auth/domain/repositories/auth_repository.d
 
 @injectable
 class LoginUseCase {
-  final AuthRepository authRepository;
+  final AuthRepository _repository;
 
-  LoginUseCase(this.authRepository);
+  LoginUseCase(this._repository);
 }

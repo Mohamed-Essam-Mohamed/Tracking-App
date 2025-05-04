@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:tracking_app/core/constants/app_colors.dart';
 
-import 'loading_widget.dart';
+import '../common/widget/loading_widget.dart';
 
 abstract class AppDialog {
   // Show a loading dialog

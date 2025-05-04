@@ -3,6 +3,6 @@ import 'package:tracking_app/features/auth/domain/repositories/auth_repository.d
 
 @injectable
 class ResetPasswordUseCase {
-  final AuthRepository authRepository;
-  ResetPasswordUseCase(this.authRepository);
+  final AuthRepository _repository;
+  ResetPasswordUseCase(this._repository);
 }

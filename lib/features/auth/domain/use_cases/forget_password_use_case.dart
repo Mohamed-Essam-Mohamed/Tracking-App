@@ -3,6 +3,6 @@ import 'package:tracking_app/features/auth/domain/repositories/auth_repository.d
 
 @injectable
 class ForgetPasswordUseCase {
-  final AuthRepository authRepository;
-  ForgetPasswordUseCase(this.authRepository);
+  final AuthRepository _repository;
+  ForgetPasswordUseCase(this._repository);
 }
