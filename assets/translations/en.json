@@ -56,7 +56,6 @@
         "BestSeller": "Best seller",
         "ViewAll": "View All",
         "DiscoverSomethingNow": "Discover something now",
-        "ViewAll": "View All",
         "AddToCart": "Add to cart",
         "BestSellerSubTitle": "Bloom with our exquisite best sellers",
         "Filter": "Filter",
@@ -67,6 +66,7 @@
     },
     "Error": {
         "error": "Error",
+        "LoginFailed": "Login failed",
         "EmailAlreadyExists": "This email already exists.",
         "PasswordCannotBeEmpty": "Password can't be empty.",
         "CodeCannotBeEmpty": "Code cannot be empty.",
@@ -127,5 +127,6 @@
     },
     "Ok": "Ok",
     "Loading": "Loading...",
-    "Retry": "Retry"
+    "Retry": "Retry",
+    "Continue" :  "Continue"
 }
