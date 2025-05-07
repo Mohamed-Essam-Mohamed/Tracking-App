@@ -37,7 +37,6 @@ class _LoginBodyState extends State<LoginBody> {
       create: (context) => cubit,
       child: BlocConsumer<LoginCubit, LoginState>(
         listener: (context, state) {
-          print('thissssssssss is $state');
 
           if (state.baseState is BaseSuccessState) {
             Navigator.pushReplacementNamed(context, Routes.appSection);

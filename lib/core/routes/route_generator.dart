@@ -18,7 +18,7 @@ class RouteGenerator {
       // return AnimationRoute(page: const HelloAuthScreen());
 
       default:
-        return AnimationRoute(page: UndefinedRoute());
+        return null;
     }
   }
 }
