@@ -1,0 +1,25 @@
+name: Validate PR Title
+
+on:
+  pull_request:
+    types: [opened, edited, synchronize, reopened]
+
+jobs:
+  validate-title:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Validate PR title matches Conventional Commits
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const prTitle = context.payload.pull_request.title;
+            const regex = /^(feat|fix|chore|docs|refactor|test|style|perf)(\\([\\w\\-]+\\))?: .+$/;
+
+            if (!regex.test(prTitle)) {
+              core.setFailed(Invalid PR title: "${prTitle}"
+Title must follow the Conventional Commits format:
+<type>(optional scope): <description>
+Allowed types: feat, fix, chore, docs, refactor, test, style, perf`);
+            } else {
+              console.log("PR title follows Conventional Commits.");
+            }
