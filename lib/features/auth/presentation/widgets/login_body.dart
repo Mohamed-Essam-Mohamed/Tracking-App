@@ -6,7 +6,6 @@ import 'package:toastification/toastification.dart';
 import '../../../../core/base_state/base_state.dart';
 import '../../../../core/constants/app_colors.dart';
 import '../../../../core/di/service_locator.dart';
-import '../../../../core/dialogs/app_dialogs.dart';
 import '../../../../core/dialogs/app_toasts.dart';
 import '../../../../core/routes/routes.dart';
 import '../../../../core/theme/app_theme.dart';
@@ -36,21 +35,27 @@ class _LoginBodyState extends State<LoginBody> {
     // TODO: implement build
     return BlocProvider(
       create: (context) => cubit,
-      child: BlocListener<LoginCubit, LoginState>(
-          listener: (context, state) {
-            if (state.baseState is BaseSuccessState) {
-              Navigator.pushNamed(context, Routes.appSection);
-            } else if (state.baseState is BaseErrorState) {
-              WidgetsBinding.instance.addPostFrameCallback((_) {
-                AppToast.showToast(
-                 context: context,
-                  description:  (state.baseState as BaseErrorState).exception.toString(),
-                    type: ToastificationType.error, title: LocaleKeys.Error_LoginFailed.tr()
-                );
-              });
-            }
-          },
-          child: SingleChildScrollView(
+      child: BlocConsumer<LoginCubit, LoginState>(
+        listener: (context, state) {
+          print('thissssssssss is $state');
+
+          if (state.baseState is BaseSuccessState) {
+            Navigator.pushReplacementNamed(context, Routes.appSection);
+          } else if (state.baseState is BaseErrorState) {
+            WidgetsBinding.instance.addPostFrameCallback((_) {
+              AppToast.showToast(
+                  context: context,
+                  description:
+                      (state.baseState as BaseErrorState).exception.toString(),
+                  type: ToastificationType.error,
+                  title: LocaleKeys.Error_LoginFailed.tr());
+            });
+          }
+        },
+        builder: (context, state) {
+          final cubit = context.read<LoginCubit>();
+          final isLoading = state.baseState is BaseLoadingState;
+          return SingleChildScrollView(
             child: Form(
               key: cubit.formKey,
               child: Padding(
@@ -85,11 +90,9 @@ class _LoginBodyState extends State<LoginBody> {
                     Row(
                       children: [
                         Checkbox(
-                          value: cubit.rememberMe,
+                          value: state.rememberMe,
                           onChanged: (value) {
-                            setState(() {
-                              cubit.rememberMe = value ?? false;
-                            });
+                            cubit.toggleRememberMe(value);
                           },
                         ),
                         Text(
@@ -108,41 +111,38 @@ class _LoginBodyState extends State<LoginBody> {
                       ],
                     ),
                     const SizedBox(height: 48.0),
-                    BlocBuilder<LoginCubit, LoginState>(
-                      builder: (context, state) {
-                        final isLoading = state.baseState is BaseLoadingState;
-                        return ElevatedButton(
-                          style: ElevatedButton.styleFrom(
-                            backgroundColor: state.isFormValid
-                                ? Theme.of(context).primaryColor
-                                : AppColors.black[AppColors.colorCode30],
-                          ),
-                          onPressed: isLoading
-                              ? null
-                              : () {
-                                  if (state.isFormValid) {
-                                    cubit.doIntent(LoginAction());
-                                  }
-                                },
-                          child: isLoading
-                              ? const SizedBox(
-                                  width: 20,
-                                  height: 20,
-                                  child: CircularProgressIndicator(
-                                    strokeWidth: 2,
-                                    valueColor:
-                                        AlwaysStoppedAnimation(Colors.white),
-                                  ),
-                                )
-                              : Text(LocaleKeys.Continue.tr()),
-                        );
-                      },
+                    ElevatedButton(
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: state.isFormValid
+                            ? Theme.of(context).primaryColor
+                            : AppColors.black[AppColors.colorCode30],
+                      ),
+                      onPressed: isLoading
+                          ? null
+                          : () {
+                              if (state.isFormValid) {
+                                cubit.doIntent(LoginAction());
+                              }
+                            },
+                      child: isLoading
+                          ? const SizedBox(
+                              width: 20,
+                              height: 20,
+                              child: CircularProgressIndicator(
+                                strokeWidth: 2,
+                                valueColor:
+                                    AlwaysStoppedAnimation(Colors.white),
+                              ),
+                            )
+                          : Text(LocaleKeys.Continue.tr()),
                     ),
                   ],
                 ),
               ),
             ),
-          )),
+          );
+        },
+      ),
     );
   }
 }

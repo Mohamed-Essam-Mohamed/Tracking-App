@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:injectable/injectable.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import '../../../../../../core/base_state/base_state.dart';
 import '../../../../../../core/network/common/api_result.dart';
 import '../../../domain/entities/request/login/login_request_entity.dart';
@@ -21,6 +22,34 @@ class LoginCubit extends Cubit<LoginState> {
       : super(LoginState(baseState: BaseInitialState())) {
     emailController.addListener(_validateForm);
     passwordController.addListener(_validateForm);
+    _checkRememberMe();
+
+  }
+  void toggleRememberMe(bool? value) async {
+    rememberMe = value ?? false;
+
+    if (rememberMe) {
+      await _saveUserData();
+    } else {
+      await _clearUserData();
+    }
+
+    emit(state.copyWith(baseState: BaseInitialState(),
+      rememberMe: rememberMe,));  }
+
+
+
+  Future<void> _checkRememberMe() async {
+    final prefs = await SharedPreferences.getInstance();
+    final email = prefs.getString('email');
+    final password = prefs.getString('password');
+    final remember = prefs.getBool('rememberMe') ?? false;
+    if (remember) {
+      emailController.text = email ?? '';
+      passwordController.text = password ?? '';
+      rememberMe = true;
+      emit(state.copyWith(rememberMe: rememberMe,baseState: BaseInitialState()));
+    }
   }
 
   void doIntent(LoginAction action) {
@@ -52,6 +81,11 @@ class LoginCubit extends Cubit<LoginState> {
     switch (result) {
       case SuccessResult<LoginResponseEntity?>():
         {
+          if (rememberMe) {
+            _saveUserData();
+          }
+          await _setLoggedInState(true);
+
           emit(state.copyWith(baseState: BaseSuccessState(data: result)));
         }
       case FailureResult<LoginResponseEntity?>():
@@ -66,6 +100,27 @@ class LoginCubit extends Cubit<LoginState> {
         }
     }
     return null;
+  }
+
+  Future<void> _saveUserData() async {
+    final prefs = await SharedPreferences.getInstance();
+    prefs.setString('email', emailController.text);
+    prefs.setString('password', passwordController.text);
+    prefs.setBool('rememberMe', rememberMe);
+
+
+
+  }
+  Future<void> _clearUserData() async {
+    final prefs = await SharedPreferences.getInstance();
+    await prefs.remove('email');
+    await prefs.remove('password');
+    await prefs.remove('rememberMe');
+  }
+
+  Future<void> _setLoggedInState(bool isLoggedIn) async {
+    final prefs = await SharedPreferences.getInstance();
+    prefs.setBool('isLoggedIn', isLoggedIn);
   }
 
   @override

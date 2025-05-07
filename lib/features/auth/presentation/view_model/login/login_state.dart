@@ -5,12 +5,15 @@ import '../../../../../../core/base_state/base_state.dart';
 class LoginState extends Equatable {
   final BaseState? baseState;
   final bool isFormValid;
+  final bool rememberMe;
+
 
 
 
   const LoginState({
     this.baseState,
     this.isFormValid = false,
+    this.rememberMe = false,
 
 
   });
@@ -25,6 +28,8 @@ class LoginState extends Equatable {
     return LoginState(
       baseState: baseState ?? this.baseState,
       isFormValid: isFormValid ?? this.isFormValid,
+      rememberMe: rememberMe ?? this.rememberMe,
+
 
 
 
@@ -32,7 +37,7 @@ class LoginState extends Equatable {
   }
 
   @override
-  List<Object?> get props => [baseState,isFormValid];
+  List<Object?> get props => [baseState,isFormValid,rememberMe];
 
 }
 
