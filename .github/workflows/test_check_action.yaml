@@ -1,45 +1,66 @@
-name: flutter-test-action
+# name: flutter-ci-cd
 
-on:
-  push:
-  pull_request:
+# on:
+#   push:
+#     branches:
+#       - dev
+#   pull_request:
+#     branches:
+#       - master
 
-jobs:
-  flutter-test-action:
-    runs-on: ubuntu-latest
+# jobs:
+#   build-and-test:
+#     runs-on: ubuntu-latest
 
-    steps:
-      - uses: actions/checkout@v4
+#     steps:
+#       - uses: actions/checkout@v4
 
-      - name: Set up Flutter
-        uses: subosito/flutter-action@v2
-        with:
-          channel: 'stable'
-          flutter-version: 3.27.4
+#       - name: Set up Flutter
+#         uses: subosito/flutter-action@v2
+#         with:
+#           channel: 'stable'
+#           flutter-version: '3.27.4'
 
+#       - name: Check Flutter version
+#         run: flutter --version
 
-      - run: flutter --version
-      - run: flutter pub get
+#       - name: Install dependencies
+#         run: flutter pub get
 
+#       - name: Linting
+#         run: flutter analyze
 
-      # Build APK
-      - name: Build release APK
-        run: flutter build apk --release
+#       - name: Run tests
+#         run: flutter test
 
-      # Upload to Firebase App Distribution
-      - name: Upload to Firebase App Distribution
-        uses: wzieba/Firebase-Distribution-Github-Action@v1
-        with:
-          appId: ${{ secrets.FIREBASE_APP_ID }}
-          serviceCredentialsFileContent: ${{ secrets.CREDENTIAL_FILE_CONTENT }}
-          file: build/app/outputs/flutter-apk/app-release.apk
-          groups: tester-github-action
-          releaseNotes: "Auto-release from GitHub Actions"
+#       - name: Validate branch name
+#         if: github.event_name == 'push'
+#         run: |
+#           BRANCH_NAME="${{ github.ref_name }}"
+#           if [[ ! "$BRANCH_NAME" =~ ^(feature|fix|hotfix)\/[a-z0-9-]+$ ]]; then
+#             echo "Invalid branch name: $BRANCH_NAME. It should match the pattern: feature/xxx, fix/xxx, or hotfix/xxx."
+#             exit 1
+#           fi
 
-      - name: Run test
-        run: flutter test
+#       - name: Validate PR title
+#         if: github.event_name == 'pull_request' && github.event.action == 'opened'
+#         run: |
+#           PR_TITLE="${{ github.event.pull_request.title }}"
+#           if [[ ! "$PR_TITLE" =~ ^(feat|fix|docs|style|refactor|test|chore)(\(.+\))?: .+$ ]]; then
+#             echo "Invalid PR title: $PR_TITLE. It should follow the Conventional Commits format."
+#             exit 1
+#           fi
 
-      - name: Validate branch name
-        run: |
-          BRANCH_NAME="${{ steps.branch.outputs.name }}"
-          echo "Checking branch: $BRANCH_NAME"
+#       - name: Build release APK
+#         if: github.event_name == 'pull_request' && github.event.pull_request.merged == true && github.base_ref == 'refs/heads/master'
+#         run: flutter build apk --release
+
+#       - name: Upload to Firebase App Distribution
+#         if: github.event_name == 'pull_request' && github.event.pull_request.merged == true && github.base_ref == 'refs/heads/master'
+#         uses: wzieba/Firebase-Distribution-Github-Action@v1
+#         with:
+#           appId: ${{ secrets.FIREBASE_APP_ID }}
+#           serviceCredentialsFileContent: ${{ secrets.CREDENTIAL_FILE_CONTENT }}
+#           file: build/app/outputs/flutter-apk/app-release.apk
+#           groups: production
+#           releaseNotes: "Auto-release from GitHub Actions on merge to main"
