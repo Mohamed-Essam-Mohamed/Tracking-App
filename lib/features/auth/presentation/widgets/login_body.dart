@@ -45,7 +45,7 @@ class _LoginBodyState extends State<LoginBody> {
                 AppToast.showToast(
                  context: context,
                   description:  (state.baseState as BaseErrorState).exception.toString(),
-                    type: ToastificationType.error, title: 'login failed'
+                    type: ToastificationType.error, title: LocaleKeys.Error_LoginFailed.tr()
                 );
               });
             }
