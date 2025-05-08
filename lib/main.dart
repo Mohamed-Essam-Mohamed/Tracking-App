@@ -1,5 +1,6 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:tracking_app/core/constants/app_values.dart';
 import 'package:tracking_app/core/di/service_locator.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -20,16 +21,22 @@ void main() async {
     options: DefaultFirebaseOptions.currentPlatform,
   );
 
+  final prefs = await SharedPreferences.getInstance();
+  final isLoggedIn = prefs.getBool('isLoggedIn') ?? false;
+  final initialRoute = isLoggedIn ? Routes.appSection : Routes.login;
+
   runApp(EasyLocalization(
     supportedLocales: AppValues.supportedLocales,
     fallbackLocale: AppValues.englishLocale,
     path: AppValues.pathTranslation,
-    child: const MyApp(),
+    child: MyApp(initialRoute: initialRoute),
   ));
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+  final String initialRoute;
+
+  const MyApp({super.key,required this.initialRoute});
 
   // This widget is the root of your application.
   @override
@@ -42,7 +49,7 @@ class MyApp extends StatelessWidget {
       theme: AppTheme.lightTheme,
       title: AppValues.appTitle,
       onGenerateRoute: RouteGenerator.getRoute,
-      initialRoute: Routes.applyScreen,
+      initialRoute: initialRoute,
     );
   }
 }

@@ -129,13 +129,13 @@ class AppTheme {
       style: ButtonStyle(
         overlayColor: WidgetStateProperty.all(Colors.transparent),
         foregroundColor:
-            WidgetStateProperty.all(AppColors.pink[AppColors.colorCode50]),
+            WidgetStateProperty.all(AppColors.black),
         textStyle: WidgetStateProperty.all(
           const TextStyle(
             decoration: TextDecoration.underline,
             fontWeight: FontWeight.w400,
-            fontSize: 16,
-            color: AppColors.white,
+            fontSize: 12,
+            color: AppColors.black,
           ),
         ),
       ),
@@ -160,6 +160,20 @@ class AppTheme {
       ),
       indicatorColor: AppColors.pink[AppColors.colorCode10],
     ),
+    checkboxTheme: CheckboxThemeData(
+      fillColor: MaterialStateProperty.resolveWith<Color>((Set<MaterialState> states) {
+        if (states.contains(MaterialState.selected)) {
+          return AppColors.pink;
+        }
+        return Colors.transparent;
+      }),
+      checkColor: WidgetStatePropertyAll(AppColors.white),
+      overlayColor: WidgetStatePropertyAll(Colors.transparent),
+      side: const BorderSide(color: AppColors.gray, width: 2),
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(2)),
+    ),
+
+
     radioTheme: RadioThemeData(
         fillColor:
             WidgetStatePropertyAll((AppColors.pink[AppColors.colorCode50])),
