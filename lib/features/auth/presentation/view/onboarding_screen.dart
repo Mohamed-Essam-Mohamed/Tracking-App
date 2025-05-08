@@ -21,7 +21,7 @@ class OnboardingScreen extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            LottieOnboardingWidget(),
+           LottieOnboardingWidget(),
             Text(  LocaleKeys.onBoarding_welcome_to.tr(),style: AppTheme.lightTheme.textTheme.titleLarge,),
             Text(  LocaleKeys.onBoarding_flowery_rider_app.tr(),style: AppTheme.lightTheme.textTheme.titleLarge,),
             SizedBox(height: context.hp(3),),
