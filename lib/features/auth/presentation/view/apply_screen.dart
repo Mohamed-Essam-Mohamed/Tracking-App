@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:tracking_app/core/constants/app_colors.dart';
 import 'package:tracking_app/core/theme/app_theme.dart';
+import 'package:tracking_app/features/auth/presentation/view/Success_apply.dart';
 import '../../../../core/di/service_locator.dart';
 import '../../../../core/dialogs/app_dialogs.dart';
 import '../../../../core/utils/validator.dart';
@@ -98,7 +99,7 @@ class _ApplyScreenState extends State<ApplyScreen> {
           if (state is ApplySuccessState) {
             Navigator.push(
               context,
-              MaterialPageRoute(builder: (context) => Onboarding()),
+              MaterialPageRoute(builder: (context) => SuccessApply()),
             );
           } else if (state is ApplyErrorState) {
             AppDialogs.showFailureDialog(context, message: state.error,

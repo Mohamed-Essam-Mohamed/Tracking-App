@@ -7,6 +7,7 @@ import 'package:tracking_app/core/constants/keys.dart';
 import 'package:tracking_app/core/extentions/media_query_extensions.dart';
 import 'package:tracking_app/generated/locale_keys.g.dart';
 
+import '../../../../core/routes/routes.dart';
 import '../../../../core/theme/app_theme.dart';
 
 class SuccessApply extends StatelessWidget {
@@ -81,7 +82,9 @@ class SuccessApply extends StatelessWidget {
                   width: double.infinity,
                   child: ElevatedButton(
                     key: const Key(TestKeys.successApplyLogin),
-                    onPressed: () {},
+                    onPressed: () {
+                      Navigator.pushReplacementNamed(context, Routes.login);
+                    },
                     style: ElevatedButton.styleFrom(
                       backgroundColor: AppColors.pink,
                       shape: RoundedRectangleBorder(

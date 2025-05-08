@@ -19,11 +19,9 @@ class RouteGenerator {
       case Routes.successApply:
         return AnimationRoute(page: const SuccessApply());
       case Routes.login:
-        return MaterialPageRoute(builder: (_) => const LoginScreen());
+        return AnimationRoute(page: const LoginScreen());
       case Routes.appSection:
-        return MaterialPageRoute(builder: (_) => const AppSection());
-      case Routes.onboarding:
-       return AnimationRoute(page: const Onboarding());
+        return AnimationRoute(page: const AppSection());
      case Routes.applyScreen:
       return AnimationRoute(page: const ApplyScreen());
 

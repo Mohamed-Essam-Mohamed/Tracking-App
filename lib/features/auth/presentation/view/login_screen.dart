@@ -15,7 +15,7 @@ class LoginScreen extends StatelessWidget{
         title: Text(LocaleKeys.Authentication_Login.tr()),
         leading: IconButton(
             onPressed: () {
-              Navigator.of(context).pop();
+              // Navigator.of(context).pop();
             },
             icon: Icon(Icons.arrow_back_ios_new_outlined)),
 

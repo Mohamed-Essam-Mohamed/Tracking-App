@@ -33,7 +33,10 @@ class OnboardingScreen extends StatelessWidget {
                 style: ElevatedButton.styleFrom(backgroundColor: AppColors.pink, shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(25),), padding: const EdgeInsets.symmetric(vertical: 13),),
                 child:  Text(LocaleKeys.onBoarding_login.tr(), style: AppTheme.lightTheme.textTheme.titleSmall!.copyWith(color: AppColors.white),)),),
             SizedBox(height: context.hp(2),),
-            SizedBox(width: double.infinity, child: ElevatedButton(onPressed: () {},
+            SizedBox(width: double.infinity, child: ElevatedButton(onPressed: () {
+              Navigator.of(context).pushNamed(Routes.applyScreen);
+
+            },
               key: Key(TestKeys.applyOnboarding),
               style: ElevatedButton.styleFrom(backgroundColor: AppColors.white, side: BorderSide(color: AppColors.gray.withValues(alpha: 0.9)), padding: const EdgeInsets.symmetric(vertical: 13), shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(25),),),
                 child: Text(LocaleKeys.onBoarding_Apply.tr(), style: AppTheme.lightTheme.textTheme.titleSmall!.copyWith(color:AppColors.gray ),),
