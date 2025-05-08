@@ -9,10 +9,20 @@ import 'package:dio/dio.dart' as _i9;
 import 'package:mockito/mockito.dart' as _i1;
 import 'package:mockito/src/dummies.dart' as _i7;
 import 'package:tracking_app/core/network/common/api_result.dart' as _i4;
+import 'package:tracking_app/features/auth/data/models/request/forget_request_dto.dart'
+    as _i9;
 import 'package:tracking_app/features/auth/data/models/request/login/login_request_dto.dart'
     as _i6;
+import 'package:tracking_app/features/auth/data/models/response/forget_response_dto.dart'
+    as _i8;
 import 'package:tracking_app/features/auth/data/models/response/login/login_response_dto.dart'
     as _i5;
+import 'package:tracking_app/features/auth/data/models/response/reset_password_request.dart'
+    as _i12;
+import 'package:tracking_app/features/auth/data/models/response/reset_password_response.dart'
+    as _i11;
+import 'package:tracking_app/features/auth/data/models/response/verify_code_request.dart'
+    as _i10;
 import 'package:tracking_app/features/auth/domain/data_sources/remote/remote_auth_data_source.dart'
     as _i2;
 import 'package:tracking_app/features/auth/domain/entities/apply_entity.dart'
@@ -57,6 +67,52 @@ class MockRemoteAuthDataSource extends _i1.Mock
             ),
           )
           as _i3.Future<_i4.Result<_i5.LoginResponseDto?>>);
+
+  @override
+  _i3.Future<_i4.Result<_i8.ForgetResponseDto?>> forgetPassword(
+    _i9.ForgetRequestDto? forgetRequest,
+  ) =>
+      (super.noSuchMethod(
+            Invocation.method(#forgetPassword, [forgetRequest]),
+            returnValue: _i3.Future<_i4.Result<_i8.ForgetResponseDto?>>.value(
+              _i7.dummyValue<_i4.Result<_i8.ForgetResponseDto?>>(
+                this,
+                Invocation.method(#forgetPassword, [forgetRequest]),
+              ),
+            ),
+          )
+          as _i3.Future<_i4.Result<_i8.ForgetResponseDto?>>);
+
+  @override
+  _i3.Future<_i4.Result<String?>> verifyCode(
+    _i10.VerifyCodeRequest? verifyCode,
+  ) =>
+      (super.noSuchMethod(
+            Invocation.method(#verifyCode, [verifyCode]),
+            returnValue: _i3.Future<_i4.Result<String?>>.value(
+              _i7.dummyValue<_i4.Result<String?>>(
+                this,
+                Invocation.method(#verifyCode, [verifyCode]),
+              ),
+            ),
+          )
+          as _i3.Future<_i4.Result<String?>>);
+
+  @override
+  _i3.Future<_i4.Result<_i11.ResetPasswordResponse?>> resetPassword(
+    _i12.ResetPasswordRequest? resetPasswordRequest,
+  ) =>
+      (super.noSuchMethod(
+            Invocation.method(#resetPassword, [resetPasswordRequest]),
+            returnValue:
+                _i3.Future<_i4.Result<_i11.ResetPasswordResponse?>>.value(
+                  _i7.dummyValue<_i4.Result<_i11.ResetPasswordResponse?>>(
+                    this,
+                    Invocation.method(#resetPassword, [resetPasswordRequest]),
+                  ),
+                ),
+          )
+          as _i3.Future<_i4.Result<_i11.ResetPasswordResponse?>>);
 
   @override
   _i3.Future<_i4.Result<_i8.ApplyEntity>> apply(_i9.FormData? formData) =>

@@ -36,7 +36,7 @@ void main() async {
 class MyApp extends StatelessWidget {
   final String initialRoute;
 
-  const MyApp({super.key,required this.initialRoute});
+  const MyApp({super.key, required this.initialRoute});
 
   // This widget is the root of your application.
   @override

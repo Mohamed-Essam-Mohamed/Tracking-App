@@ -39,6 +39,8 @@ import 'package:tracking_app/features/auth/domain/use_cases/reset_password_use_c
     as _i44;
 import 'package:tracking_app/features/auth/presentation/view_model/apply/apply_cubit.dart'
     as _i554;
+import 'package:tracking_app/features/auth/presentation/view_model/forget_password/forget_password_cubit.dart'
+    as _i943;
 import 'package:tracking_app/features/auth/presentation/view_model/login/login_cubit.dart'
     as _i578;
 
@@ -83,6 +85,11 @@ extension GetItInjectableX on _i174.GetIt {
         () => _i834.ApplyUseCases(gh<_i632.AuthRepository>()));
     gh.factory<_i554.ApplyCubit>(
         () => _i554.ApplyCubit(gh<_i834.ApplyUseCases>()));
+    gh.factory<_i943.ForgetPasswordCubit>(() => _i943.ForgetPasswordCubit(
+          gh<_i717.ForgetPasswordUseCase>(),
+          gh<_i12.EmailVerificationUseCase>(),
+          gh<_i44.ResetPasswordUseCase>(),
+        ));
     return this;
   }
 }

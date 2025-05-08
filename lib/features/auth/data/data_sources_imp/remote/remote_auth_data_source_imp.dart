@@ -1,4 +1,5 @@
 import 'package:dio/dio.dart';
+import 'package:dio/dio.dart';
 import 'package:injectable/injectable.dart';
 import 'package:tracking_app/core/network/common/api_result.dart';
 import 'package:tracking_app/core/network/remote/api_manager.dart';
@@ -10,8 +11,13 @@ import '../../data_sources/remote/remote_auth_data_source.dart';
 import '../../models/apply_model.dart';
 import '../../models/post_auth.dart';
 import '../../models/vehicles_model.dart';
+import 'package:tracking_app/features/auth/data/models/request/forget_request_dto.dart';
 import 'package:tracking_app/features/auth/data/models/request/login/login_request_dto.dart';
+import 'package:tracking_app/features/auth/data/models/response/forget_response_dto.dart';
 import 'package:tracking_app/features/auth/data/models/response/login/login_response_dto.dart';
+import 'package:tracking_app/features/auth/data/models/response/reset_password_request.dart';
+import 'package:tracking_app/features/auth/data/models/response/reset_password_response.dart';
+import 'package:tracking_app/features/auth/data/models/response/verify_code_request.dart';
 import 'package:tracking_app/features/auth/domain/data_sources/remote/remote_auth_data_source.dart';
 
 @Injectable(as: RemoteAuthDataSource)
@@ -54,7 +60,7 @@ class RemoteAuthDataSourceImp extends RemoteAuthDataSource {
   @override
   Future<Result<LoginResponseDto?>> login(LoginRequestDto loginRequest)async {
     final response = await _apiManager.execute<LoginResponseDto?>(
-          () async {
+      () async {
         return await _apiService.login(loginRequest);
       },
     );
@@ -64,6 +70,34 @@ class RemoteAuthDataSourceImp extends RemoteAuthDataSource {
 
 
 }
+
+  @override
+  Future<Result<ForgetResponseDto?>> forgetPassword(
+      ForgetRequestDto forgetRequest) async {
+    final response = await _apiManager.execute<ForgetResponseDto?>(() async {
+      return _apiService.forgetPassword(forgetRequest);
+    });
+
+    return response;
+  }
+
+  @override
+  Future<Result<String?>> verifyCode(VerifyCodeRequest verifyCode) async {
+    final response = await _apiManager.execute<String?>(() async {
+      return _apiService.verifyResetCode(verifyCode);
+    });
+
+    return response;
+  }
+
+  @override
+  Future<Result<ResetPasswordResponse?>> resetPassword(
+      ResetPasswordRequest resetPasswordRequest) async {
+    final response = await _apiManager.execute<ResetPasswordResponse?>(() {
+      return _apiService.resetPassword(resetPasswordRequest);
+    });
+    return response;
+  }
 
   // ex
   // @override

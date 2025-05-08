@@ -3,6 +3,11 @@ import 'package:injectable/injectable.dart';
 import 'package:retrofit/error_logger.dart';
 import 'package:retrofit/http.dart';
 import 'package:tracking_app/core/network/remote/api_constants.dart';
+import 'package:tracking_app/features/auth/data/models/request/forget_request_dto.dart';
+import 'package:tracking_app/features/auth/data/models/response/forget_response_dto.dart';
+import 'package:tracking_app/features/auth/data/models/response/reset_password_request.dart';
+import 'package:tracking_app/features/auth/data/models/response/reset_password_response.dart';
+import 'package:tracking_app/features/auth/data/models/response/verify_code_request.dart';
 import '../models/apply_model.dart';
 import '../models/post_auth.dart';
 import '../models/vehicles_model.dart';
@@ -21,9 +26,17 @@ abstract class AuthRetrofitClient {
   Future<VehiclesModelDto> getAllVehicles();
 
   @POST(ApiConstants.loginRoute)
-  Future<LoginResponseDto> login(
-      @Body() LoginRequestDto loginRequest);
+  Future<LoginResponseDto> login(@Body() LoginRequestDto loginRequest);
 
+  @POST(ApiConstants.forgetPassword)
+  Future<ForgetResponseDto> forgetPassword(
+      @Body() ForgetRequestDto forgetRequest);
+
+  @POST(ApiConstants.verifyResetCode)
+  Future<String?> verifyResetCode(@Body() VerifyCodeRequest verifycodeRequest);
+  
+  @PUT(ApiConstants.resetPassword)
+  Future<ResetPasswordResponse>resetPassword(@Body() ResetPasswordRequest resetPasswordRequest );
   // ex :
   //  @POST(ApiConstants.nameEndpoint)
   // Future<ModelResponseDto> function(
