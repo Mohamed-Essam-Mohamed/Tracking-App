@@ -70,7 +70,7 @@ class _ResetPasswordBodyState extends State<ResetPasswordBody> {
               child: BlocListener<ForgetPasswordCubit, ForgetPasswordState>(
                 listener: (context, state) {
                   if (state.resetPassowrdState is BaseLoadingState) {
-                    AppDialog.showLoadingDialog(context);
+                    AppDialogs.showLoadingDialog(context);
                   } else if (state.resetPassowrdState is BaseErrorState) {
                     final result = state.resetPassowrdState as BaseErrorState;
                     Navigator.of(context).pop();

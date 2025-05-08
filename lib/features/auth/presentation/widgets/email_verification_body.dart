@@ -67,7 +67,7 @@ class _EmailVerificationBodyState extends State<EmailVerificationBody> {
                   bloc: fogetCubit,
                   listener: (context, state) {
                     if (state.verifyCodeState is BaseLoadingState) {
-                      AppDialog.showLoadingDialog(context);
+                      AppDialogs.showLoadingDialog(context);
                     } else if (state.verifyCodeState is BaseErrorState) {
                       final result = state.verifyCodeState as BaseErrorState;
                       Navigator.of(context).pop();

@@ -71,7 +71,7 @@ class _ForgetPasswordBodyState extends State<ForgetPasswordBody> {
               },
               listener: (context, state) {
                 if (state.forgetState is BaseLoadingState) {
-                  AppDialog.showLoadingDialog(context);
+                  AppDialogs.showLoadingDialog(context);
                 } else if (state.forgetState is BaseErrorState) {
                   final result = state.forgetState as BaseErrorState;
                   Navigator.of(context).pop();
