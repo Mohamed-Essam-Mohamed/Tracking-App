@@ -43,7 +43,9 @@ dependencies:
   logger: ^2.5.0                
   json_annotation: ^4.9.0       
   url_launcher: ^6.3.1          
-  image_picker: ^1.1.2          
+  image_picker: ^1.1.2
+  country_picker: ^2.0.27
+  http_parser: ^4.0.2
 
   #? Permissions: For handling runtime permissions
   permission_handler: ^12.0.0+1 
