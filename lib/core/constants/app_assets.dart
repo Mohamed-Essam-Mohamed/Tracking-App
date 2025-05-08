@@ -1,4 +1,8 @@
 class SvgAsset {
+  static const taskAlt = 'assets/svg/task_alt.svg';
+  static const backgroundSuccessApply= "assets/svg/background_success_apply.svg";
+  static const backgroundSuccessApply2= "assets/svg/background_success_apply2.svg";
+
   static const add = 'assets/svg/add.svg';
   static const address = 'assets/svg/address.svg';
   static const alarmClock = 'assets/svg/Alarm-clock.svg';
@@ -59,4 +63,7 @@ class ImageAsset {
 class LottieAsset {
   static const empty = 'assets/lotties/empty_lottie2.json';
   static const error = 'assets/lotties/error_lottie.json';
+  static const onBoarding = 'assets/lotties/on_boarding.json';
+
+
 }
