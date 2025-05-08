@@ -3,6 +3,10 @@ import 'package:injectable/injectable.dart';
 import 'package:retrofit/error_logger.dart';
 import 'package:retrofit/http.dart';
 import 'package:tracking_app/core/network/remote/api_constants.dart';
+
+import '../models/apply_model.dart';
+import '../models/post_auth.dart';
+import '../models/vehicles_model.dart';
 part 'auth_retrofit_client.g.dart';
 
 @lazySingleton
@@ -10,8 +14,8 @@ part 'auth_retrofit_client.g.dart';
 abstract class AuthRetrofitClient {
   @factoryMethod
   factory AuthRetrofitClient(Dio dio) = _AuthRetrofitClient;
-  // ex :
-  //  @POST(ApiConstants.nameEndpoint)
-  // Future<ModelResponseDto> function(
-  //     @Body() ModelRequestDto modelRequestDto);
+  @POST(ApiConstants.apply)
+  Future<ApplyModelDto> apply(@Body() FormData formData);
+  @GET(ApiConstants.vehicles)
+  Future<VehiclesModelDto> getAllVehicles();
 }

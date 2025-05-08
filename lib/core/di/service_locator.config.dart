@@ -19,6 +19,26 @@ import 'package:tracking_app/core/network/remote/api_manager.dart' as _i481;
 import 'package:tracking_app/core/network/remote/dio_module.dart' as _i896;
 import 'package:tracking_app/features/auth/data/api/auth_retrofit_client.dart'
     as _i272;
+import 'package:tracking_app/features/auth/data/data_sources/remote/remote_auth_data_source.dart'
+    as _i165;
+import 'package:tracking_app/features/auth/data/data_sources_imp/remote/remote_auth_data_source_imp.dart'
+    as _i121;
+import 'package:tracking_app/features/auth/data/repositories_imp/auth_repository_imp.dart'
+    as _i701;
+import 'package:tracking_app/features/auth/domain/repositories/auth_repository.dart'
+    as _i632;
+import 'package:tracking_app/features/auth/domain/use_cases/apply_use_cases.dart'
+    as _i834;
+import 'package:tracking_app/features/auth/domain/use_cases/email_verification_use_case.dart'
+    as _i12;
+import 'package:tracking_app/features/auth/domain/use_cases/forget_password_use_case.dart'
+    as _i717;
+import 'package:tracking_app/features/auth/domain/use_cases/login_use_case.dart'
+    as _i862;
+import 'package:tracking_app/features/auth/domain/use_cases/reset_password_use_case.dart'
+    as _i44;
+import 'package:tracking_app/features/auth/presentation/view_model/apply/apply_cubit.dart'
+    as _i554;
 
 extension GetItInjectableX on _i174.GetIt {
 // initializes the registration of main-scope dependencies inside of GetIt
@@ -41,6 +61,24 @@ extension GetItInjectableX on _i174.GetIt {
         () => dioModule.providerInterceptor());
     gh.lazySingleton<_i272.AuthRetrofitClient>(
         () => _i272.AuthRetrofitClient(gh<_i361.Dio>()));
+    gh.factory<_i165.RemoteAuthDataSource>(() => _i121.RemoteAuthDataSourceImp(
+          gh<_i481.ApiManager>(),
+          gh<_i272.AuthRetrofitClient>(),
+        ));
+    gh.factory<_i632.AuthRepository>(
+        () => _i701.AuthRepositoryImp(gh<_i165.RemoteAuthDataSource>()));
+    gh.factory<_i12.EmailVerificationUseCase>(
+        () => _i12.EmailVerificationUseCase(gh<_i632.AuthRepository>()));
+    gh.factory<_i717.ForgetPasswordUseCase>(
+        () => _i717.ForgetPasswordUseCase(gh<_i632.AuthRepository>()));
+    gh.factory<_i862.LoginUseCase>(
+        () => _i862.LoginUseCase(gh<_i632.AuthRepository>()));
+    gh.factory<_i44.ResetPasswordUseCase>(
+        () => _i44.ResetPasswordUseCase(gh<_i632.AuthRepository>()));
+    gh.factory<_i834.ApplyUseCases>(
+        () => _i834.ApplyUseCases(gh<_i632.AuthRepository>()));
+    gh.factory<_i554.ApplyCubit>(
+        () => _i554.ApplyCubit(gh<_i834.ApplyUseCases>()));
     return this;
   }
 }
