@@ -108,6 +108,7 @@ abstract class  LocaleKeys {
   static const Home_Old = 'Home.Old';
   static const Home = 'Home';
   static const Error_error = 'Error.error';
+  static const Error_LoginFailed = 'Error.LoginFailed';
   static const Error_EmailAlreadyExists = 'Error.EmailAlreadyExists';
   static const Error_PasswordCannotBeEmpty = 'Error.PasswordCannotBeEmpty';
   static const Error_CodeCannotBeEmpty = 'Error.CodeCannotBeEmpty';
@@ -267,6 +268,7 @@ abstract class  LocaleKeys {
   static const checkout = 'checkout';
   static const Ok = 'Ok';
   static const Loading = 'Loading';
+  static const Continue = 'Continue';
   static const Retry = 'Retry';
   static const address = 'address';
   static const cancel = 'cancel';

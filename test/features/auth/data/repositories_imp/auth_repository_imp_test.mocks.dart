@@ -5,6 +5,7 @@
 // ignore_for_file: no_leading_underscores_for_library_prefixes
 import 'dart:async' as _i3;
 
+import 'package:dio/dio.dart' as _i9;
 import 'package:mockito/mockito.dart' as _i1;
 import 'package:mockito/src/dummies.dart' as _i7;
 import 'package:tracking_app/core/network/common/api_result.dart' as _i4;
@@ -14,6 +15,10 @@ import 'package:tracking_app/features/auth/data/models/response/login/login_resp
     as _i5;
 import 'package:tracking_app/features/auth/domain/data_sources/remote/remote_auth_data_source.dart'
     as _i2;
+import 'package:tracking_app/features/auth/domain/entities/apply_entity.dart'
+    as _i8;
+import 'package:tracking_app/features/auth/domain/entities/vehicles_entitiy.dart'
+    as _i10;
 
 // ignore_for_file: type=lint
 // ignore_for_file: avoid_redundant_argument_values
@@ -52,4 +57,30 @@ class MockRemoteAuthDataSource extends _i1.Mock
             ),
           )
           as _i3.Future<_i4.Result<_i5.LoginResponseDto?>>);
+
+  @override
+  _i3.Future<_i4.Result<_i8.ApplyEntity>> apply(_i9.FormData? formData) =>
+      (super.noSuchMethod(
+            Invocation.method(#apply, [formData]),
+            returnValue: _i3.Future<_i4.Result<_i8.ApplyEntity>>.value(
+              _i7.dummyValue<_i4.Result<_i8.ApplyEntity>>(
+                this,
+                Invocation.method(#apply, [formData]),
+              ),
+            ),
+          )
+          as _i3.Future<_i4.Result<_i8.ApplyEntity>>);
+
+  @override
+  _i3.Future<_i4.Result<_i10.VehiclesModelEntity>> getAllVehicles() =>
+      (super.noSuchMethod(
+            Invocation.method(#getAllVehicles, []),
+            returnValue: _i3.Future<_i4.Result<_i10.VehiclesModelEntity>>.value(
+              _i7.dummyValue<_i4.Result<_i10.VehiclesModelEntity>>(
+                this,
+                Invocation.method(#getAllVehicles, []),
+              ),
+            ),
+          )
+          as _i3.Future<_i4.Result<_i10.VehiclesModelEntity>>);
 }

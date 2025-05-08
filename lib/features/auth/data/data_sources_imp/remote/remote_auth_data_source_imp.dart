@@ -16,7 +16,6 @@ import 'package:tracking_app/features/auth/domain/data_sources/remote/remote_aut
 
 @Injectable(as: RemoteAuthDataSource)
 class RemoteAuthDataSourceImp extends RemoteAuthDataSource {
-  // we handle errors by using function execute
   final ApiManager _apiManager;
 
   final AuthRetrofitClient _apiService;
@@ -51,26 +50,9 @@ class RemoteAuthDataSourceImp extends RemoteAuthDataSource {
         return FailureResult<VehiclesModelEntity>(result.exception);
     }
   }
-}
 
-// ex
-// @override
-// Future<Result<ModelResponseEntity>> function() async {
-//   final result = await _apiManager.execute<ModelResponseDto>(() async {
-//     final response =
-//         await _apiService.function(ModelRequestDto());
-//     return response;
-//   });
-//   switch (result) {
-//     case SuccessResult<ModelResponseDto>():
-//       return SuccessResult<ModelResponseEntity>(result.data.toEntity());
-//     case FailureResult<ModelResponseDto>():
-//       return FailureResult<ModelResponseEntity>(result.exception);
-//   }
-// }
   @override
-  Future<Result<LoginResponseDto?>> login(LoginRequestDto loginRequest) async {
-
+  Future<Result<LoginResponseDto?>> login(LoginRequestDto loginRequest)async {
     final response = await _apiManager.execute<LoginResponseDto?>(
           () async {
         return await _apiService.login(loginRequest);
@@ -79,6 +61,9 @@ class RemoteAuthDataSourceImp extends RemoteAuthDataSource {
 
     return response;
   }
+
+
+}
 
   // ex
   // @override
@@ -95,4 +80,4 @@ class RemoteAuthDataSourceImp extends RemoteAuthDataSource {
   //       return FailureResult<ModelResponseEntity>(result.exception);
   //   }
   // }
-}
+

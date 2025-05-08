@@ -101,7 +101,7 @@ class _LoginBodyState extends State<LoginBody> {
                         Spacer(),
                         TextButton(
                           onPressed: () {
-                            // Navigator.of(context).pushNamed(Routes.forgetPassword);
+                             Navigator.of(context).pushNamed(Routes.applyScreen );
                           },
                           child: Text(
                             LocaleKeys.Authentication_ForgetPassword.tr(),

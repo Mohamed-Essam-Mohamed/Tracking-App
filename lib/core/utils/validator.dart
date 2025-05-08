@@ -56,7 +56,7 @@ class Validator {
       return LocaleKeys.Error_PhoneNumberCannotBeEmpty.tr();
     } else if (int.tryParse(val.trim()) == null) {
       return LocaleKeys.Error_InvalidPhoneNumber.tr();
-    } else if (val.trim().length != 11) {
+    } else if (val.trim().length != 13) {
       return LocaleKeys.Error_InvalidPhoneNumber.tr();
     } else {
       return null;
