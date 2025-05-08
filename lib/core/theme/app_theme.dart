@@ -19,32 +19,31 @@ class AppTheme {
       backgroundColor: AppColors.white,
     ),
     textTheme: const TextTheme(
-      titleLarge: TextStyle(
-          color: AppColors.black, fontWeight: FontWeight.w500, fontSize: 20),
-      titleMedium: TextStyle(
-          color: AppColors.black, fontWeight: FontWeight.w500, fontSize: 18),
-      titleSmall: TextStyle(
-          color: AppColors.black, fontWeight: FontWeight.w500, fontSize: 16),
-      labelLarge: TextStyle(
-          color: AppColors.pink, fontWeight: FontWeight.w700, fontSize: 20),
-      labelMedium: TextStyle(
-          color: AppColors.black, fontWeight: FontWeight.w400, fontSize: 14),
-      labelSmall: TextStyle(
-          color: AppColors.white, fontWeight: FontWeight.w500, fontSize: 13),
-      bodyLarge: TextStyle(
-          color: AppColors.black, fontWeight: FontWeight.w400, fontSize: 12),
-      bodyMedium: TextStyle(
-          color: AppColors.pink, fontWeight: FontWeight.w500, fontSize: 12),
-      bodySmall: TextStyle(
-          color: AppColors.gray, fontWeight: FontWeight.w400, fontSize: 13),
+      titleLarge:
+          TextStyle(color: AppColors.black, fontWeight: FontWeight.w500, fontSize: 20),
+      titleMedium:
+          TextStyle(color: AppColors.black, fontWeight: FontWeight.w500, fontSize: 18),
+      titleSmall:
+          TextStyle(color: AppColors.black, fontWeight: FontWeight.w500, fontSize: 16),
+      labelLarge:
+          TextStyle(color: AppColors.pink, fontWeight: FontWeight.w700, fontSize: 20),
+      labelMedium:
+          TextStyle(color: AppColors.black, fontWeight: FontWeight.w400, fontSize: 14),
+      labelSmall:
+          TextStyle(color: AppColors.white, fontWeight: FontWeight.w500, fontSize: 13),
+      bodyLarge:
+          TextStyle(color: AppColors.black, fontWeight: FontWeight.w400, fontSize: 12),
+      bodyMedium:
+          TextStyle(color: AppColors.pink, fontWeight: FontWeight.w500, fontSize: 12),
+      bodySmall:
+          TextStyle(color: AppColors.gray, fontWeight: FontWeight.w400, fontSize: 13),
     ),
     progressIndicatorTheme: ProgressIndicatorThemeData(
       color: AppColors.pink[AppColors.colorCode50],
     ),
     elevatedButtonTheme: ElevatedButtonThemeData(
       style: ButtonStyle(
-        backgroundColor:
-            WidgetStateProperty.all(AppColors.pink[AppColors.colorCode50]),
+        backgroundColor: WidgetStateProperty.all(AppColors.pink[AppColors.colorCode50]),
         foregroundColor: WidgetStateProperty.all(AppColors.white),
         shape: WidgetStateProperty.all(
           RoundedRectangleBorder(
@@ -128,8 +127,7 @@ class AppTheme {
     textButtonTheme: TextButtonThemeData(
       style: ButtonStyle(
         overlayColor: WidgetStateProperty.all(Colors.transparent),
-        foregroundColor:
-            WidgetStateProperty.all(AppColors.black),
+        foregroundColor: WidgetStateProperty.all(AppColors.black),
         textStyle: WidgetStateProperty.all(
           const TextStyle(
             decoration: TextDecoration.underline,
@@ -148,8 +146,7 @@ class AppTheme {
                 color: AppColors.pink[AppColors.colorCode50],
                 fontWeight: FontWeight.w600);
           }
-          return TextStyle(
-              color: AppColors.black[30], fontWeight: FontWeight.w500);
+          return TextStyle(color: AppColors.black[30], fontWeight: FontWeight.w500);
         },
       ),
       elevation: 0,
@@ -172,13 +169,9 @@ class AppTheme {
       side: const BorderSide(color: AppColors.gray, width: 2),
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(2)),
     ),
-
-
     radioTheme: RadioThemeData(
-        fillColor:
-            WidgetStatePropertyAll((AppColors.pink[AppColors.colorCode50])),
-        overlayColor:
-            WidgetStatePropertyAll(AppColors.pink[AppColors.colorCode50])),
+        fillColor: WidgetStatePropertyAll((AppColors.pink[AppColors.colorCode50])),
+        overlayColor: WidgetStatePropertyAll(AppColors.pink[AppColors.colorCode50])),
     bottomNavigationBarTheme: BottomNavigationBarThemeData(
       elevation: 0,
       selectedItemColor: AppColors.pink[AppColors.colorCode50],
@@ -203,15 +196,13 @@ class AppTheme {
       unselectedLabelColor: AppColors.white[AppColors.colorCode70],
       dividerColor: Colors.transparent,
       labelStyle: TextStyle(
-          fontWeight: FontWeight.w400,
-          fontSize: 16,
-        ),
-      unselectedLabelStyle:
-          TextStyle(fontWeight: FontWeight.w400, fontSize: 16),
+        fontWeight: FontWeight.w400,
+        fontSize: 16,
+      ),
+      unselectedLabelStyle: TextStyle(fontWeight: FontWeight.w400, fontSize: 16),
       indicator: UnderlineTabIndicator(
         insets: EdgeInsets.zero,
-        borderSide:
-            BorderSide(width: 3, color: AppColors.pink[AppColors.colorCode50]!),
+        borderSide: BorderSide(width: 3, color: AppColors.pink[AppColors.colorCode50]!),
       ),
       labelPadding: const EdgeInsets.only(right: 24),
       tabAlignment: TabAlignment.start,

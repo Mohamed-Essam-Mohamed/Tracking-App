@@ -12,7 +12,7 @@ class AppSection extends StatelessWidget{
     return Scaffold(
       body: Center(
         child: ElevatedButton(onPressed: (){
-          logout(context);
+          logout(context );
         }, child: Text('log out')),
       ),
     );

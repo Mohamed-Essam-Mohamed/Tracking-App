@@ -56,7 +56,7 @@ class Validator {
       return LocaleKeys.Error_PhoneNumberCannotBeEmpty.tr();
     } else if (int.tryParse(val.trim()) == null) {
       return LocaleKeys.Error_InvalidPhoneNumber.tr();
-    } else if (val.trim().length != 11) {
+    } else if (val.trim().length != 13) {
       return LocaleKeys.Error_InvalidPhoneNumber.tr();
     } else {
       return null;
@@ -68,6 +68,34 @@ class Validator {
       return LocaleKeys.Error_CodeCannotBeEmpty.tr();
     } else if (val.length < 6) {
       return LocaleKeys.Error_CodeShouldBeAtLeast6Digits.tr();
+    } else {
+      return null;
+    }
+  }
+
+  static String? validateUpload(String? val) {
+    if (val == null || val.isEmpty) {
+      return LocaleKeys.Error_ImageCannotBeEmpty.tr();
+    } else {
+      return null;
+    }
+  }
+
+  static String? validateIdNumber(String? val) {
+    if (val == null) {
+      return LocaleKeys.Error_IdNumberCannotBeEmpty.tr();
+    } else if (val.trim().length != 14) {
+      return LocaleKeys.Error_InvalidIdNumber.tr();
+    } else {
+      return null;
+    }
+  }
+
+  static String? validateVehicleNumber(String? val) {
+    if (val == null) {
+      return LocaleKeys.Error_vehicleNumberCannotBeEmpty.tr();
+    } else if (val.trim().length != 5) {
+      return LocaleKeys.Error_InvalidVehicleNumber.tr();
     } else {
       return null;
     }

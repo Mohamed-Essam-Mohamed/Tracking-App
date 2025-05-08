@@ -5,13 +5,18 @@
 // ignore_for_file: no_leading_underscores_for_library_prefixes
 import 'dart:async' as _i3;
 
+import 'package:dio/dio.dart' as _i6;
 import 'package:mockito/mockito.dart' as _i1;
 import 'package:mockito/src/dummies.dart' as _i7;
 import 'package:tracking_app/core/network/common/api_result.dart' as _i4;
-import 'package:tracking_app/features/auth/domain/entities/request/login/login_request_entity.dart'
-    as _i6;
-import 'package:tracking_app/features/auth/domain/entities/response/login/login_response_entity.dart'
+import 'package:tracking_app/features/auth/domain/entities/apply_entity.dart'
     as _i5;
+import 'package:tracking_app/features/auth/domain/entities/request/login/login_request_entity.dart'
+    as _i10;
+import 'package:tracking_app/features/auth/domain/entities/response/login/login_response_entity.dart'
+    as _i9;
+import 'package:tracking_app/features/auth/domain/entities/vehicles_entitiy.dart'
+    as _i8;
 import 'package:tracking_app/features/auth/domain/repositories/auth_repository.dart'
     as _i2;
 
@@ -38,17 +43,43 @@ class MockAuthRepository extends _i1.Mock implements _i2.AuthRepository {
   }
 
   @override
-  _i3.Future<_i4.Result<_i5.LoginResponseEntity?>> login(
-    _i6.LoginRequestEntity? loginRequest,
+  _i3.Future<_i4.Result<_i5.ApplyEntity>> apply(_i6.FormData? formData) =>
+      (super.noSuchMethod(
+            Invocation.method(#apply, [formData]),
+            returnValue: _i3.Future<_i4.Result<_i5.ApplyEntity>>.value(
+              _i7.dummyValue<_i4.Result<_i5.ApplyEntity>>(
+                this,
+                Invocation.method(#apply, [formData]),
+              ),
+            ),
+          )
+          as _i3.Future<_i4.Result<_i5.ApplyEntity>>);
+
+  @override
+  _i3.Future<_i4.Result<_i8.VehiclesModelEntity>> getAllVehicles() =>
+      (super.noSuchMethod(
+            Invocation.method(#getAllVehicles, []),
+            returnValue: _i3.Future<_i4.Result<_i8.VehiclesModelEntity>>.value(
+              _i7.dummyValue<_i4.Result<_i8.VehiclesModelEntity>>(
+                this,
+                Invocation.method(#getAllVehicles, []),
+              ),
+            ),
+          )
+          as _i3.Future<_i4.Result<_i8.VehiclesModelEntity>>);
+
+  @override
+  _i3.Future<_i4.Result<_i9.LoginResponseEntity?>> login(
+    _i10.LoginRequestEntity? loginRequest,
   ) =>
       (super.noSuchMethod(
             Invocation.method(#login, [loginRequest]),
-            returnValue: _i3.Future<_i4.Result<_i5.LoginResponseEntity?>>.value(
-              _i7.dummyValue<_i4.Result<_i5.LoginResponseEntity?>>(
+            returnValue: _i3.Future<_i4.Result<_i9.LoginResponseEntity?>>.value(
+              _i7.dummyValue<_i4.Result<_i9.LoginResponseEntity?>>(
                 this,
                 Invocation.method(#login, [loginRequest]),
               ),
             ),
           )
-          as _i3.Future<_i4.Result<_i5.LoginResponseEntity?>>);
+          as _i3.Future<_i4.Result<_i9.LoginResponseEntity?>>);
 }

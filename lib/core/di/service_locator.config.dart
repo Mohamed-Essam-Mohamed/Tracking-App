@@ -27,6 +27,8 @@ import 'package:tracking_app/features/auth/domain/data_sources/remote/remote_aut
     as _i13;
 import 'package:tracking_app/features/auth/domain/repositories/auth_repository.dart'
     as _i632;
+import 'package:tracking_app/features/auth/domain/use_cases/apply_use_cases.dart'
+    as _i834;
 import 'package:tracking_app/features/auth/domain/use_cases/email_verification_use_case.dart'
     as _i12;
 import 'package:tracking_app/features/auth/domain/use_cases/forget_password_use_case.dart'
@@ -35,6 +37,8 @@ import 'package:tracking_app/features/auth/domain/use_cases/login_use_case.dart'
     as _i862;
 import 'package:tracking_app/features/auth/domain/use_cases/reset_password_use_case.dart'
     as _i44;
+import 'package:tracking_app/features/auth/presentation/view_model/apply/apply_cubit.dart'
+    as _i554;
 import 'package:tracking_app/features/auth/presentation/view_model/login/login_cubit.dart'
     as _i578;
 
@@ -75,6 +79,10 @@ extension GetItInjectableX on _i174.GetIt {
         () => _i44.ResetPasswordUseCase(gh<_i632.AuthRepository>()));
     gh.factory<_i578.LoginCubit>(
         () => _i578.LoginCubit(gh<_i862.LoginUseCase>()));
+    gh.factory<_i834.ApplyUseCases>(
+        () => _i834.ApplyUseCases(gh<_i632.AuthRepository>()));
+    gh.factory<_i554.ApplyCubit>(
+        () => _i554.ApplyCubit(gh<_i834.ApplyUseCases>()));
     return this;
   }
 }

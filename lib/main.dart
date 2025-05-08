@@ -10,6 +10,7 @@ import 'package:tracking_app/core/routes/routes.dart';
 import 'package:tracking_app/core/theme/app_theme.dart';
 import 'package:tracking_app/core/utils/app_shared_preference.dart';
 import 'firebase_options.dart';
+import 'package:device_preview/device_preview.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -26,6 +27,7 @@ Future<void> main() async {
   final prefs = await SharedPreferences.getInstance();
   final isLoggedIn = prefs.getBool('isLoggedIn') ?? false;
   final initialRoute = isLoggedIn ? Routes.appSection : Routes.login;
+
   runApp(EasyLocalization(
     supportedLocales: AppValues.supportedLocales,
     fallbackLocale: AppValues.englishLocale,
