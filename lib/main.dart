@@ -23,7 +23,7 @@ void main() async {
 
   final prefs = await SharedPreferences.getInstance();
   final isLoggedIn = prefs.getBool('isLoggedIn') ?? false;
-  final initialRoute = isLoggedIn ? Routes.appSection : Routes.login;
+  final initialRoute = isLoggedIn ? Routes.appSection : Routes.forgetPassword;
 
   runApp(EasyLocalization(
     supportedLocales: AppValues.supportedLocales,
@@ -36,7 +36,7 @@ void main() async {
 class MyApp extends StatelessWidget {
   final String initialRoute;
 
-  const MyApp({super.key,required this.initialRoute});
+  const MyApp({super.key, required this.initialRoute});
 
   // This widget is the root of your application.
   @override

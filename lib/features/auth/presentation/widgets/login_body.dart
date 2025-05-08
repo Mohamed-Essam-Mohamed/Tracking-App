@@ -37,7 +37,6 @@ class _LoginBodyState extends State<LoginBody> {
       create: (context) => cubit,
       child: BlocConsumer<LoginCubit, LoginState>(
         listener: (context, state) {
-
           if (state.baseState is BaseSuccessState) {
             Navigator.pushReplacementNamed(context, Routes.appSection);
           } else if (state.baseState is BaseErrorState) {
@@ -101,7 +100,8 @@ class _LoginBodyState extends State<LoginBody> {
                         Spacer(),
                         TextButton(
                           onPressed: () {
-                            // Navigator.of(context).pushNamed(Routes.forgetPassword);
+                            Navigator.of(context)
+                                .pushNamed(Routes.forgetPassword);
                           },
                           child: Text(
                             LocaleKeys.Authentication_ForgetPassword.tr(),
