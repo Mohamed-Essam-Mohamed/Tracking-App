@@ -27,7 +27,7 @@ class OnboardingScreen extends StatelessWidget {
             SizedBox(height: context.hp(3),),
             SizedBox(width: double.infinity,child: ElevatedButton(onPressed: () {
 
-              Navigator.of(context).pushReplacementNamed(Routes.login);
+              Navigator.of(context).pushNamed(Routes.login);
             },
                 key: Key(TestKeys.loginOnboarding),
                 style: ElevatedButton.styleFrom(backgroundColor: AppColors.pink, shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(25),), padding: const EdgeInsets.symmetric(vertical: 13),),
