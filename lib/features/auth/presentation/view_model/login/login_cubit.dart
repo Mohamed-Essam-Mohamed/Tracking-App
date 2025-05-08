@@ -15,7 +15,7 @@ class LoginCubit extends Cubit<LoginState> {
   final GlobalKey<FormState> formKey = GlobalKey<FormState>();
   final TextEditingController emailController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
-   late  bool rememberMe = false;
+  late  bool rememberMe = false;
 
 
   LoginCubit(this._loginUseCase)

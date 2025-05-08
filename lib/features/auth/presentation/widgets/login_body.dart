@@ -45,7 +45,7 @@ class _LoginBodyState extends State<LoginBody> {
               AppToast.showToast(
                   context: context,
                   description:
-                      (state.baseState as BaseErrorState).exception.toString(),
+                  (state.baseState as BaseErrorState).exception.toString(),
                   type: ToastificationType.error,
                   title: LocaleKeys.Error_LoginFailed.tr());
             });
@@ -78,7 +78,7 @@ class _LoginBodyState extends State<LoginBody> {
                       obscureText: true,
                       decoration: InputDecoration(
                         hintText:
-                            LocaleKeys.Authentication_EnterYourPassword.tr(),
+                        LocaleKeys.Authentication_EnterYourPassword.tr(),
                         labelText: LocaleKeys.Authentication_Password.tr(),
                       ),
                       validator: (value) => Validator.validatePassword(value),
@@ -119,20 +119,20 @@ class _LoginBodyState extends State<LoginBody> {
                       onPressed: isLoading
                           ? null
                           : () {
-                              if (state.isFormValid) {
-                                cubit.doIntent(LoginAction());
-                              }
-                            },
+                        if (state.isFormValid) {
+                          cubit.doIntent(LoginAction());
+                        }
+                      },
                       child: isLoading
                           ? const SizedBox(
-                              width: 20,
-                              height: 20,
-                              child: CircularProgressIndicator(
-                                strokeWidth: 2,
-                                valueColor:
-                                    AlwaysStoppedAnimation(Colors.white),
-                              ),
-                            )
+                        width: 20,
+                        height: 20,
+                        child: CircularProgressIndicator(
+                          strokeWidth: 2,
+                          valueColor:
+                          AlwaysStoppedAnimation(Colors.white),
+                        ),
+                      )
                           : Text(LocaleKeys.Continue.tr()),
                     ),
                   ],
