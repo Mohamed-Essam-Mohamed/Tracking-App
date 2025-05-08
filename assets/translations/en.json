@@ -54,7 +54,6 @@
         "Profile": "Profile",
         "Occasion": "Occasion",
         "BestSeller": "Best seller",
-        "ViewAll": "View All",
         "DiscoverSomethingNow": "Discover something now",
         "ViewAll": "View All",
         "AddToCart": "Add to cart",
@@ -106,6 +105,7 @@
     "Messages": {
         "OtpSentToYourEmail": "OTP sent to your email"
     },
+
     "profile": {
         "MyOrder": "My orders",
         "SavedAddress": "Saved address",
@@ -125,6 +125,23 @@
         "order_number": "Order number ",
         "no_orders": "Oops, Looks like you haven’t completed any order yet."
     },
+    "onBoarding": {
+        "login": "login",
+        "Apply":"Apply now",
+        "welcome_to": "Welcome to",
+        "flowery_rider_app":"flowery rider app"
+    },
+    "successApply": {
+        "Your_application_has_been": "Your application has been ",
+        "submitted": "submitted!",
+        "Thank_you_for_providing_your_application": "Thank you for providing your application,",
+        "Login": "Login",
+        "get_back_to_you_soon": "get back to you soon.",
+        "we_will_review_your_application_and_will": "we will review your application and will "
+
+    },
+
+
     "Ok": "Ok",
     "Loading": "Loading...",
     "Retry": "Retry"

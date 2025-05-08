@@ -124,6 +124,21 @@
         "order_number": "رقم الطلب ",
         "no_orders": "عذرًا، يبدو أنك لم تكمل أي طلب بعد."
     },
+    "onBoarding": {
+        "login": "تسجيل",
+        "Apply":" ابداء الان",
+        "welcome_to": "مرحبا بك في ",
+        "flowery_rider_app":"flowery rider app"
+    },
+    "successApply": {
+        "Your_application_has_been": "تم تقديم طلبك",
+        "submitted": "بنجاح!",
+        "Thank_you_for_providing_your_application": "شكرًا لتقديمك طلب الانضمام،",
+        "Login": "تسجيل الدخول",
+        "get_back_to_you_soon": "سوف نعاود التواصل معك قريبًا.",
+        "we_will_review_your_application_and_will": "سنقوم بمراجعة طلبك و"
+
+    },
     "Ok": "موافق",
     "Loading": "جارٍ التحميل...",
     "Retry": "إعادة المحاولة"
