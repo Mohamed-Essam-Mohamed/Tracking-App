@@ -1,6 +1,9 @@
 import 'package:injectable/injectable.dart';
+import 'package:tracking_app/core/network/common/api_result.dart';
 import 'package:tracking_app/core/network/remote/api_manager.dart';
 import 'package:tracking_app/features/auth/data/api/auth_retrofit_client.dart';
+import 'package:tracking_app/features/auth/data/models/request/login/login_request_dto.dart';
+import 'package:tracking_app/features/auth/data/models/response/login/login_response_dto.dart';
 import 'package:tracking_app/features/auth/domain/data_sources/remote/remote_auth_data_source.dart';
 
 @Injectable(as: RemoteAuthDataSource)
@@ -11,6 +14,18 @@ class RemoteAuthDataSourceImp extends RemoteAuthDataSource {
   final AuthRetrofitClient _apiService;
 
   RemoteAuthDataSourceImp(this._apiManager, this._apiService);
+
+  @override
+  Future<Result<LoginResponseDto?>> login(LoginRequestDto loginRequest) async {
+
+    final response = await _apiManager.execute<LoginResponseDto?>(
+          () async {
+        return await _apiService.login(loginRequest);
+      },
+    );
+
+    return response;
+  }
 
   // ex
   // @override

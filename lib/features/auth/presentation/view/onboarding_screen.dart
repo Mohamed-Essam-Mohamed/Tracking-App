@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:tracking_app/core/constants/app_colors.dart';
 import 'package:tracking_app/core/constants/keys.dart';
 import 'package:tracking_app/core/extentions/media_query_extensions.dart';
+import 'package:tracking_app/core/routes/routes.dart';
 import 'package:tracking_app/core/theme/app_theme.dart';
 import 'package:tracking_app/core/utils/widgets/lottie_onboarding_widget.dart';
 import 'package:tracking_app/generated/locale_keys.g.dart';
@@ -24,7 +25,10 @@ class OnboardingScreen extends StatelessWidget {
             Text(  LocaleKeys.onBoarding_welcome_to.tr(),style: AppTheme.lightTheme.textTheme.titleLarge,),
             Text(  LocaleKeys.onBoarding_flowery_rider_app.tr(),style: AppTheme.lightTheme.textTheme.titleLarge,),
             SizedBox(height: context.hp(3),),
-            SizedBox(width: double.infinity,child: ElevatedButton(onPressed: () {},
+            SizedBox(width: double.infinity,child: ElevatedButton(onPressed: () {
+
+              Navigator.of(context).pushReplacementNamed(Routes.login);
+            },
                 key: Key(TestKeys.loginOnboarding),
                 style: ElevatedButton.styleFrom(backgroundColor: AppColors.pink, shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(25),), padding: const EdgeInsets.symmetric(vertical: 13),),
                 child:  Text(LocaleKeys.onBoarding_login.tr(), style: AppTheme.lightTheme.textTheme.titleSmall!.copyWith(color: AppColors.white),)),),

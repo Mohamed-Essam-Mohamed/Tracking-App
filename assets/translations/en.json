@@ -55,7 +55,6 @@
         "Occasion": "Occasion",
         "BestSeller": "Best seller",
         "DiscoverSomethingNow": "Discover something now",
-        "ViewAll": "View All",
         "AddToCart": "Add to cart",
         "BestSellerSubTitle": "Bloom with our exquisite best sellers",
         "Filter": "Filter",
@@ -66,6 +65,7 @@
     },
     "Error": {
         "error": "Error",
+        "LoginFailed": "Login failed",
         "EmailAlreadyExists": "This email already exists.",
         "PasswordCannotBeEmpty": "Password can't be empty.",
         "CodeCannotBeEmpty": "Code cannot be empty.",
@@ -76,9 +76,9 @@
         "InvalidPhoneNumber": "Invalid number format. Ensure it starts with 010, 011, 012, or 015 and has 11 digits.",
         "ConfirmPasswordMustMatch": "Confirm password must match password.",
         "OtpCodeIsInvalidOrExpired": "Reset code is invalid or has expired",
-        "PasswordEnterAValidPassword": "Password must contain at least 8 characters and include One uppercase letter (A-Z), One lowercase letter (a-z),One number (0-9), And one special character (#?!@$%^&*-).",
+        "PasswordEnterAValidPassword": "Password must contain at least 8 characters \n and include uppercase letter  \n a lowercase letter  \n and a number \n and a special character.",
         "EmailCannotBeEmpty": "Email can't be empty.",
-        "EnterAValidEmail": "Please enter a valid email address , e.g. email@domain.",
+        "EnterAValidEmail": "Please enter a valid email address \n e.g. email@domain.",
         "InvalidCredentials": "Sorry, the email or password you entered doesn't match. Double-check and try again!",
         "Receive_timeout": "It's taking longer than usual to get a response. Please give it another try.",
         "Timeout_occurred": "oops, we lost connection for a moment. Try again when you're ready!",
@@ -144,5 +144,6 @@
 
     "Ok": "Ok",
     "Loading": "Loading...",
-    "Retry": "Retry"
+    "Retry": "Retry",
+    "Continue" :  "Continue"
 }
