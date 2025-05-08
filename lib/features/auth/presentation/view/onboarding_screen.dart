@@ -14,35 +14,57 @@ class OnboardingScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-
-
-      body: Padding(
+      body: SingleChildScrollView(
         padding: const EdgeInsets.all(15),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-           LottieOnboardingWidget(),
-            Text(  LocaleKeys.onBoarding_welcome_to.tr(),style: AppTheme.lightTheme.textTheme.titleLarge,),
-            Text(  LocaleKeys.onBoarding_flowery_rider_app.tr(),style: AppTheme.lightTheme.textTheme.titleLarge,),
-            SizedBox(height: context.hp(3),),
-            SizedBox(width: double.infinity,child: ElevatedButton(onPressed: () {
-
-              Navigator.of(context).pushNamed(Routes.login);
-            },
-                key: Key(TestKeys.loginOnboarding),
-                style: ElevatedButton.styleFrom(backgroundColor: AppColors.pink, shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(25),), padding: const EdgeInsets.symmetric(vertical: 13),),
-                child:  Text(LocaleKeys.onBoarding_login.tr(), style: AppTheme.lightTheme.textTheme.titleSmall!.copyWith(color: AppColors.white),)),),
-            SizedBox(height: context.hp(2),),
-            SizedBox(width: double.infinity, child: ElevatedButton(onPressed: () {
-              Navigator.of(context).pushNamed(Routes.applyScreen);
-
-            },
+            LottieOnboardingWidget(),
+            Text(
+              "${LocaleKeys.onBoarding_welcome_to.tr()}\n${LocaleKeys.onBoarding_flowery_rider_app.tr()}",
+              style: AppTheme.lightTheme.textTheme.titleLarge,
+            ),
+            SizedBox(height: context.hp(3)),
+            ElevatedButton(
+              onPressed: () {
+                Navigator.of(context).pushNamed(Routes.login);
+              },
+              key: Key(TestKeys.loginOnboarding),
+              style: ElevatedButton.styleFrom(
+                backgroundColor: AppColors.pink,
+                minimumSize: const Size.fromHeight(50),
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(25),
+                ),
+                padding: const EdgeInsets.symmetric(vertical: 13),
+              ),
+              child: Text(
+                LocaleKeys.onBoarding_login.tr(),
+                style: AppTheme.lightTheme.textTheme.titleSmall!
+                    .copyWith(color: AppColors.white),
+              ),
+            ),
+            SizedBox(height: context.hp(2)),
+            ElevatedButton(
+              onPressed: () {
+                Navigator.of(context).pushNamed(Routes.applyScreen);
+              },
               key: Key(TestKeys.applyOnboarding),
-              style: ElevatedButton.styleFrom(backgroundColor: AppColors.white, side: BorderSide(color: AppColors.gray.withValues(alpha: 0.9)), padding: const EdgeInsets.symmetric(vertical: 13), shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(25),),),
-                child: Text(LocaleKeys.onBoarding_Apply.tr(), style: AppTheme.lightTheme.textTheme.titleSmall!.copyWith(color:AppColors.gray ),),
+              style: ElevatedButton.styleFrom(
+                backgroundColor: AppColors.white,
+                minimumSize: const Size.fromHeight(50),
+                side: BorderSide(color: AppColors.gray.withValues(alpha: 0.9)),
+                padding: const EdgeInsets.symmetric(vertical: 13),
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(25),
+                ),
+              ),
+              child: Text(
+                LocaleKeys.onBoarding_Apply.tr(),
+                style: AppTheme.lightTheme.textTheme.titleSmall!
+                    .copyWith(color: AppColors.gray),
               ),
             )
-
           ],
         ),
       ),

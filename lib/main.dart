@@ -9,6 +9,7 @@ import 'package:tracking_app/core/routes/routes.dart';
 import 'package:tracking_app/core/theme/app_theme.dart';
 import 'package:tracking_app/core/utils/app_shared_preference.dart';
 import 'firebase_options.dart';
+import 'package:device_preview/device_preview.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -36,7 +37,7 @@ void main() async {
 class MyApp extends StatelessWidget {
   final String initialRoute;
 
-  const MyApp({super.key,required this.initialRoute});
+  const MyApp({super.key, required this.initialRoute});
 
   // This widget is the root of your application.
   @override

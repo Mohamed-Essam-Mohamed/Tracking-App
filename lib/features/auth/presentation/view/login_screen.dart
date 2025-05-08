@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import '../../../../generated/locale_keys.g.dart';
 import '../widgets/login_body.dart';
 
-class LoginScreen extends StatelessWidget{
+class LoginScreen extends StatelessWidget {
   const LoginScreen({super.key});
 
   @override
@@ -18,11 +18,8 @@ class LoginScreen extends StatelessWidget{
               // Navigator.of(context).pop();
             },
             icon: Icon(Icons.arrow_back_ios_new_outlined)),
-
       ),
-      body: LoginBody() ,
+      body: LoginBody(),
     );
-
   }
-
 }
