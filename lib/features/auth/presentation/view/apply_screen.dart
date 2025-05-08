@@ -146,17 +146,18 @@ class _ApplyScreenState extends State<ApplyScreen> {
                         labelStyle: AppTheme.lightTheme.textTheme.labelMedium
                             ?.copyWith(color: AppColors.gray.withOpacity(0.8)),
                         enabledBorder: OutlineInputBorder(
-                          borderSide: BorderSide(color: AppColors.gray),
+                          borderSide: const BorderSide(color: AppColors.gray),
                           borderRadius: BorderRadius.circular(6),
                         ),
                         focusedBorder: OutlineInputBorder(
-                          borderSide: BorderSide(color: AppColors.black),
+                          borderSide: const BorderSide(color: AppColors.black),
                           borderRadius: BorderRadius.circular(6),
                         ),
                         suffixIcon: IconButton(
                           icon: Icon(Icons.keyboard_arrow_down_sharp),
                           onPressed: () {
                             showCountryPicker(
+                              showPhoneCode: true,
                               context: context,
                               onSelect: (Country country) {
                                 setState(() {
