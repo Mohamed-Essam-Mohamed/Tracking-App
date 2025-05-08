@@ -8,7 +8,9 @@ import 'package:tracking_app/features/auth/data/models/response/forget_response_
 import 'package:tracking_app/features/auth/data/models/response/reset_password_request.dart';
 import 'package:tracking_app/features/auth/data/models/response/reset_password_response.dart';
 import 'package:tracking_app/features/auth/data/models/response/verify_code_request.dart';
-
+import '../models/apply_model.dart';
+import '../models/post_auth.dart';
+import '../models/vehicles_model.dart';
 import '../models/request/login/login_request_dto.dart';
 import '../models/response/login/login_response_dto.dart';
 part 'auth_retrofit_client.g.dart';
@@ -18,6 +20,10 @@ part 'auth_retrofit_client.g.dart';
 abstract class AuthRetrofitClient {
   @factoryMethod
   factory AuthRetrofitClient(Dio dio) = _AuthRetrofitClient;
+  @POST(ApiConstants.apply)
+  Future<ApplyModelDto> apply(@Body() FormData formData);
+  @GET(ApiConstants.vehicles)
+  Future<VehiclesModelDto> getAllVehicles();
 
   @POST(ApiConstants.loginRoute)
   Future<LoginResponseDto> login(@Body() LoginRequestDto loginRequest);
