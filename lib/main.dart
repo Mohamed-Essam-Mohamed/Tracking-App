@@ -1,4 +1,5 @@
 import 'package:easy_localization/easy_localization.dart';
+import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:tracking_app/core/constants/app_values.dart';
@@ -10,7 +11,7 @@ import 'package:tracking_app/core/theme/app_theme.dart';
 import 'package:tracking_app/core/utils/app_shared_preference.dart';
 import 'firebase_options.dart';
 
-void main() async {
+Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Future.wait([
     configureDependencies(),
@@ -20,11 +21,11 @@ void main() async {
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
+  FlutterError.onError = FirebaseCrashlytics.instance.recordFlutterError;
 
   final prefs = await SharedPreferences.getInstance();
   final isLoggedIn = prefs.getBool('isLoggedIn') ?? false;
   final initialRoute = isLoggedIn ? Routes.appSection : Routes.login;
-
   runApp(EasyLocalization(
     supportedLocales: AppValues.supportedLocales,
     fallbackLocale: AppValues.englishLocale,
@@ -36,7 +37,7 @@ void main() async {
 class MyApp extends StatelessWidget {
   final String initialRoute;
 
-  const MyApp({super.key,required this.initialRoute});
+  const MyApp({super.key, required this.initialRoute});
 
   // This widget is the root of your application.
   @override

@@ -37,15 +37,13 @@ class _LoginBodyState extends State<LoginBody> {
       create: (context) => cubit,
       child: BlocConsumer<LoginCubit, LoginState>(
         listener: (context, state) {
-
           if (state.baseState is BaseSuccessState) {
             Navigator.pushReplacementNamed(context, Routes.appSection);
           } else if (state.baseState is BaseErrorState) {
             WidgetsBinding.instance.addPostFrameCallback((_) {
               AppToast.showToast(
                   context: context,
-                  description:
-                      (state.baseState as BaseErrorState).exception.toString(),
+                  description: (state.baseState as BaseErrorState).exception.toString(),
                   type: ToastificationType.error,
                   title: LocaleKeys.Error_LoginFailed.tr());
             });
@@ -69,21 +67,18 @@ class _LoginBodyState extends State<LoginBody> {
                         labelText: LocaleKeys.Authentication_Email.tr(),
                       ),
                       validator: (value) => Validator.validateEmail(value),
-                      onTapOutside: (_) =>
-                          FocusManager.instance.primaryFocus?.unfocus(),
+                      onTapOutside: (_) => FocusManager.instance.primaryFocus?.unfocus(),
                     ),
                     const SizedBox(height: 16.0),
                     TextFormField(
                       controller: cubit.passwordController,
                       obscureText: true,
                       decoration: InputDecoration(
-                        hintText:
-                            LocaleKeys.Authentication_EnterYourPassword.tr(),
+                        hintText: LocaleKeys.Authentication_EnterYourPassword.tr(),
                         labelText: LocaleKeys.Authentication_Password.tr(),
                       ),
                       validator: (value) => Validator.validatePassword(value),
-                      onTapOutside: (_) =>
-                          FocusManager.instance.primaryFocus?.unfocus(),
+                      onTapOutside: (_) => FocusManager.instance.primaryFocus?.unfocus(),
                     ),
                     const SizedBox(height: 16.0),
                     Row(
@@ -129,8 +124,7 @@ class _LoginBodyState extends State<LoginBody> {
                               height: 20,
                               child: CircularProgressIndicator(
                                 strokeWidth: 2,
-                                valueColor:
-                                    AlwaysStoppedAnimation(Colors.white),
+                                valueColor: AlwaysStoppedAnimation(Colors.white),
                               ),
                             )
                           : Text(LocaleKeys.Continue.tr()),
