@@ -5,9 +5,9 @@ import 'package:tracking_app/features/auth/domain/repositories/auth_repository.d
 
 @injectable
 class EmailVerificationUseCase {
-  final AuthRepository _repository;
   EmailVerificationUseCase(this._repository);
+  final AuthRepository _repository;
 
-  Future<Result<String?>> call(VerifyCodeRequest verifycode) =>
-      _repository.verifyCode(verifycode);
+  Future<Result<String?>> call(VerifyCodeRequest verifyCode) =>
+      _repository.verifyCode(verifyCode);
 }

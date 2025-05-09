@@ -1,7 +1,6 @@
 class VerifyCodeRequest {
-  String resetCode;
-
-  VerifyCodeRequest({required this.resetCode});
+  const VerifyCodeRequest({required this.resetCode});
+  final String resetCode;
 
   Map<String, dynamic> toJson() => {"resetCode": resetCode};
 }

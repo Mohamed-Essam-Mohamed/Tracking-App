@@ -34,8 +34,8 @@ class _LoadingWidgetState extends State<LoadingWidget>
       child: AnimatedBuilder(
         animation: _controller,
         builder: (context, child) {
-          double rotationValue = _controller.value * 2 * 3.14;
-          bool isFlipped = (_controller.value > 0.25 && _controller.value < 0.75);
+          final double rotationValue = _controller.value * 2 * 3.14;
+          final bool isFlipped = (_controller.value > 0.25 && _controller.value < 0.75);
 
           return Transform(
             transform: Matrix4.identity()

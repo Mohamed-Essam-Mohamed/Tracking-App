@@ -5,17 +5,17 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:tracking_app/core/constants/app_colors.dart';
+import 'package:tracking_app/core/di/service_locator.dart';
+import 'package:tracking_app/core/dialogs/app_dialogs.dart';
 import 'package:tracking_app/core/theme/app_theme.dart';
+import 'package:tracking_app/core/utils/validator.dart';
+import 'package:tracking_app/features/auth/data/models/post_auth.dart';
+import 'package:tracking_app/features/auth/domain/entities/vehicles_entitiy.dart';
 import 'package:tracking_app/features/auth/presentation/view/Success_apply.dart';
-import '../../../../core/di/service_locator.dart';
-import '../../../../core/dialogs/app_dialogs.dart';
-import '../../../../core/utils/validator.dart';
-import '../../../../generated/locale_keys.g.dart';
-import '../../data/models/post_auth.dart';
-import '../view_model/apply/apply_cubit.dart';
-import '../view_model/apply/apply_state.dart';
-import '../widgets/upload_image.dart';
-import '../../domain/entities/vehicles_entitiy.dart';
+import 'package:tracking_app/features/auth/presentation/view_model/apply/apply_cubit.dart';
+import 'package:tracking_app/features/auth/presentation/view_model/apply/apply_state.dart';
+import 'package:tracking_app/features/auth/presentation/widgets/upload_image.dart';
+import 'package:tracking_app/generated/locale_keys.g.dart';
 
 class ApplyScreen extends StatefulWidget {
   const ApplyScreen({super.key});
@@ -40,7 +40,7 @@ class _ApplyScreenState extends State<ApplyScreen> {
   final nidController = TextEditingController();
   final _formKey = GlobalKey<FormState>();
 
-  File? NidImage;
+  File? nidImage;
   File? vehicleLicense;
   String? selectedCountry = 'Egypt';
   String? selectedVehicleType;
@@ -85,7 +85,7 @@ class _ApplyScreenState extends State<ApplyScreen> {
     final image = await UploadImage.pickImage(context);
     if (image != null) {
       setState(() {
-        NidImage = image;
+        nidImage = image;
         nidController.text = image.path;
       });
     }
@@ -98,13 +98,13 @@ class _ApplyScreenState extends State<ApplyScreen> {
       child: BlocListener<ApplyCubit, ApplyState>(
         listener: (context, state) {
           if (state is ApplySuccessState) {
-            log("Apply Success");
+            log('Apply Success');
             Navigator.push(
               context,
               MaterialPageRoute(builder: (context) => const SuccessApply()),
             );
           } else if (state is ApplyErrorState) {
-            log("Apply Error");
+            log('Apply Error');
 
             AppDialogs.showFailureDialog(
               context,
@@ -124,11 +124,11 @@ class _ApplyScreenState extends State<ApplyScreen> {
                 style: AppTheme.lightTheme.textTheme.titleLarge),
             leading: IconButton(
               onPressed: () => Navigator.pop(context),
-              icon: Icon(
+              icon: const Icon(
                 Icons.arrow_back_ios_new,
               ),
             ),
-            iconTheme: IconThemeData(color: AppColors.black, size: 20),
+            iconTheme: const IconThemeData(color: AppColors.black, size: 20),
           ),
           body: SingleChildScrollView(
             padding: const EdgeInsets.all(16),
@@ -142,28 +142,28 @@ class _ApplyScreenState extends State<ApplyScreen> {
                     Text(LocaleKeys.apply_Welcome.tr(),
                         style: AppTheme.lightTheme.textTheme.titleLarge),
                     Text(
-                        "${LocaleKeys.apply_YouWantToBeADeliveryMan.tr()}\n${LocaleKeys.apply_JoinOurTeam.tr()}",
+                        '${LocaleKeys.apply_YouWantToBeADeliveryMan.tr()}\n${LocaleKeys.apply_JoinOurTeam.tr()}',
                         style: AppTheme.lightTheme.textTheme.titleSmall
                             ?.copyWith(color: AppColors.gray)),
-                    SizedBox(height: 24),
+                    const SizedBox(height: 24),
                     TextFormField(
                       readOnly: true,
                       controller:
-                          TextEditingController(text: "$flagEmoji $selectedCountry"),
+                          TextEditingController(text: '$flagEmoji $selectedCountry'),
                       decoration: InputDecoration(
                         labelText: LocaleKeys.apply_Country.tr(),
                         labelStyle: AppTheme.lightTheme.textTheme.labelMedium
                             ?.copyWith(color: AppColors.gray.withOpacity(0.8)),
                         enabledBorder: OutlineInputBorder(
-                          borderSide: BorderSide(color: AppColors.gray),
+                          borderSide: const BorderSide(color: AppColors.gray),
                           borderRadius: BorderRadius.circular(6),
                         ),
                         focusedBorder: OutlineInputBorder(
-                          borderSide: BorderSide(color: AppColors.black),
+                          borderSide: const BorderSide(color: AppColors.black),
                           borderRadius: BorderRadius.circular(6),
                         ),
                         suffixIcon: IconButton(
-                          icon: Icon(Icons.keyboard_arrow_down_sharp),
+                          icon: const Icon(Icons.keyboard_arrow_down_sharp),
                           onPressed: () {
                             showCountryPicker(
                               context: context,
@@ -185,7 +185,7 @@ class _ApplyScreenState extends State<ApplyScreen> {
                         ),
                       ),
                     ),
-                    SizedBox(height: 16),
+                    const SizedBox(height: 16),
                     TextFormField(
                       controller: firstNameController,
                       decoration: InputDecoration(
@@ -196,17 +196,17 @@ class _ApplyScreenState extends State<ApplyScreen> {
                         hintStyle: AppTheme.lightTheme.textTheme.labelMedium
                             ?.copyWith(color: AppColors.gray.withOpacity(0.8)),
                         enabledBorder: OutlineInputBorder(
-                          borderSide: BorderSide(color: AppColors.gray),
+                          borderSide: const BorderSide(color: AppColors.gray),
                           borderRadius: BorderRadius.circular(6),
                         ),
                         focusedBorder: OutlineInputBorder(
-                          borderSide: BorderSide(color: AppColors.black),
+                          borderSide: const BorderSide(color: AppColors.black),
                           borderRadius: BorderRadius.circular(6),
                         ),
                       ),
                       validator: (val) => Validator.validateName(val),
                     ),
-                    SizedBox(height: 16),
+                    const SizedBox(height: 16),
                     TextFormField(
                       controller: lastNameController,
                       decoration: InputDecoration(
@@ -217,11 +217,11 @@ class _ApplyScreenState extends State<ApplyScreen> {
                         hintStyle: AppTheme.lightTheme.textTheme.labelMedium
                             ?.copyWith(color: AppColors.gray.withOpacity(0.8)),
                         enabledBorder: OutlineInputBorder(
-                          borderSide: BorderSide(color: AppColors.gray),
+                          borderSide: const BorderSide(color: AppColors.gray),
                           borderRadius: BorderRadius.circular(6),
                         ),
                         focusedBorder: OutlineInputBorder(
-                          borderSide: BorderSide(color: AppColors.black),
+                          borderSide: const BorderSide(color: AppColors.black),
                           borderRadius: BorderRadius.circular(6),
                         ),
                       ),
@@ -246,15 +246,15 @@ class _ApplyScreenState extends State<ApplyScreen> {
                         hintStyle: AppTheme.lightTheme.textTheme.labelMedium
                             ?.copyWith(color: AppColors.gray.withOpacity(0.8)),
                         enabledBorder: OutlineInputBorder(
-                          borderSide: BorderSide(color: AppColors.gray),
+                          borderSide: const BorderSide(color: AppColors.gray),
                           borderRadius: BorderRadius.circular(6),
                         ),
                         focusedBorder: OutlineInputBorder(
-                          borderSide: BorderSide(color: AppColors.black),
+                          borderSide: const BorderSide(color: AppColors.black),
                           borderRadius: BorderRadius.circular(6),
                         ),
                       ),
-                      icon: Icon(Icons.keyboard_arrow_down_sharp),
+                      icon: const Icon(Icons.keyboard_arrow_down_sharp),
                       onChanged: (value) {
                         setState(() {
                           selectedVehicleType = value;
@@ -264,7 +264,7 @@ class _ApplyScreenState extends State<ApplyScreen> {
                         });
                       },
                     ),
-                    SizedBox(height: 16),
+                    const SizedBox(height: 16),
                     TextFormField(
                       controller: vehicleNumberController,
                       decoration: InputDecoration(
@@ -275,17 +275,17 @@ class _ApplyScreenState extends State<ApplyScreen> {
                         hintStyle: AppTheme.lightTheme.textTheme.labelMedium
                             ?.copyWith(color: AppColors.gray.withOpacity(0.8)),
                         enabledBorder: OutlineInputBorder(
-                          borderSide: BorderSide(color: AppColors.gray),
+                          borderSide: const BorderSide(color: AppColors.gray),
                           borderRadius: BorderRadius.circular(6),
                         ),
                         focusedBorder: OutlineInputBorder(
-                          borderSide: BorderSide(color: AppColors.black),
+                          borderSide: const BorderSide(color: AppColors.black),
                           borderRadius: BorderRadius.circular(6),
                         ),
                       ),
                       validator: (val) => Validator.validateVehicleNumber(val),
                     ),
-                    SizedBox(height: 16),
+                    const SizedBox(height: 16),
                     TextFormField(
                       readOnly: true,
                       controller: vehicleLicenseController,
@@ -297,21 +297,21 @@ class _ApplyScreenState extends State<ApplyScreen> {
                         hintStyle: AppTheme.lightTheme.textTheme.labelMedium
                             ?.copyWith(color: AppColors.gray.withOpacity(0.8)),
                         enabledBorder: OutlineInputBorder(
-                          borderSide: BorderSide(color: AppColors.gray),
+                          borderSide: const BorderSide(color: AppColors.gray),
                           borderRadius: BorderRadius.circular(6),
                         ),
                         focusedBorder: OutlineInputBorder(
-                          borderSide: BorderSide(color: AppColors.black),
+                          borderSide: const BorderSide(color: AppColors.black),
                           borderRadius: BorderRadius.circular(6),
                         ),
                         suffixIcon: InkWell(
                           onTap: _pickVehicleLicenseImage,
-                          child: Icon(Icons.file_upload_outlined),
+                          child: const Icon(Icons.file_upload_outlined),
                         ),
                       ),
                       validator: (val) => Validator.validateUpload(val),
                     ),
-                    SizedBox(height: 16),
+                    const SizedBox(height: 16),
                     TextFormField(
                       controller: emailController,
                       validator: (val) => Validator.validateEmail(val),
@@ -324,16 +324,16 @@ class _ApplyScreenState extends State<ApplyScreen> {
                         hintStyle: AppTheme.lightTheme.textTheme.labelMedium
                             ?.copyWith(color: AppColors.gray.withOpacity(0.8)),
                         enabledBorder: OutlineInputBorder(
-                          borderSide: BorderSide(color: AppColors.gray),
+                          borderSide: const BorderSide(color: AppColors.gray),
                           borderRadius: BorderRadius.circular(6),
                         ),
                         focusedBorder: OutlineInputBorder(
-                          borderSide: BorderSide(color: AppColors.black),
+                          borderSide: const BorderSide(color: AppColors.black),
                           borderRadius: BorderRadius.circular(6),
                         ),
                       ),
                     ),
-                    SizedBox(height: 16),
+                    const SizedBox(height: 16),
                     TextFormField(
                       controller: phoneController,
                       decoration: InputDecoration(
@@ -344,18 +344,18 @@ class _ApplyScreenState extends State<ApplyScreen> {
                         hintStyle: AppTheme.lightTheme.textTheme.labelMedium
                             ?.copyWith(color: AppColors.gray.withOpacity(0.8)),
                         enabledBorder: OutlineInputBorder(
-                          borderSide: BorderSide(color: AppColors.gray),
+                          borderSide: const BorderSide(color: AppColors.gray),
                           borderRadius: BorderRadius.circular(6),
                         ),
                         focusedBorder: OutlineInputBorder(
-                          borderSide: BorderSide(color: AppColors.black),
+                          borderSide: const BorderSide(color: AppColors.black),
                           borderRadius: BorderRadius.circular(6),
                         ),
                       ),
                       keyboardType: TextInputType.phone,
                       validator: (val) => Validator.validatePhoneNumber(val),
                     ),
-                    SizedBox(height: 16),
+                    const SizedBox(height: 16),
                     TextFormField(
                       controller: idNumberController,
                       decoration: InputDecoration(
@@ -366,17 +366,17 @@ class _ApplyScreenState extends State<ApplyScreen> {
                         hintStyle: AppTheme.lightTheme.textTheme.labelMedium
                             ?.copyWith(color: AppColors.gray.withOpacity(0.8)),
                         enabledBorder: OutlineInputBorder(
-                          borderSide: BorderSide(color: AppColors.gray),
+                          borderSide: const BorderSide(color: AppColors.gray),
                           borderRadius: BorderRadius.circular(6),
                         ),
                         focusedBorder: OutlineInputBorder(
-                          borderSide: BorderSide(color: AppColors.black),
+                          borderSide: const BorderSide(color: AppColors.black),
                           borderRadius: BorderRadius.circular(6),
                         ),
                       ),
                       validator: (val) => Validator.validateIdNumber(val),
                     ),
-                    SizedBox(height: 16),
+                    const SizedBox(height: 16),
                     TextFormField(
                       readOnly: true,
                       controller: nidController,
@@ -388,21 +388,21 @@ class _ApplyScreenState extends State<ApplyScreen> {
                         hintStyle: AppTheme.lightTheme.textTheme.labelMedium
                             ?.copyWith(color: AppColors.gray.withOpacity(0.8)),
                         enabledBorder: OutlineInputBorder(
-                          borderSide: BorderSide(color: AppColors.gray),
+                          borderSide: const BorderSide(color: AppColors.gray),
                           borderRadius: BorderRadius.circular(6),
                         ),
                         focusedBorder: OutlineInputBorder(
-                          borderSide: BorderSide(color: AppColors.black),
+                          borderSide: const BorderSide(color: AppColors.black),
                           borderRadius: BorderRadius.circular(6),
                         ),
                         suffixIcon: InkWell(
                           onTap: _pickNIDImage,
-                          child: Icon(Icons.file_upload_outlined),
+                          child: const Icon(Icons.file_upload_outlined),
                         ),
                       ),
                       validator: (val) => Validator.validateUpload(val),
                     ),
-                    SizedBox(height: 16),
+                    const SizedBox(height: 16),
                     Row(
                       children: [
                         Expanded(
@@ -417,18 +417,18 @@ class _ApplyScreenState extends State<ApplyScreen> {
                               hintStyle: AppTheme.lightTheme.textTheme.labelMedium
                                   ?.copyWith(color: AppColors.gray.withOpacity(0.8)),
                               enabledBorder: OutlineInputBorder(
-                                borderSide: BorderSide(color: AppColors.gray),
+                                borderSide: const BorderSide(color: AppColors.gray),
                                 borderRadius: BorderRadius.circular(6),
                               ),
                               focusedBorder: OutlineInputBorder(
-                                borderSide: BorderSide(color: AppColors.black),
+                                borderSide: const BorderSide(color: AppColors.black),
                                 borderRadius: BorderRadius.circular(6),
                               ),
                             ),
                             validator: (val) => Validator.validatePassword(val),
                           ),
                         ),
-                        SizedBox(width: 12),
+                        const SizedBox(width: 12),
                         Expanded(
                           child: TextFormField(
                             controller: rePasswordController,
@@ -441,11 +441,11 @@ class _ApplyScreenState extends State<ApplyScreen> {
                               hintStyle: AppTheme.lightTheme.textTheme.labelMedium
                                   ?.copyWith(color: AppColors.gray.withOpacity(0.8)),
                               enabledBorder: OutlineInputBorder(
-                                borderSide: BorderSide(color: AppColors.gray),
+                                borderSide: const BorderSide(color: AppColors.gray),
                                 borderRadius: BorderRadius.circular(6),
                               ),
                               focusedBorder: OutlineInputBorder(
-                                borderSide: BorderSide(color: AppColors.black),
+                                borderSide: const BorderSide(color: AppColors.black),
                                 borderRadius: BorderRadius.circular(6),
                               ),
                             ),
@@ -455,14 +455,14 @@ class _ApplyScreenState extends State<ApplyScreen> {
                         ),
                       ],
                     ),
-                    SizedBox(height: 16),
+                    const SizedBox(height: 16),
                     Row(
                       children: [
                         Text(
                           LocaleKeys.apply_Gender.tr(),
                           style: AppTheme.lightTheme.textTheme.titleMedium,
                         ),
-                        Spacer(
+                        const Spacer(
                           flex: 1,
                         ),
                         Radio<String>(
@@ -484,26 +484,26 @@ class _ApplyScreenState extends State<ApplyScreen> {
                           style: AppTheme.lightTheme.textTheme.bodyMedium
                               ?.copyWith(color: AppColors.gray),
                         ),
-                        Spacer(
+                        const Spacer(
                           flex: 2,
                         ),
                       ],
                     ),
-                    SizedBox(height: 24),
+                    const SizedBox(height: 24),
                     SizedBox(
                       width: double.infinity,
                       child: ElevatedButton(
                         style: ElevatedButton.styleFrom(
                           backgroundColor: AppColors.pink[700],
-                          padding: EdgeInsets.symmetric(vertical: 16),
+                          padding: const EdgeInsets.symmetric(vertical: 16),
                           shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(30)),
                         ),
                         child: Text(LocaleKeys.apply_Continue.tr(),
-                            style: TextStyle(fontSize: 16)),
+                            style: const TextStyle(fontSize: 16)),
                         onPressed: () {
                           if (_formKey.currentState!.validate()) {
-                            if (vehicleLicense == null || NidImage == null) {
+                            if (vehicleLicense == null || nidImage == null) {
                               ScaffoldMessenger.of(context).showSnackBar(
                                 SnackBar(
                                     content: Text(LocaleKeys
@@ -521,7 +521,7 @@ class _ApplyScreenState extends State<ApplyScreen> {
                               vehicleType: selectedVehicleType!,
                               vehicleLicense: vehicleLicense!,
                               NID: idNumberController.text,
-                              NIDImg: NidImage!,
+                              NIDImg: nidImage!,
                               country: selectedCountry!,
                               gender: gender,
                               password: passwordController.text,

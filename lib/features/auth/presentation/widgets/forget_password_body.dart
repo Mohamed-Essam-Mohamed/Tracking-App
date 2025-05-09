@@ -23,10 +23,6 @@ class ForgetPasswordBody extends StatefulWidget {
 class _ForgetPasswordBodyState extends State<ForgetPasswordBody> {
   final forgetCubit = serviceLocator.get<ForgetPasswordCubit>();
   final GlobalKey<FormState> formKey = GlobalKey<FormState>();
-  @override
-  initState() {
-    super.initState();
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -36,18 +32,18 @@ class _ForgetPasswordBodyState extends State<ForgetPasswordBody> {
       child: Form(
         key: formKey,
         child: Column(children: [
-          SizedBox(height: 30),
+          const SizedBox(height: 30),
           Text(
             LocaleKeys.Authentication_ForgetPassword.tr(),
             style: theme.titleMedium,
           ),
-          SizedBox(height: 20),
+          const SizedBox(height: 20),
           Text(
             LocaleKeys.Authentication_PleaseEnterYourEmail.tr(),
             style: theme.labelMedium!.copyWith(color: AppColors.gray),
             textAlign: TextAlign.center,
           ),
-          SizedBox(height: 30),
+          const SizedBox(height: 30),
           TextFormField(
             controller: forgetCubit.emailController,
             validator: (value) {
@@ -58,7 +54,7 @@ class _ForgetPasswordBodyState extends State<ForgetPasswordBody> {
                 labelText: LocaleKeys.Authentication_Email.tr(),
                 hintText: LocaleKeys.Authentication_EnterYourEmail.tr()),
           ),
-          SizedBox(height: 40),
+          const SizedBox(height: 40),
           SizedBox(
             width: double.infinity,
             child: BlocListener<ForgetPasswordCubit, ForgetPasswordState>(
@@ -84,11 +80,12 @@ class _ForgetPasswordBodyState extends State<ForgetPasswordBody> {
                   });
                 } else if (state.forgetState is BaseSuccessState) {
                   Navigator.of(context).pop();
-                  Navigator.of(context).pushNamed(Routes.emailVerification,arguments: forgetCubit);
+                  Navigator.of(context)
+                      .pushNamed(Routes.emailVerification, arguments: forgetCubit);
                 }
               },
               child: ElevatedButton(
-                style: ButtonStyle(
+                style: const ButtonStyle(
                     backgroundColor: WidgetStatePropertyAll(AppColors.pink)),
                 child: Text(LocaleKeys.Authentication_Confirm.tr()),
                 onPressed: () {

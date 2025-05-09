@@ -6,7 +6,7 @@ class UploadImage {
   static Future<File?> pickImage(BuildContext context) async {
     final source = await showModalBottomSheet<ImageSource>(
       context: context,
-      shape: RoundedRectangleBorder(
+      shape: const RoundedRectangleBorder(
         borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
       ),
       backgroundColor: Colors.white,
@@ -15,19 +15,19 @@ class UploadImage {
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
-            Text(
+            const Text(
               'اختر مصدر الصورة',
               style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
             ),
             const SizedBox(height: 16),
             ListTile(
-              leading: Icon(Icons.camera_alt, color: Colors.blue),
-              title: Text('التقاط بالكاميرا'),
+              leading: const Icon(Icons.camera_alt, color: Colors.blue),
+              title: const Text('التقاط بالكاميرا'),
               onTap: () => Navigator.pop(context, ImageSource.camera),
             ),
             ListTile(
-              leading: Icon(Icons.photo_library, color: Colors.green),
-              title: Text('اختيار من المعرض'),
+              leading: const Icon(Icons.photo_library, color: Colors.green),
+              title: const Text('اختيار من المعرض'),
               onTap: () => Navigator.pop(context, ImageSource.gallery),
             ),
             const SizedBox(height: 8),

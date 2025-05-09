@@ -1,15 +1,20 @@
 import 'package:json_annotation/json_annotation.dart';
-import '../../../../domain/entities/response/login/login_response_entity.dart';
+import 'package:tracking_app/features/auth/domain/entities/response/login/login_response_entity.dart';
 part 'login_response_dto.g.dart';
 
 @JsonSerializable()
 class LoginResponseDto {
   LoginResponseDto({
-      this.message, 
-      this.token,});
+    this.message,
+    this.token,
+  });
 
-  String? message;
-  String? token;
+  factory LoginResponseDto.fromJson(Map<String, dynamic> json) =>
+      _$LoginResponseDtoFromJson(json);
+  Map<String, dynamic> toJson() => _$LoginResponseDtoToJson(this);
+
+  final String? message;
+  final String? token;
 
   LoginResponseEntity toDomain() {
     return LoginResponseEntity(
@@ -17,8 +22,4 @@ class LoginResponseDto {
       token: token,
     );
   }
-
-  factory LoginResponseDto.fromJson(Map<String, dynamic> json) => _$LoginResponseDtoFromJson(json);
-  Map<String, dynamic> toJson() => _$LoginResponseDtoToJson(this);
-
 }

@@ -6,12 +6,10 @@ import 'package:tracking_app/features/auth/domain/repositories/auth_repository.d
 
 @injectable
 class ForgetPasswordUseCase {
+  const ForgetPasswordUseCase(this._repository);
   final AuthRepository _repository;
-  ForgetPasswordUseCase(this._repository);
   Future<Result<ForgetPasswordEntity?>> call(ForgetRequestDto? forgetRequest) async {
     final result = await _repository.forgetPassword(forgetRequest!);
-
     return result;
-
   }
 }

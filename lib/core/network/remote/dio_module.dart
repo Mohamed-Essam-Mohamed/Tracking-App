@@ -1,8 +1,7 @@
 import 'package:dio/dio.dart';
 import 'package:injectable/injectable.dart';
 import 'package:pretty_dio_logger/pretty_dio_logger.dart';
-
-import 'api_constants.dart';
+import 'package:tracking_app/core/network/remote/api_constants.dart';
 
 @module
 abstract class DioModule {

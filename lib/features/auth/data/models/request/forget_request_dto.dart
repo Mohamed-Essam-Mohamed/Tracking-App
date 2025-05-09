@@ -1,5 +1,5 @@
 class ForgetRequestDto {
-  String emial;
-  ForgetRequestDto(this.emial);
-  Map<String, dynamic> toJson() => {'email': emial};
+  const ForgetRequestDto(this.email);
+  final String email;
+  Map<String, dynamic> toJson() => {'email': email};
 }

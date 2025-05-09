@@ -1,11 +1,7 @@
-import 'package:easy_localization/easy_localization.dart';
-
 import 'package:flutter/material.dart';
-
-import '../../generated/locale_keys.g.dart';
-import '../common/widget/loading_widget.dart';
-import '../constants/app_colors.dart';
-
+import 'package:tracking_app/core/common/widget/loading_widget.dart';
+import 'package:tracking_app/core/constants/app_colors.dart';
+import 'package:tracking_app/generated/locale_keys.g.dart';
 
 class AppDialogs {
   // Show a loading dialog
@@ -16,7 +12,7 @@ class AppDialogs {
       builder: (context) {
         return WillPopScope(
           onWillPop: () async => false,
-          child: AlertDialog(
+          child: const AlertDialog(
             backgroundColor: Colors.transparent,
             content: LoadingWidget(),
           ),
@@ -58,7 +54,7 @@ class AppDialogs {
                     title: titleAction1,
                   ),
                 ),
-                SizedBox(width: 10),
+                const SizedBox(width: 10),
                 Expanded(
                   child: _buttonAction(
                     onPressed: onPressedAction2,
@@ -96,7 +92,7 @@ class AppDialogs {
     return MaterialButton(
       elevation: 0,
       minWidth: double.infinity,
-      padding: EdgeInsets.symmetric(vertical: 8),
+      padding: const EdgeInsets.symmetric(vertical: 8),
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(radius ?? 50),
         side: BorderSide(
@@ -115,13 +111,14 @@ class AppDialogs {
       ),
     );
   }
+
   static void showSuccessDialog(
-      BuildContext context, {
-        required String message,
-        String? buttonText,
-        String? nextActionTitle,
-        VoidCallback? nextAction,
-      }) {
+    BuildContext context, {
+    required String message,
+    String? buttonText,
+    String? nextActionTitle,
+    VoidCallback? nextAction,
+  }) {
     showDialog(
       context: context,
       builder: (context) {
@@ -151,14 +148,14 @@ class AppDialogs {
 
   // Show a failure dialog
   static void showFailureDialog(
-      BuildContext context, {
-        required String message,
-        String? buttonText,
-        VoidCallback? nextAction,
-        String? nextActionTitle,
-        String? title,
-        VoidCallback? onPressed,
-      }) {
+    BuildContext context, {
+    required String message,
+    String? buttonText,
+    VoidCallback? nextAction,
+    String? nextActionTitle,
+    String? title,
+    VoidCallback? onPressed,
+  }) {
     showDialog(
       context: context,
       builder: (context) {
@@ -175,7 +172,7 @@ class AppDialogs {
               onPressed: onPressed ?? () => Navigator.of(context).pop(),
               child: Text(
                 buttonText ?? LocaleKeys.Ok,
-                style: TextStyle(color: AppColors.black),
+                style: const TextStyle(color: AppColors.black),
               ),
             ),
           ],
@@ -183,7 +180,4 @@ class AppDialogs {
       },
     );
   }
-
-
-
 }

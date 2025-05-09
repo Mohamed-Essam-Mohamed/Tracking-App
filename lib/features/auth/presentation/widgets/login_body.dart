@@ -2,17 +2,16 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:toastification/toastification.dart';
-
-import '../../../../core/base_state/base_state.dart';
-import '../../../../core/constants/app_colors.dart';
-import '../../../../core/di/service_locator.dart';
-import '../../../../core/dialogs/app_toasts.dart';
-import '../../../../core/routes/routes.dart';
-import '../../../../core/theme/app_theme.dart';
-import '../../../../core/utils/validator.dart';
-import '../../../../generated/locale_keys.g.dart';
-import '../view_model/login/login_cubit.dart';
-import '../view_model/login/login_state.dart';
+import 'package:tracking_app/core/base_state/base_state.dart';
+import 'package:tracking_app/core/constants/app_colors.dart';
+import 'package:tracking_app/core/di/service_locator.dart';
+import 'package:tracking_app/core/dialogs/app_toasts.dart';
+import 'package:tracking_app/core/routes/routes.dart';
+import 'package:tracking_app/core/theme/app_theme.dart';
+import 'package:tracking_app/core/utils/validator.dart';
+import 'package:tracking_app/features/auth/presentation/view_model/login/login_cubit.dart';
+import 'package:tracking_app/features/auth/presentation/view_model/login/login_state.dart';
+import 'package:tracking_app/generated/locale_keys.g.dart';
 
 class LoginBody extends StatefulWidget {
   const LoginBody({super.key});
@@ -32,7 +31,6 @@ class _LoginBodyState extends State<LoginBody> {
 
   @override
   Widget build(BuildContext context) {
-    // TODO: implement build
     return BlocProvider(
       create: (context) => cubit,
       child: BlocConsumer<LoginCubit, LoginState>(
@@ -50,7 +48,6 @@ class _LoginBodyState extends State<LoginBody> {
           }
         },
         builder: (context, state) {
-          final cubit = context.read<LoginCubit>();
           final isLoading = state.baseState is BaseLoadingState;
           return SingleChildScrollView(
             child: Form(
@@ -93,7 +90,7 @@ class _LoginBodyState extends State<LoginBody> {
                           LocaleKeys.Authentication_RememberMe.tr(),
                           style: AppTheme.lightTheme.textTheme.bodyLarge,
                         ),
-                        Spacer(),
+                        const Spacer(),
                         TextButton(
                           onPressed: () {
                             Navigator.of(context).pushNamed(Routes.forgetPassword);

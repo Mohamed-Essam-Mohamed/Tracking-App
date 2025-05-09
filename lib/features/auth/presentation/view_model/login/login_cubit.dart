@@ -2,29 +2,26 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:injectable/injectable.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import '../../../../../../core/base_state/base_state.dart';
-import '../../../../../../core/network/common/api_result.dart';
-import '../../../domain/entities/request/login/login_request_entity.dart';
-import '../../../domain/entities/response/login/login_response_entity.dart';
-import '../../../domain/use_cases/login_use_case.dart';
-import 'login_state.dart';
+import 'package:tracking_app/core/base_state/base_state.dart';
+import 'package:tracking_app/core/network/common/api_result.dart';
+import 'package:tracking_app/features/auth/domain/entities/request/login/login_request_entity.dart';
+import 'package:tracking_app/features/auth/domain/entities/response/login/login_response_entity.dart';
+import 'package:tracking_app/features/auth/domain/use_cases/login_use_case.dart';
+import 'package:tracking_app/features/auth/presentation/view_model/login/login_state.dart';
 
 @injectable
 class LoginCubit extends Cubit<LoginState> {
+  LoginCubit(this._loginUseCase) : super(LoginState(baseState: BaseInitialState())) {
+    emailController.addListener(_validateForm);
+    passwordController.addListener(_validateForm);
+    _checkRememberMe();
+  }
   final LoginUseCase _loginUseCase;
   final GlobalKey<FormState> formKey = GlobalKey<FormState>();
   final TextEditingController emailController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
-  late  bool rememberMe = false;
+  late bool rememberMe = false;
 
-
-  LoginCubit(this._loginUseCase)
-      : super(LoginState(baseState: BaseInitialState())) {
-    emailController.addListener(_validateForm);
-    passwordController.addListener(_validateForm);
-    _checkRememberMe();
-
-  }
   void toggleRememberMe(bool? value) async {
     rememberMe = value ?? false;
 
@@ -34,21 +31,22 @@ class LoginCubit extends Cubit<LoginState> {
       await _clearUserData();
     }
 
-    emit(state.copyWith(baseState: BaseInitialState(),
-      rememberMe: rememberMe,));  }
-
-
+    emit(state.copyWith(
+      baseState: BaseInitialState(),
+      rememberMe: rememberMe,
+    ));
+  }
 
   Future<void> _checkRememberMe() async {
-    final prefs = await SharedPreferences.getInstance();
-    final email = prefs.getString('email');
-    final password = prefs.getString('password');
-    final remember = prefs.getBool('rememberMe') ?? false;
+    final pref = await SharedPreferences.getInstance();
+    final email = pref.getString('email');
+    final password = pref.getString('password');
+    final remember = pref.getBool('rememberMe') ?? false;
     if (remember) {
       emailController.text = email ?? '';
       passwordController.text = password ?? '';
       rememberMe = true;
-      emit(state.copyWith(rememberMe: rememberMe,baseState: BaseInitialState()));
+      emit(state.copyWith(rememberMe: rememberMe, baseState: BaseInitialState()));
     }
   }
 
@@ -61,9 +59,6 @@ class LoginCubit extends Cubit<LoginState> {
     }
   }
 
-
-
-
   void _validateForm() {
     final isValid = formKey.currentState?.validate() ?? false;
     if (state.isFormValid != isValid) {
@@ -72,7 +67,7 @@ class LoginCubit extends Cubit<LoginState> {
   }
 
   Future<LoginResponseEntity?> _login() async {
-    LoginRequestEntity loginRequestEntity = LoginRequestEntity(
+    final LoginRequestEntity loginRequestEntity = LoginRequestEntity(
         password: passwordController.text, email: emailController.text);
 
     emit(state.copyWith(baseState: BaseLoadingState()));
@@ -93,8 +88,7 @@ class LoginCubit extends Cubit<LoginState> {
           emit(
             state.copyWith(
               baseState: BaseErrorState(
-                  errorMessage: result.exception.toString(),
-                  exception: result.exception),
+                  errorMessage: result.exception.toString(), exception: result.exception),
             ),
           );
         }
@@ -103,24 +97,22 @@ class LoginCubit extends Cubit<LoginState> {
   }
 
   Future<void> _saveUserData() async {
-    final prefs = await SharedPreferences.getInstance();
-    prefs.setString('email', emailController.text);
-    prefs.setString('password', passwordController.text);
-    prefs.setBool('rememberMe', rememberMe);
-
-
-
+    final pref = await SharedPreferences.getInstance();
+    pref.setString('email', emailController.text);
+    pref.setString('password', passwordController.text);
+    pref.setBool('rememberMe', rememberMe);
   }
+
   Future<void> _clearUserData() async {
-    final prefs = await SharedPreferences.getInstance();
-    await prefs.remove('email');
-    await prefs.remove('password');
-    await prefs.remove('rememberMe');
+    final pref = await SharedPreferences.getInstance();
+    await pref.remove('email');
+    await pref.remove('password');
+    await pref.remove('rememberMe');
   }
 
   Future<void> _setLoggedInState(bool isLoggedIn) async {
-    final prefs = await SharedPreferences.getInstance();
-    prefs.setBool('isLoggedIn', isLoggedIn);
+    final pref = await SharedPreferences.getInstance();
+    pref.setBool('isLoggedIn', isLoggedIn);
   }
 
   @override

@@ -22,34 +22,29 @@ class SuccessApply extends StatelessWidget {
           child: Column(
             children: [
               SizedBox(height: context.hp(7)),
-
               Center(
                 child: SvgPicture.asset(
                   SvgAsset.taskAlt,
                   width: context.wp(26),
                   height: context.hp(26),
-                  colorFilter: ColorFilter.mode(
-                      AppColors.pink, BlendMode.srcIn),
+                  colorFilter: const ColorFilter.mode(AppColors.pink, BlendMode.srcIn),
                 ),
               ),
-
               Text(
                 LocaleKeys.successApply_Your_application_has_been.tr(),
-                style: AppTheme.lightTheme.textTheme.titleMedium!.copyWith(
-                    fontWeight: FontWeight.w600),
+                style: AppTheme.lightTheme.textTheme.titleMedium!
+                    .copyWith(fontWeight: FontWeight.w600),
                 textAlign: TextAlign.center,
               ),
               Text(
                 LocaleKeys.successApply_submitted.tr(),
-                style: AppTheme.lightTheme.textTheme.titleMedium!.copyWith(
-                    fontWeight: FontWeight.w600),
+                style: AppTheme.lightTheme.textTheme.titleMedium!
+                    .copyWith(fontWeight: FontWeight.w600),
                 textAlign: TextAlign.center,
               ),
               SizedBox(height: context.hp(2)),
               Text(
-                LocaleKeys
-                    .successApply_Thank_you_for_providing_your_application
-                    .tr(),
+                LocaleKeys.successApply_Thank_you_for_providing_your_application.tr(),
                 style: AppTheme.lightTheme.textTheme.titleSmall!.copyWith(
                   fontWeight: FontWeight.w400,
                   color: AppColors.gray,
@@ -57,9 +52,7 @@ class SuccessApply extends StatelessWidget {
                 textAlign: TextAlign.center,
               ),
               Text(
-                LocaleKeys
-                    .successApply_we_will_review_your_application_and_will
-                    .tr(),
+                LocaleKeys.successApply_we_will_review_your_application_and_will.tr(),
                 style: AppTheme.lightTheme.textTheme.titleSmall!.copyWith(
                   fontWeight: FontWeight.w400,
                   color: AppColors.gray,
@@ -75,7 +68,6 @@ class SuccessApply extends StatelessWidget {
                 textAlign: TextAlign.center,
               ),
               SizedBox(height: context.hp(3)),
-
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 23),
                 child: SizedBox(
@@ -87,20 +79,19 @@ class SuccessApply extends StatelessWidget {
                     },
                     style: ElevatedButton.styleFrom(
                       backgroundColor: AppColors.pink,
-                      shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(25)),
+                      shape:
+                          RoundedRectangleBorder(borderRadius: BorderRadius.circular(25)),
                       padding: const EdgeInsets.symmetric(vertical: 13),
                     ),
                     child: Text(
                       LocaleKeys.successApply_Login.tr(),
-                      style: AppTheme.lightTheme.textTheme.titleSmall!.copyWith(
-                          color: AppColors.white),
+                      style: AppTheme.lightTheme.textTheme.titleSmall!
+                          .copyWith(color: AppColors.white),
                     ),
                   ),
                 ),
               ),
               const SizedBox(height: 20),
-
               Stack(
                 children: [
                   Opacity(
@@ -112,8 +103,7 @@ class SuccessApply extends StatelessWidget {
                     bottom: 0,
                     child: Opacity(
                       opacity: 0.35,
-                      child: SvgPicture.asset(
-                          SvgAsset.backgroundSuccessApply2),
+                      child: SvgPicture.asset(SvgAsset.backgroundSuccessApply2),
                     ),
                   ),
                 ],

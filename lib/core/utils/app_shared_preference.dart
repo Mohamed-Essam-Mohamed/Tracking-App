@@ -7,8 +7,7 @@ class SharedPreferencesUtils {
     sharedPreferences = await SharedPreferences.getInstance();
   }
 
-  static Future<bool> saveData(
-      {required String key, required dynamic value}) async {
+  static Future<bool> saveData({required String key, required dynamic value}) async {
     if (value is int) {
       return await sharedPreferences.setInt(key, value);
     } else if (value is double) {
@@ -29,7 +28,7 @@ class SharedPreferencesUtils {
   }
 
   static Future<String?> getString(String key) async {
-    final prefs = await SharedPreferences.getInstance();
-    return prefs.getString(key);
+    final pref = await SharedPreferences.getInstance();
+    return pref.getString(key);
   }
 }

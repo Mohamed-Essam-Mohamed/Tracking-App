@@ -3,10 +3,9 @@ import 'dart:io';
 import 'package:dio/dio.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:injectable/injectable.dart';
-
-import '../../../generated/locale_keys.g.dart';
-import '../common/api_result.dart';
-import 'app_exception.dart';
+import 'package:tracking_app/core/network/common/api_result.dart';
+import 'package:tracking_app/core/network/remote/app_exception.dart';
+import 'package:tracking_app/generated/locale_keys.g.dart';
 
 @singleton
 class ApiManager {

@@ -6,9 +6,8 @@ import 'package:tracking_app/features/auth/domain/repositories/auth_repository.d
 
 @injectable
 class ResetPasswordUseCase {
+  const ResetPasswordUseCase(this._repository);
   final AuthRepository _repository;
-  ResetPasswordUseCase(this._repository);
-  Future<Result<ResetPasswordEntity?>> call(
-          ResetPasswordRequest resetPasswordRequest) =>
+  Future<Result<ResetPasswordEntity?>> call(ResetPasswordRequest resetPasswordRequest) =>
       _repository.resetPassword(resetPasswordRequest);
 }

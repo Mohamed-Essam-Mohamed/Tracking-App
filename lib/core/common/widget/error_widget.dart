@@ -1,16 +1,14 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
-
-import '../../../generated/locale_keys.g.dart';
-import '../../constants/app_assets.dart';
+import 'package:tracking_app/core/constants/app_assets.dart';
+import 'package:tracking_app/generated/locale_keys.g.dart';
 
 class EmptyStateWidget extends StatelessWidget {
+  const EmptyStateWidget({this.height, this.width, this.onRetry, super.key});
   final double? height;
   final double? width;
   final VoidCallback? onRetry;
-
-  const EmptyStateWidget({this.height, this.width, this.onRetry, super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -32,13 +30,12 @@ class EmptyStateWidget extends StatelessWidget {
 }
 
 class ErrorStateWidget extends StatelessWidget {
+  const ErrorStateWidget(
+      {this.height, this.width, this.onRetry, this.message, super.key});
   final double? height;
   final double? width;
   final String? message;
   final VoidCallback? onRetry;
-
-  const ErrorStateWidget(
-      {this.height, this.width, this.onRetry, this.message, super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -47,7 +44,7 @@ class ErrorStateWidget extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
         Lottie.asset(LottieAsset.error, height: 110, repeat: true),
-        SizedBox(height: 20),
+        const SizedBox(height: 20),
         Padding(
           padding: const EdgeInsets.all(8.0),
           child: Text(

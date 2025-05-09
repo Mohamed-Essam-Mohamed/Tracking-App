@@ -3,12 +3,12 @@ sealed class Result<T> {
 }
 
 class SuccessResult<T> extends Result<T> {
-  T data;
   SuccessResult(this.data);
+  T data;
 }
 
 class FailureResult<T> extends Result<T> {
+  FailureResult(this.exception);
   @override
   Exception exception;
-  FailureResult(this.exception);
 }

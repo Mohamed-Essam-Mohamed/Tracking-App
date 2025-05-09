@@ -9,17 +9,17 @@ class LoginScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // TODO: implement build
     return Scaffold(
       appBar: AppBar(
         title: Text(LocaleKeys.Authentication_Login.tr()),
         leading: IconButton(
-            onPressed: () {
-              // Navigator.of(context).pop();
-            },
-            icon: Icon(Icons.arrow_back_ios_new_outlined)),
+          onPressed: () {
+            Navigator.of(context).pop();
+          },
+          icon: const Icon(Icons.arrow_back_ios_new_outlined),
+        ),
       ),
-      body: LoginBody(),
+      body: const LoginBody(),
     );
   }
 }

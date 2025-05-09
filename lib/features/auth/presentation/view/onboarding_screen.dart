@@ -19,9 +19,9 @@ class OnboardingScreen extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            LottieOnboardingWidget(),
+            const LottieOnboardingWidget(),
             Text(
-              "${LocaleKeys.onBoarding_welcome_to.tr()}\n${LocaleKeys.onBoarding_flowery_rider_app.tr()}",
+              '${LocaleKeys.onBoarding_welcome_to.tr()}\n${LocaleKeys.onBoarding_flowery_rider_app.tr()}',
               style: AppTheme.lightTheme.textTheme.titleLarge,
             ),
             SizedBox(height: context.hp(3)),
@@ -29,7 +29,7 @@ class OnboardingScreen extends StatelessWidget {
               onPressed: () {
                 Navigator.of(context).pushNamed(Routes.login);
               },
-              key: Key(TestKeys.loginOnboarding),
+              key: const Key(TestKeys.loginOnboarding),
               style: ElevatedButton.styleFrom(
                 backgroundColor: AppColors.pink,
                 minimumSize: const Size.fromHeight(50),
@@ -49,7 +49,7 @@ class OnboardingScreen extends StatelessWidget {
               onPressed: () {
                 Navigator.of(context).pushNamed(Routes.applyScreen);
               },
-              key: Key(TestKeys.applyOnboarding),
+              key: const Key(TestKeys.applyOnboarding),
               style: ElevatedButton.styleFrom(
                 backgroundColor: AppColors.white,
                 minimumSize: const Size.fromHeight(50),

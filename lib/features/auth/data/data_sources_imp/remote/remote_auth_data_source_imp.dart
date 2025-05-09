@@ -20,11 +20,10 @@ import 'package:tracking_app/features/auth/domain/data_sources/remote/remote_aut
 
 @Injectable(as: RemoteAuthDataSource)
 class RemoteAuthDataSourceImp extends RemoteAuthDataSource {
+  RemoteAuthDataSourceImp(this._apiManager, this._apiService);
   final ApiManager _apiManager;
 
   final AuthRetrofitClient _apiService;
-
-  RemoteAuthDataSourceImp(this._apiManager, this._apiService);
 
   @override
   Future<Result<ApplyEntity>> apply(FormData formData) async {

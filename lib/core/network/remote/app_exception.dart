@@ -1,8 +1,7 @@
 abstract class ApiException implements Exception {
+  const ApiException({required this.message, this.statusCode});
   final String message;
   final int? statusCode;
-
-  const ApiException({required this.message, this.statusCode});
 
   @override
   String toString() => message;

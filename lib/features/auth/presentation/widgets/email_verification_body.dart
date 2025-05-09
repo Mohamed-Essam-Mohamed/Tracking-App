@@ -23,7 +23,7 @@ class _EmailVerificationBodyState extends State<EmailVerificationBody> {
   final GlobalKey<FormState> formKey = GlobalKey<FormState>();
   @override
   Widget build(BuildContext context) {
-    final fogetCubit = BlocProvider.of<ForgetPasswordCubit>(context);
+    final forgetCubit = BlocProvider.of<ForgetPasswordCubit>(context);
     final theme = Theme.of(context).textTheme;
     return SingleChildScrollView(
       child: Padding(
@@ -32,39 +32,37 @@ class _EmailVerificationBodyState extends State<EmailVerificationBody> {
           key: formKey,
           child: Column(
             children: [
-              SizedBox(height: 30),
+              const SizedBox(height: 30),
               Text(
                 LocaleKeys.Authentication_EmailVerification.tr(),
                 style: theme.titleMedium,
               ),
-              SizedBox(height: 20),
+              const SizedBox(height: 20),
               Text(
                 LocaleKeys.Authentication_PleaseEnterYourCode.tr(),
                 style: theme.labelMedium!.copyWith(color: AppColors.gray),
                 textAlign: TextAlign.center,
               ),
-              SizedBox(height: 30),
+              const SizedBox(height: 30),
               TextFormField(
-                
-                controller: fogetCubit.codeController,
+                controller: forgetCubit.codeController,
                 keyboardType: TextInputType.number,
                 validator: (value) {
                   return Validator.validateCode(value);
                 },
-                decoration: InputDecoration(hintText: 'Enter your code'),
+                decoration: const InputDecoration(hintText: 'Enter your code'),
               ),
-              SizedBox(height: 40),
+              const SizedBox(height: 40),
               SizedBox(
                 width: double.infinity,
                 child: BlocListener<ForgetPasswordCubit, ForgetPasswordState>(
-                  
-                  listenWhen: (pre,cur){
-                    if(pre.verifyCodeState !=cur.verifyCodeState){
+                  listenWhen: (pre, cur) {
+                    if (pre.verifyCodeState != cur.verifyCodeState) {
                       return true;
                     }
                     return false;
                   },
-                  bloc: fogetCubit,
+                  bloc: forgetCubit,
                   listener: (context, state) {
                     if (state.verifyCodeState is BaseLoadingState) {
                       AppDialogs.showLoadingDialog(context);
@@ -80,14 +78,15 @@ class _EmailVerificationBodyState extends State<EmailVerificationBody> {
                       });
                     } else if (state.verifyCodeState is BaseSuccessState) {
                       Navigator.of(context).pop();
-                      Navigator.of(context).pushNamed(Routes.resetPassword,arguments: fogetCubit);
+                      Navigator.of(context)
+                          .pushNamed(Routes.resetPassword, arguments: forgetCubit);
                     }
                   },
                   child: ElevatedButton(
                     onPressed: () {
                       if (formKey.currentState!.validate()) {
-                        fogetCubit.emailVerify(VerifyCodeRequest(
-                            resetCode: fogetCubit.codeController.text));
+                        forgetCubit.emailVerify(VerifyCodeRequest(
+                            resetCode: forgetCubit.codeController.text));
                         return;
                       } else {
                         return;
@@ -98,7 +97,7 @@ class _EmailVerificationBodyState extends State<EmailVerificationBody> {
                   ),
                 ),
               ),
-              SizedBox(height: 20),
+              const SizedBox(height: 20),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [

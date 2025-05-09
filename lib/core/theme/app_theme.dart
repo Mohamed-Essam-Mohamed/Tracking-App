@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import '../constants/app_colors.dart';
-import '../constants/app_fonts_family.dart';
+import 'package:tracking_app/core/constants/app_colors.dart';
+import 'package:tracking_app/core/constants/app_fonts_family.dart';
 
 class AppTheme {
   static ThemeData lightTheme = ThemeData(
@@ -164,8 +164,8 @@ class AppTheme {
         }
         return Colors.transparent;
       }),
-      checkColor: WidgetStatePropertyAll(AppColors.white),
-      overlayColor: WidgetStatePropertyAll(Colors.transparent),
+      checkColor: const WidgetStatePropertyAll(AppColors.white),
+      overlayColor: const WidgetStatePropertyAll(Colors.transparent),
       side: const BorderSide(color: AppColors.gray, width: 2),
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(2)),
     ),
@@ -184,7 +184,7 @@ class AppTheme {
         fontWeight: FontWeight.bold,
         fontFamily: AppFontsFamily.inter,
       ),
-      unselectedLabelStyle: TextStyle(
+      unselectedLabelStyle: const TextStyle(
         fontSize: 14,
         color: AppColors.gray,
         fontFamily: AppFontsFamily.inter,
@@ -195,11 +195,11 @@ class AppTheme {
       labelColor: AppColors.pink[AppColors.colorCode50],
       unselectedLabelColor: AppColors.white[AppColors.colorCode70],
       dividerColor: Colors.transparent,
-      labelStyle: TextStyle(
+      labelStyle: const TextStyle(
         fontWeight: FontWeight.w400,
         fontSize: 16,
       ),
-      unselectedLabelStyle: TextStyle(fontWeight: FontWeight.w400, fontSize: 16),
+      unselectedLabelStyle: const TextStyle(fontWeight: FontWeight.w400, fontSize: 16),
       indicator: UnderlineTabIndicator(
         insets: EdgeInsets.zero,
         borderSide: BorderSide(width: 3, color: AppColors.pink[AppColors.colorCode50]!),

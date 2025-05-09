@@ -20,9 +20,9 @@ class _ResetPasswordScreenState extends State<ResetPasswordScreen> {
             onPressed: () {
               Navigator.of(context).pop();
             },
-            icon: Icon(Icons.arrow_back_ios_new_outlined),
+            icon: const Icon(Icons.arrow_back_ios_new_outlined),
           ),
         ),
-        body: ResetPasswordBody());
+        body: const ResetPasswordBody());
   }
 }

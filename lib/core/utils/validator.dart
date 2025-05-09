@@ -1,6 +1,6 @@
 import 'package:easy_localization/easy_localization.dart';
-import '../../generated/locale_keys.g.dart';
-import '../constants/app_values.dart';
+import 'package:tracking_app/core/constants/app_values.dart';
+import 'package:tracking_app/generated/locale_keys.g.dart';
 
 class Validator {
   Validator._();

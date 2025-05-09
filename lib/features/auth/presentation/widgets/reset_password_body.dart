@@ -31,18 +31,18 @@ class _ResetPasswordBodyState extends State<ResetPasswordBody> {
         child: Form(
           key: formKey,
           child: Column(children: [
-            SizedBox(height: 30),
+            const SizedBox(height: 30),
             Text(
               LocaleKeys.Authentication_ResetPassword.tr(),
               style: theme.titleMedium,
             ),
-            SizedBox(height: 20),
+            const SizedBox(height: 20),
             Text(
               'Password must not be empty and must contain 6 characters with upper case letter and one number at least ',
               style: theme.labelMedium!.copyWith(color: AppColors.gray),
               textAlign: TextAlign.center,
             ),
-            SizedBox(height: 32),
+            const SizedBox(height: 32),
             TextFormField(
               controller: forgetCubit.passwordController,
               validator: (value) {
@@ -53,7 +53,7 @@ class _ResetPasswordBodyState extends State<ResetPasswordBody> {
                   labelText: LocaleKeys.Authentication_NewPassword.tr(),
                   hintText: LocaleKeys.Authentication_EnterYourPassword.tr()),
             ),
-            SizedBox(height: 24),
+            const SizedBox(height: 24),
             TextFormField(
               validator: (value) {
                 return Validator.validateConfirmPassword(
@@ -64,15 +64,15 @@ class _ResetPasswordBodyState extends State<ResetPasswordBody> {
                   labelText: LocaleKeys.Authentication_ConfirmPassword.tr(),
                   hintText: LocaleKeys.Authentication_ConfirmPassword.tr()),
             ),
-            SizedBox(height: 40),
+            const SizedBox(height: 40),
             SizedBox(
               width: double.infinity,
               child: BlocListener<ForgetPasswordCubit, ForgetPasswordState>(
                 listener: (context, state) {
-                  if (state.resetPassowrdState is BaseLoadingState) {
+                  if (state.resetPasswordState is BaseLoadingState) {
                     AppDialogs.showLoadingDialog(context);
-                  } else if (state.resetPassowrdState is BaseErrorState) {
-                    final result = state.resetPassowrdState as BaseErrorState;
+                  } else if (state.resetPasswordState is BaseErrorState) {
+                    final result = state.resetPasswordState as BaseErrorState;
                     Navigator.of(context).pop();
                     WidgetsBinding.instance.addPostFrameCallback((_) {
                       AppToast.showToast(
@@ -81,16 +81,15 @@ class _ResetPasswordBodyState extends State<ResetPasswordBody> {
                           type: ToastificationType.error,
                           title: LocaleKeys.Error_Not_found.tr());
                     });
-                  } else if (state.resetPassowrdState is BaseSuccessState) {
+                  } else if (state.resetPasswordState is BaseSuccessState) {
                     Navigator.of(context).pop();
-                    Navigator.of(context).pushNamedAndRemoveUntil(Routes.login,
-                        (p) {
+                    Navigator.of(context).pushNamedAndRemoveUntil(Routes.login, (p) {
                       return false;
                     });
                   }
                 },
                 child: ElevatedButton(
-                  style: ButtonStyle(
+                  style: const ButtonStyle(
                       backgroundColor: WidgetStatePropertyAll(AppColors.pink)),
                   child: Text(LocaleKeys.Authentication_Confirm.tr()),
                   onPressed: () {

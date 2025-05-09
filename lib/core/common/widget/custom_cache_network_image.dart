@@ -3,13 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:tracking_app/core/common/animation/loading_shimmer.dart';
 
 class CustomCacheNetworkImage extends StatelessWidget {
-  final String imageUrl;
-  final double? width;
-  final double? height;
-  final BoxFit fit;
-  final bool isCircular;
-  final BorderRadius? borderRadius;
-
   const CustomCacheNetworkImage({
     super.key,
     required this.imageUrl,
@@ -19,10 +12,16 @@ class CustomCacheNetworkImage extends StatelessWidget {
     this.isCircular = false,
     this.borderRadius,
   });
+  final String imageUrl;
+  final double? width;
+  final double? height;
+  final BoxFit fit;
+  final bool isCircular;
+  final BorderRadius? borderRadius;
 
   @override
   Widget build(BuildContext context) {
-    Widget image = CachedNetworkImage(
+    final Widget image = CachedNetworkImage(
       imageUrl: imageUrl,
       fit: fit,
       width: width,
