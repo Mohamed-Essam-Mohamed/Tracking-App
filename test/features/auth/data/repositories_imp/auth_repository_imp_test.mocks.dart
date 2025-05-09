@@ -5,7 +5,7 @@
 // ignore_for_file: no_leading_underscores_for_library_prefixes
 import 'dart:async' as _i3;
 
-import 'package:dio/dio.dart' as _i9;
+import 'package:dio/dio.dart' as _i14;
 import 'package:mockito/mockito.dart' as _i1;
 import 'package:mockito/src/dummies.dart' as _i7;
 import 'package:tracking_app/core/network/common/api_result.dart' as _i4;
@@ -26,9 +26,9 @@ import 'package:tracking_app/features/auth/data/models/response/verify_code_requ
 import 'package:tracking_app/features/auth/domain/data_sources/remote/remote_auth_data_source.dart'
     as _i2;
 import 'package:tracking_app/features/auth/domain/entities/apply_entity.dart'
-    as _i8;
+    as _i13;
 import 'package:tracking_app/features/auth/domain/entities/vehicles_entitiy.dart'
-    as _i10;
+    as _i15;
 
 // ignore_for_file: type=lint
 // ignore_for_file: avoid_redundant_argument_values
@@ -115,28 +115,28 @@ class MockRemoteAuthDataSource extends _i1.Mock
           as _i3.Future<_i4.Result<_i11.ResetPasswordResponse?>>);
 
   @override
-  _i3.Future<_i4.Result<_i8.ApplyEntity>> apply(_i9.FormData? formData) =>
+  _i3.Future<_i4.Result<_i13.ApplyEntity>> apply(_i14.FormData? formData) =>
       (super.noSuchMethod(
             Invocation.method(#apply, [formData]),
-            returnValue: _i3.Future<_i4.Result<_i8.ApplyEntity>>.value(
-              _i7.dummyValue<_i4.Result<_i8.ApplyEntity>>(
+            returnValue: _i3.Future<_i4.Result<_i13.ApplyEntity>>.value(
+              _i7.dummyValue<_i4.Result<_i13.ApplyEntity>>(
                 this,
                 Invocation.method(#apply, [formData]),
               ),
             ),
           )
-          as _i3.Future<_i4.Result<_i8.ApplyEntity>>);
+          as _i3.Future<_i4.Result<_i13.ApplyEntity>>);
 
   @override
-  _i3.Future<_i4.Result<_i10.VehiclesModelEntity>> getAllVehicles() =>
+  _i3.Future<_i4.Result<_i15.VehiclesModelEntity>> getAllVehicles() =>
       (super.noSuchMethod(
             Invocation.method(#getAllVehicles, []),
-            returnValue: _i3.Future<_i4.Result<_i10.VehiclesModelEntity>>.value(
-              _i7.dummyValue<_i4.Result<_i10.VehiclesModelEntity>>(
+            returnValue: _i3.Future<_i4.Result<_i15.VehiclesModelEntity>>.value(
+              _i7.dummyValue<_i4.Result<_i15.VehiclesModelEntity>>(
                 this,
                 Invocation.method(#getAllVehicles, []),
               ),
             ),
           )
-          as _i3.Future<_i4.Result<_i10.VehiclesModelEntity>>);
+          as _i3.Future<_i4.Result<_i15.VehiclesModelEntity>>);
 }

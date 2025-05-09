@@ -26,7 +26,7 @@ Future<void> main() async {
 
   final prefs = await SharedPreferences.getInstance();
   final isLoggedIn = prefs.getBool('isLoggedIn') ?? false;
-  final initialRoute = isLoggedIn ? Routes.appSection : Routes.login;
+  final initialRoute = Routes.onboarding;
 
   runApp(EasyLocalization(
     supportedLocales: AppValues.supportedLocales,

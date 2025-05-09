@@ -83,13 +83,13 @@ extension GetItInjectableX on _i174.GetIt {
         () => _i578.LoginCubit(gh<_i862.LoginUseCase>()));
     gh.factory<_i834.ApplyUseCases>(
         () => _i834.ApplyUseCases(gh<_i632.AuthRepository>()));
-    gh.factory<_i554.ApplyCubit>(
-        () => _i554.ApplyCubit(gh<_i834.ApplyUseCases>()));
     gh.factory<_i943.ForgetPasswordCubit>(() => _i943.ForgetPasswordCubit(
           gh<_i717.ForgetPasswordUseCase>(),
           gh<_i12.EmailVerificationUseCase>(),
           gh<_i44.ResetPasswordUseCase>(),
         ));
+    gh.factory<_i554.ApplyCubit>(
+        () => _i554.ApplyCubit(gh<_i834.ApplyUseCases>()));
     return this;
   }
 }

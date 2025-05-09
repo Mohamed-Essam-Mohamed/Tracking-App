@@ -114,7 +114,7 @@ class _AuthRetrofitClient implements AuthRetrofitClient {
       Options(method: 'POST', headers: _headers, extra: _extra)
           .compose(
             _dio.options,
-            'forgotPassword',
+            'drivers/forgotPassword',
             queryParameters: queryParameters,
             data: _data,
           )
@@ -142,7 +142,7 @@ class _AuthRetrofitClient implements AuthRetrofitClient {
       Options(method: 'POST', headers: _headers, extra: _extra)
           .compose(
             _dio.options,
-            'verifyResetCode',
+            'drivers/verifyResetCode',
             queryParameters: queryParameters,
             data: _data,
           )
@@ -172,7 +172,7 @@ class _AuthRetrofitClient implements AuthRetrofitClient {
       Options(method: 'PUT', headers: _headers, extra: _extra)
           .compose(
             _dio.options,
-            'resetPassword',
+            'drivers/resetPassword',
             queryParameters: queryParameters,
             data: _data,
           )

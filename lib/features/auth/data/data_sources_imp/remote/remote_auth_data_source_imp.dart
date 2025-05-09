@@ -1,16 +1,14 @@
 import 'package:dio/dio.dart';
-import 'package:dio/dio.dart';
+
 import 'package:injectable/injectable.dart';
 import 'package:tracking_app/core/network/common/api_result.dart';
 import 'package:tracking_app/core/network/remote/api_manager.dart';
 import 'package:tracking_app/features/auth/data/api/auth_retrofit_client.dart';
+import 'package:tracking_app/features/auth/data/models/apply_model.dart';
+import 'package:tracking_app/features/auth/data/models/vehicles_model.dart';
+import 'package:tracking_app/features/auth/domain/entities/apply_entity.dart';
 import 'package:tracking_app/features/auth/domain/entities/vehicles_entitiy.dart';
-import '../../../../../core/network/common/api_result.dart';
-import '../../../domain/entities/apply_entity.dart';
-import '../../data_sources/remote/remote_auth_data_source.dart';
-import '../../models/apply_model.dart';
-import '../../models/post_auth.dart';
-import '../../models/vehicles_model.dart';
+
 import 'package:tracking_app/features/auth/data/models/request/forget_request_dto.dart';
 import 'package:tracking_app/features/auth/data/models/request/login/login_request_dto.dart';
 import 'package:tracking_app/features/auth/data/models/response/forget_response_dto.dart';
@@ -58,7 +56,7 @@ class RemoteAuthDataSourceImp extends RemoteAuthDataSource {
   }
 
   @override
-  Future<Result<LoginResponseDto?>> login(LoginRequestDto loginRequest)async {
+  Future<Result<LoginResponseDto?>> login(LoginRequestDto loginRequest) async {
     final response = await _apiManager.execute<LoginResponseDto?>(
       () async {
         return await _apiService.login(loginRequest);
@@ -68,25 +66,12 @@ class RemoteAuthDataSourceImp extends RemoteAuthDataSource {
     return response;
   }
 
-
-}
-
   @override
   Future<Result<ForgetResponseDto?>> forgetPassword(
       ForgetRequestDto forgetRequest) async {
     final response = await _apiManager.execute<ForgetResponseDto?>(() async {
       return _apiService.forgetPassword(forgetRequest);
     });
-
-    return response;
-  }
-
-  @override
-  Future<Result<String?>> verifyCode(VerifyCodeRequest verifyCode) async {
-    final response = await _apiManager.execute<String?>(() async {
-      return _apiService.verifyResetCode(verifyCode);
-    });
-
     return response;
   }
 
@@ -98,6 +83,18 @@ class RemoteAuthDataSourceImp extends RemoteAuthDataSource {
     });
     return response;
   }
+
+  @override
+  Future<Result<String?>> verifyCode(VerifyCodeRequest verifyCode) async {
+    final response = await _apiManager.execute<String?>(() async {
+      return _apiService.verifyResetCode(verifyCode);
+    });
+
+    return response;
+  }
+}
+
+
 
   // ex
   // @override

@@ -26,7 +26,7 @@ class RouteGenerator {
         return AnimationRoute(page: const LoginScreen());
       case Routes.appSection:
         return AnimationRoute(page: const AppSection());
-        // case Routes.applyScreen:
+      case Routes.applyScreen:
         return AnimationRoute(page: const ApplyScreen());
       case Routes.forgetPassword:
         return MaterialPageRoute(builder: (_) => ForgetPasswordScreen());

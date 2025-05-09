@@ -1,3 +1,4 @@
+import 'dart:developer';
 import 'dart:io';
 import 'package:country_picker/country_picker.dart';
 import 'package:easy_localization/easy_localization.dart';
@@ -5,7 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:tracking_app/core/constants/app_colors.dart';
 import 'package:tracking_app/core/theme/app_theme.dart';
-import 'package:tracking_app/features/auth/presentation/view/success_apply.dart';
+import 'package:tracking_app/features/auth/presentation/view/Success_apply.dart';
 import '../../../../core/di/service_locator.dart';
 import '../../../../core/dialogs/app_dialogs.dart';
 import '../../../../core/utils/validator.dart';
@@ -66,6 +67,7 @@ class _ApplyScreenState extends State<ApplyScreen> {
     idNumberController.dispose();
     vehicleLicenseController.dispose();
     nidController.dispose();
+
     super.dispose();
   }
 
@@ -96,15 +98,22 @@ class _ApplyScreenState extends State<ApplyScreen> {
       child: BlocListener<ApplyCubit, ApplyState>(
         listener: (context, state) {
           if (state is ApplySuccessState) {
+            log("Apply Success");
             Navigator.push(
               context,
-              MaterialPageRoute(builder: (context) => SuccessApply()),
+              MaterialPageRoute(builder: (context) => const SuccessApply()),
             );
           } else if (state is ApplyErrorState) {
-            AppDialogs.showFailureDialog(context, message: state.error, onPressed: () {
-              Navigator.pop(context);
-              Navigator.of(context).pop();
-            });
+            log("Apply Error");
+
+            AppDialogs.showFailureDialog(
+              context,
+              message: state.error,
+              onPressed: () {
+                Navigator.pop(context);
+                Navigator.pop(context);
+              },
+            );
           } else if (state is ApplyLoadingState) {
             AppDialogs.showLoadingDialog(context);
           }
@@ -146,18 +155,17 @@ class _ApplyScreenState extends State<ApplyScreen> {
                         labelStyle: AppTheme.lightTheme.textTheme.labelMedium
                             ?.copyWith(color: AppColors.gray.withOpacity(0.8)),
                         enabledBorder: OutlineInputBorder(
-                          borderSide: const BorderSide(color: AppColors.gray),
+                          borderSide: BorderSide(color: AppColors.gray),
                           borderRadius: BorderRadius.circular(6),
                         ),
                         focusedBorder: OutlineInputBorder(
-                          borderSide: const BorderSide(color: AppColors.black),
+                          borderSide: BorderSide(color: AppColors.black),
                           borderRadius: BorderRadius.circular(6),
                         ),
                         suffixIcon: IconButton(
                           icon: Icon(Icons.keyboard_arrow_down_sharp),
                           onPressed: () {
                             showCountryPicker(
-                              showPhoneCode: true,
                               context: context,
                               onSelect: (Country country) {
                                 setState(() {
@@ -219,7 +227,7 @@ class _ApplyScreenState extends State<ApplyScreen> {
                       ),
                       validator: (val) => Validator.validateName(val),
                     ),
-                    SizedBox(height: 16),
+                    const SizedBox(height: 16),
                     DropdownButtonFormField<String>(
                       value: selectedVehicleType,
                       items: apply.vehiclesList.map((vehicle) {

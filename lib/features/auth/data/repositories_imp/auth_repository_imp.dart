@@ -24,13 +24,13 @@ class AuthRepositoryImp extends AuthRepository {
   Future<Result<ApplyEntity>> apply(FormData formData) async {
     return await _dataSource.apply(formData);
   }
+
   Future<Result<VehiclesModelEntity>> getAllVehicles() async {
     return await _dataSource.getAllVehicles();
   }
 
   @override
-  Future<Result<LoginResponseEntity?>> login(
-      LoginRequestEntity? loginRequest) async {
+  Future<Result<LoginResponseEntity?>> login(LoginRequestEntity? loginRequest) async {
     final result = await _dataSource.login(loginRequest!.toDto());
 
     if (result is SuccessResult<LoginResponseDto?>) {
@@ -58,19 +58,20 @@ class AuthRepositoryImp extends AuthRepository {
   }
 
   @override
-  Future<Result<String?>> verifyCode(VerifyCodeRequest verifyCode) async{
-    final result=await _dataSource.verifyCode(verifyCode);
+  Future<Result<String?>> verifyCode(VerifyCodeRequest verifyCode) async {
+    final result = await _dataSource.verifyCode(verifyCode);
     return result;
   }
 
   @override
-  Future<Result<ResetPasswordEntity?>> resetPassword(ResetPasswordRequest resetPassordRequest) async{
-    final result= await _dataSource.resetPassword(resetPassordRequest);
-     switch(result){
-       case SuccessResult():
-       return SuccessResult(result.data!.toDomain());
-       case FailureResult():
-       return FailureResult(result.exception);
-     }
+  Future<Result<ResetPasswordEntity?>> resetPassword(
+      ResetPasswordRequest resetPassordRequest) async {
+    final result = await _dataSource.resetPassword(resetPassordRequest);
+    switch (result) {
+      case SuccessResult():
+        return SuccessResult(result.data!.toDomain());
+      case FailureResult():
+        return FailureResult(result.exception);
+    }
   }
 }
