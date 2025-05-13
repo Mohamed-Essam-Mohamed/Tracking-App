@@ -27,11 +27,12 @@ class SuccessApply extends StatelessWidget {
                   SvgAsset.taskAlt,
                   width: context.wp(26),
                   height: context.hp(26),
-                  colorFilter: const ColorFilter.mode(AppColors.pink, BlendMode.srcIn),
+                  colorFilter:
+                      const ColorFilter.mode(AppColors.pink, BlendMode.srcIn),
                 ),
               ),
               Text(
-                LocaleKeys.successApply_Your_application_has_been.tr(),
+                LocaleKeys.successApply_your_application_has_been.tr(),
                 style: AppTheme.lightTheme.textTheme.titleMedium!
                     .copyWith(fontWeight: FontWeight.w600),
                 textAlign: TextAlign.center,
@@ -44,7 +45,8 @@ class SuccessApply extends StatelessWidget {
               ),
               SizedBox(height: context.hp(2)),
               Text(
-                LocaleKeys.successApply_Thank_you_for_providing_your_application.tr(),
+                LocaleKeys.successApply_Thank_you_for_providing_your_application
+                    .tr(),
                 style: AppTheme.lightTheme.textTheme.titleSmall!.copyWith(
                   fontWeight: FontWeight.w400,
                   color: AppColors.gray,
@@ -52,7 +54,8 @@ class SuccessApply extends StatelessWidget {
                 textAlign: TextAlign.center,
               ),
               Text(
-                LocaleKeys.successApply_we_will_review_your_application_and_will.tr(),
+                LocaleKeys.successApply_we_will_review_your_application_and_will
+                    .tr(),
                 style: AppTheme.lightTheme.textTheme.titleSmall!.copyWith(
                   fontWeight: FontWeight.w400,
                   color: AppColors.gray,
@@ -79,8 +82,8 @@ class SuccessApply extends StatelessWidget {
                     },
                     style: ElevatedButton.styleFrom(
                       backgroundColor: AppColors.pink,
-                      shape:
-                          RoundedRectangleBorder(borderRadius: BorderRadius.circular(25)),
+                      shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(25)),
                       padding: const EdgeInsets.symmetric(vertical: 13),
                     ),
                     child: Text(
