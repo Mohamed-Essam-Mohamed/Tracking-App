@@ -9,8 +9,8 @@ abstract class DioModule {
   Dio provideDio() {
     final dio = Dio();
     dio.options = BaseOptions(
-      connectTimeout: const Duration(seconds: 10),
-      receiveTimeout: const Duration(seconds: 10),
+      connectTimeout: const Duration(seconds: 40),
+      receiveTimeout: const Duration(seconds: 40),
       baseUrl: ApiConstants.baseUrl,
     );
     dio.interceptors.add(providerInterceptor());

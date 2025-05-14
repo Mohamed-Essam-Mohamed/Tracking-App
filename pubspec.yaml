@@ -62,6 +62,7 @@ dependencies:
   firebase_auth: ^5.5.2         
   firebase_messaging: ^15.2.5   
   retry: ^3.1.2
+  timelines: ^0.1.0
   
   
 dev_dependencies:

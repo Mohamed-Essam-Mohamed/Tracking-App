@@ -278,9 +278,16 @@
         "closing_title": "Thank You",
         "closing_content": "Thank you for using the Flowery App. We appreciate your trust and strive to provide you with an exceptional experience each time you place an order with us."
     },
-
-
-
+"OrderDetails": {
+    "orderdetails": "Order details",
+    "Status": "Status",
+    "OrderID": "Order ID",
+    "PickupAddress": "Pickup address",
+    "UserAddress": "User address",
+    "Total": "Total",
+    "PaymentMethod": "Payment method",
+    "ArrivedAtPickupPoint": "Arrived at Pickup point"
+},
 
     "onBoarding": {
         "login": "login",

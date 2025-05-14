@@ -69,3 +69,6 @@ class LottieAsset {
   static const error = 'assets/lotties/error_lottie.json';
   static const onBoarding = 'assets/lotties/on_boarding.json';
 }
+
+//? image const url using in app development only
+const String imageCover = 'https://www.elevateegy.com/elevate.png';
