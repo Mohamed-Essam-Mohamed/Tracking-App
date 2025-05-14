@@ -286,6 +286,16 @@ class CodegenLoader extends AssetLoader{
     "closing_title": "Thank You",
     "closing_content": "Thank you for using the Flowery App. We appreciate your trust and strive to provide you with an exceptional experience each time you place an order with us."
   },
+  "OrderDetails": {
+    "orderdetails": "Order details",
+    "Status": "Status",
+    "OrderID": "Order ID",
+    "PickupAddress": "Pickup address",
+    "UserAddress": "User address",
+    "Total": "Total",
+    "PaymentMethod": "Payment method",
+    "ArrivedAtPickupPoint": "Arrived at Pickup point"
+  },
   "onBoarding": {
     "login": "login",
     "Apply": "Apply now",
@@ -507,6 +517,16 @@ static const Map<String,dynamic> _ar = {
     "Delivered_on": "تم التسليم في 3 سبتمبر 2024",
     "order_number": "رقم الطلب ",
     "no_orders": "عذرًا، يبدو أنك لم تكمل أي طلب بعد."
+  },
+  "OrderDetails": {
+    "orderdetails": "تفاصيل الطلب",
+    "Status": "الحالة",
+    "OrderID": "رقم الطلب",
+    "PickupAddress": "عنوان الاستلام",
+    "UserAddress": "عنوان المستخدم",
+    "Total": "الإجمالي",
+    "PaymentMethod": "طريقة الدفع",
+    "ArrivedAtPickupPoint": "تم الوصول إلى نقطة الاستلام"
   },
   "onBoarding": {
     "login": "تسجيل",
