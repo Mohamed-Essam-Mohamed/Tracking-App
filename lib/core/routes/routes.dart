@@ -7,4 +7,6 @@ class Routes {
   static const String forgetPassword='/forgetPassword';
   static const String emailVerification='/emailVerification';
   static const String resetPassword='/resetPassword';
+  static const String orderDetailsScreen='/orderDetailsScreen';
+  static const String detailsScreen='/detailsScreen';
 }

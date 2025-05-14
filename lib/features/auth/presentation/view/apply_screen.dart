@@ -49,12 +49,6 @@ class _ApplyScreenState extends State<ApplyScreen> {
   String flagEmoji = ' ';
 
   @override
-  void initState() {
-    super.initState();
-    apply.getAllVehicles();
-  }
-
-  @override
   void dispose() {
     emailController.dispose();
     passwordController.dispose();
@@ -91,6 +85,20 @@ class _ApplyScreenState extends State<ApplyScreen> {
     }
   }
 
+  bool _isVehicleInitialized = false;
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+
+    if (!_isVehicleInitialized && apply.vehiclesList.isNotEmpty) {
+      selectedVehicleType = apply.vehiclesList.first.id;
+      selectedVehicle = apply.vehiclesList.first;
+      _isVehicleInitialized = true;
+      setState(() {});
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
@@ -116,6 +124,18 @@ class _ApplyScreenState extends State<ApplyScreen> {
             );
           } else if (state is ApplyLoadingState) {
             AppDialogs.showLoadingDialog(context);
+          } else if (state is VehiclesSuccessState) {
+            log('Vehicles Loaded');
+            if ((state is VehiclesSuccessState) &&
+                (apply.vehiclesList.isNotEmpty) &&
+                !_isVehicleInitialized) {
+              final firstVehicle = apply.vehiclesList.first;
+              setState(() {
+                selectedVehicle = firstVehicle;
+                selectedVehicleType = firstVehicle.id;
+                _isVehicleInitialized = true;
+              });
+            }
           }
         },
         child: Scaffold(
@@ -148,8 +168,8 @@ class _ApplyScreenState extends State<ApplyScreen> {
                     const SizedBox(height: 24),
                     TextFormField(
                       readOnly: true,
-                      controller:
-                          TextEditingController(text: '$flagEmoji $selectedCountry'),
+                      controller: TextEditingController(
+                          text: '$flagEmoji $selectedCountry'),
                       decoration: InputDecoration(
                         labelText: LocaleKeys.apply_Country.tr(),
                         labelStyle: AppTheme.lightTheme.textTheme.labelMedium
@@ -175,8 +195,9 @@ class _ApplyScreenState extends State<ApplyScreen> {
 
                                 ScaffoldMessenger.of(context).showSnackBar(
                                   SnackBar(
-                                    content: Text(LocaleKeys.apply_SelectedCountry.tr() +
-                                        country.name),
+                                    content: Text(
+                                        LocaleKeys.apply_SelectedCountry.tr() +
+                                            country.name),
                                   ),
                                 );
                               },
@@ -228,8 +249,12 @@ class _ApplyScreenState extends State<ApplyScreen> {
                       validator: (val) => Validator.validateName(val),
                     ),
                     const SizedBox(height: 16),
-                    DropdownButtonFormField<String>(
-                      value: selectedVehicleType,
+                    DropdownButtonFormField(
+                      value: selectedVehicleType != null &&
+                              apply.vehiclesList
+                                  .any((v) => v.id == selectedVehicleType)
+                          ? selectedVehicleType
+                          : null,
                       items: apply.vehiclesList.map((vehicle) {
                         return DropdownMenuItem(
                           value: vehicle.id,
@@ -374,7 +399,7 @@ class _ApplyScreenState extends State<ApplyScreen> {
                           borderRadius: BorderRadius.circular(6),
                         ),
                       ),
-                      validator: (val) => Validator.validateIdNumber(val),
+                      validator: (val) => Validator.IdNumber(val),
                     ),
                     const SizedBox(height: 16),
                     TextFormField(
@@ -411,17 +436,23 @@ class _ApplyScreenState extends State<ApplyScreen> {
                             obscureText: true,
                             decoration: InputDecoration(
                               labelText: LocaleKeys.apply_Password.tr(),
-                              labelStyle: AppTheme.lightTheme.textTheme.labelMedium
-                                  ?.copyWith(color: AppColors.gray.withOpacity(0.8)),
+                              labelStyle: AppTheme
+                                  .lightTheme.textTheme.labelMedium
+                                  ?.copyWith(
+                                      color: AppColors.gray.withOpacity(0.8)),
                               hintText: LocaleKeys.apply_EnterPassword.tr(),
-                              hintStyle: AppTheme.lightTheme.textTheme.labelMedium
-                                  ?.copyWith(color: AppColors.gray.withOpacity(0.8)),
+                              hintStyle: AppTheme
+                                  .lightTheme.textTheme.labelMedium
+                                  ?.copyWith(
+                                      color: AppColors.gray.withOpacity(0.8)),
                               enabledBorder: OutlineInputBorder(
-                                borderSide: const BorderSide(color: AppColors.gray),
+                                borderSide:
+                                    const BorderSide(color: AppColors.gray),
                                 borderRadius: BorderRadius.circular(6),
                               ),
                               focusedBorder: OutlineInputBorder(
-                                borderSide: const BorderSide(color: AppColors.black),
+                                borderSide:
+                                    const BorderSide(color: AppColors.black),
                                 borderRadius: BorderRadius.circular(6),
                               ),
                             ),
@@ -435,22 +466,29 @@ class _ApplyScreenState extends State<ApplyScreen> {
                             obscureText: true,
                             decoration: InputDecoration(
                               labelText: LocaleKeys.apply_ConfirmPassword.tr(),
-                              labelStyle: AppTheme.lightTheme.textTheme.labelMedium
-                                  ?.copyWith(color: AppColors.gray.withOpacity(0.8)),
+                              labelStyle: AppTheme
+                                  .lightTheme.textTheme.labelMedium
+                                  ?.copyWith(
+                                      color: AppColors.gray.withOpacity(0.8)),
                               hintText: LocaleKeys.apply_ConfirmPassword.tr(),
-                              hintStyle: AppTheme.lightTheme.textTheme.labelMedium
-                                  ?.copyWith(color: AppColors.gray.withOpacity(0.8)),
+                              hintStyle: AppTheme
+                                  .lightTheme.textTheme.labelMedium
+                                  ?.copyWith(
+                                      color: AppColors.gray.withOpacity(0.8)),
                               enabledBorder: OutlineInputBorder(
-                                borderSide: const BorderSide(color: AppColors.gray),
+                                borderSide:
+                                    const BorderSide(color: AppColors.gray),
                                 borderRadius: BorderRadius.circular(6),
                               ),
                               focusedBorder: OutlineInputBorder(
-                                borderSide: const BorderSide(color: AppColors.black),
+                                borderSide:
+                                    const BorderSide(color: AppColors.black),
                                 borderRadius: BorderRadius.circular(6),
                               ),
                             ),
-                            validator: (val) => Validator.validateConfirmPassword(
-                                val, passwordController.text),
+                            validator: (val) =>
+                                Validator.validateConfirmPassword(
+                                    val, passwordController.text),
                           ),
                         ),
                       ],

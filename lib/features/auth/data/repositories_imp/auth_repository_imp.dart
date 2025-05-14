@@ -16,7 +16,7 @@ import 'package:tracking_app/features/auth/domain/entities/vehicles_entitiy.dart
 import 'package:tracking_app/features/auth/domain/repositories/auth_repository.dart';
 
 @Injectable(as: AuthRepository)
-class AuthRepositoryImp extends AuthRepository {
+class AuthRepositoryImp implements AuthRepository {
   AuthRepositoryImp(this._dataSource);
   final RemoteAuthDataSource _dataSource;
   @override

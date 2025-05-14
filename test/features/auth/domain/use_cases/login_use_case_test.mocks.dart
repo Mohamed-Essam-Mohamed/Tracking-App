@@ -95,15 +95,15 @@ class MockAuthRepository extends _i1.Mock implements _i2.AuthRepository {
 
   @override
   _i3.Future<_i4.Result<_i11.ForgetPasswordEntity?>> forgetPassword(
-    _i12.ForgetRequestDto? forgetrequest,
+    _i12.ForgetRequestDto? forgetRequest,
   ) =>
       (super.noSuchMethod(
-            Invocation.method(#forgetPassword, [forgetrequest]),
+            Invocation.method(#forgetPassword, [forgetRequest]),
             returnValue:
                 _i3.Future<_i4.Result<_i11.ForgetPasswordEntity?>>.value(
                   _i7.dummyValue<_i4.Result<_i11.ForgetPasswordEntity?>>(
                     this,
-                    Invocation.method(#forgetPassword, [forgetrequest]),
+                    Invocation.method(#forgetPassword, [forgetRequest]),
                   ),
                 ),
           )
@@ -126,15 +126,15 @@ class MockAuthRepository extends _i1.Mock implements _i2.AuthRepository {
 
   @override
   _i3.Future<_i4.Result<_i14.ResetPasswordEntity?>> resetPassword(
-    _i15.ResetPasswordRequest? resetPassordRequest,
+    _i15.ResetPasswordRequest? resetPasswordRequest,
   ) =>
       (super.noSuchMethod(
-            Invocation.method(#resetPassword, [resetPassordRequest]),
+            Invocation.method(#resetPassword, [resetPasswordRequest]),
             returnValue:
                 _i3.Future<_i4.Result<_i14.ResetPasswordEntity?>>.value(
                   _i7.dummyValue<_i4.Result<_i14.ResetPasswordEntity?>>(
                     this,
-                    Invocation.method(#resetPassword, [resetPassordRequest]),
+                    Invocation.method(#resetPassword, [resetPasswordRequest]),
                   ),
                 ),
           )

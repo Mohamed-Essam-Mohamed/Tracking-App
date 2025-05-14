@@ -52,16 +52,21 @@ class Validator {
   }
 
   static String? validatePhoneNumber(String? val) {
-    if (val == null) {
+    if (val == null || val.trim().isEmpty) {
       return LocaleKeys.Error_PhoneNumberCannotBeEmpty.tr();
-    } else if (int.tryParse(val.trim()) == null) {
-      return LocaleKeys.Error_InvalidPhoneNumber.tr();
-    } else if (val.trim().length != 13) {
-      return LocaleKeys.Error_InvalidPhoneNumber.tr();
-    } else {
-      return null;
     }
+
+    final phone = val.trim();
+    final isValid = RegExp(r'^\+?\d+$').hasMatch(phone);
+    if (!isValid) {
+      return LocaleKeys.Error_InvalidPhoneNumber.tr();
+    }
+    if (phone.length != 13) {
+      return LocaleKeys.Error_InvalidPhoneNumber.tr();
+    }
+    return null;
   }
+
 
   static String? validateCode(String? val) {
     if (val == null || val.isEmpty) {
@@ -81,23 +86,29 @@ class Validator {
     }
   }
 
-  static String? validateIdNumber(String? val) {
+  static String? IdNumber(String? val) {
     if (val == null) {
       return LocaleKeys.Error_IdNumberCannotBeEmpty.tr();
-    } else if (val.trim().length != 14) {
-      return LocaleKeys.Error_InvalidIdNumber.tr();
-    } else {
-      return null;
-    }
-  }
-
-  static String? validateVehicleNumber(String? val) {
-    if (val == null) {
-      return LocaleKeys.Error_vehicleNumberCannotBeEmpty.tr();
-    } else if (val.trim().length != 5) {
+    }  final idNumber = val.trim();
+    if (!RegExp(r'^\d{14}$').hasMatch(idNumber)) {
       return LocaleKeys.Error_InvalidVehicleNumber.tr();
     } else {
       return null;
     }
   }
+
+
+  static String? validateVehicleNumber(String? val) {
+    if (val == null || val.trim().isEmpty) {
+      return LocaleKeys.Error_vehicleNumberCannotBeEmpty.tr();
+    }
+    final vehicleNumber = val.trim();
+    if (!RegExp(r'^\d{4}$').hasMatch(vehicleNumber)) {
+      return LocaleKeys.Error_InvalidVehicleNumber.tr();
+    }
+    return null;
+  }
+
+
+
 }
