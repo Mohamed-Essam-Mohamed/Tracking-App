@@ -43,6 +43,20 @@ import 'package:tracking_app/features/auth/presentation/view_model/forget_passwo
     as _i943;
 import 'package:tracking_app/features/auth/presentation/view_model/login/login_cubit.dart'
     as _i578;
+import 'package:tracking_app/features/home/data/api/home_retrofit_client.dart'
+    as _i95;
+import 'package:tracking_app/features/home/data/data_sources/remote/home_remote_data_sources_imp.dart'
+    as _i35;
+import 'package:tracking_app/features/home/data/repositories_impl/home_repository_imp.dart'
+    as _i325;
+import 'package:tracking_app/features/home/domain/data_sources/remote/home_remote_data_source.dart'
+    as _i623;
+import 'package:tracking_app/features/home/domain/repositories/home_repository.dart'
+    as _i421;
+import 'package:tracking_app/features/home/domain/use_cases/get_all_pending_order_use_case.dart'
+    as _i505;
+import 'package:tracking_app/features/home/presentation/view_model/pending_order/pending_order_cubit.dart'
+    as _i175;
 
 extension GetItInjectableX on _i174.GetIt {
 // initializes the registration of main-scope dependencies inside of GetIt
@@ -65,12 +79,22 @@ extension GetItInjectableX on _i174.GetIt {
         () => dioModule.providerInterceptor());
     gh.lazySingleton<_i272.AuthRetrofitClient>(
         () => _i272.AuthRetrofitClient(gh<_i361.Dio>()));
+    gh.lazySingleton<_i95.HomeRetrofitClient>(
+        () => _i95.HomeRetrofitClient(gh<_i361.Dio>()));
     gh.factory<_i13.RemoteAuthDataSource>(() => _i121.RemoteAuthDataSourceImp(
           gh<_i481.ApiManager>(),
           gh<_i272.AuthRetrofitClient>(),
         ));
+    gh.factory<_i623.HomeRemoteDataSource>(() => _i35.HomeRemoteDataSourcesImp(
+          gh<_i481.ApiManager>(),
+          gh<_i95.HomeRetrofitClient>(),
+        ));
+    gh.factory<_i421.HomeRepository>(
+        () => _i325.HomeRepositoryImp(gh<_i623.HomeRemoteDataSource>()));
     gh.factory<_i632.AuthRepository>(
         () => _i701.AuthRepositoryImp(gh<_i13.RemoteAuthDataSource>()));
+    gh.factory<_i505.GetAllPendingOrderUseCase>(
+        () => _i505.GetAllPendingOrderUseCase(gh<_i421.HomeRepository>()));
     gh.factory<_i12.EmailVerificationUseCase>(
         () => _i12.EmailVerificationUseCase(gh<_i632.AuthRepository>()));
     gh.factory<_i717.ForgetPasswordUseCase>(
@@ -88,6 +112,8 @@ extension GetItInjectableX on _i174.GetIt {
           gh<_i12.EmailVerificationUseCase>(),
           gh<_i44.ResetPasswordUseCase>(),
         ));
+    gh.factory<_i175.PendingOrderCubit>(
+        () => _i175.PendingOrderCubit(gh<_i505.GetAllPendingOrderUseCase>()));
     gh.factory<_i554.ApplyCubit>(
         () => _i554.ApplyCubit(gh<_i834.ApplyUseCases>()));
     return this;
