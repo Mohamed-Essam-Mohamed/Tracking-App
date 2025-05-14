@@ -46,6 +46,7 @@ OrderDto _$OrderDtoFromJson(Map<String, dynamic> json) => OrderDto(
           : ShippingAddressDto.fromJson(
               json['shippingAddress'] as Map<String, dynamic>),
       paidAt: json['paidAt'] as String? ?? '',
+      createdAt: json['createdAt'] as String? ?? '',
     );
 
 Map<String, dynamic> _$OrderDtoToJson(OrderDto instance) => <String, dynamic>{
@@ -58,6 +59,7 @@ Map<String, dynamic> _$OrderDtoToJson(OrderDto instance) => <String, dynamic>{
       'isDelivered': instance.isDelivered,
       'state': instance.state,
       'orderNumber': instance.orderNumber,
+      'createdAt': instance.createdAt,
       'iV': instance.iV,
       'store': instance.store,
       'shippingAddress': instance.shippingAddress,

@@ -11,8 +11,8 @@ import 'package:tracking_app/features/auth/presentation/view/email_verification_
 import 'package:tracking_app/features/auth/presentation/view/forget_password_screen.dart';
 import 'package:tracking_app/features/auth/presentation/view/reset_password_screen.dart';
 import 'package:tracking_app/features/auth/presentation/view_model/forget_password/forget_password_cubit.dart';
-import 'package:tracking_app/features/home/presentation/view/order_screen.dart';
-import 'package:tracking_app/features/order_details/presentation/view/order_details_screen.dart';
+import 'package:tracking_app/features/home/presentation/view/pending_order_screen.dart';
+import 'package:tracking_app/features/home/presentation/view/order_details_screen.dart';
 
 class RouteGenerator {
   static Route<dynamic>? getRoute(RouteSettings settings) {
@@ -32,8 +32,8 @@ class RouteGenerator {
         return MaterialPageRoute(builder: (_) => const ForgetPasswordScreen());
       case Routes.pendingOrder:
         return MaterialPageRoute(builder: (_) => const PendingOrderScreen());
-      case Routes.detailsScreen:
-        return MaterialPageRoute(builder: (_) => const DetailsScreen());
+      // case Routes.detailsScreen:
+      //   return MaterialPageRoute(builder: (_) => const DetailsScreen());
 
       case Routes.emailVerification:
         return MaterialPageRoute(

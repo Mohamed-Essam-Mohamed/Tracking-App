@@ -33,6 +33,7 @@ class OrderDto {
     this.store = const StoreDto(),
     this.shippingAddress = const ShippingAddressDto(),
     this.paidAt = '',
+    this.createdAt = '',
   });
   factory OrderDto.fromJson(Map<String, dynamic> json) => _$OrderDtoFromJson(json);
   final String sId;
@@ -44,6 +45,8 @@ class OrderDto {
   final bool isDelivered;
   final String state;
   final String orderNumber;
+  final String createdAt;
+
   final int iV;
   final StoreDto store;
   final ShippingAddressDto shippingAddress;
@@ -63,6 +66,7 @@ class OrderDto {
         store: store.toEntity(),
         shippingAddress: shippingAddress.toEntity(),
         paidAt: paidAt,
+        createdAt: createdAt,
       );
 }
 

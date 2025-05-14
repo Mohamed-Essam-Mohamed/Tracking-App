@@ -6,8 +6,7 @@ import 'package:tracking_app/core/extentions/media_query_extensions.dart';
 import 'package:tracking_app/core/routes/routes.dart';
 import 'package:tracking_app/core/theme/app_theme.dart';
 import 'package:tracking_app/core/utils/widgets/lottie_onboarding_widget.dart';
-import 'package:tracking_app/features/order_details/presentation/get_fake_order.dart';
-import 'package:tracking_app/features/order_details/presentation/view/order_details_screen.dart';
+import 'package:tracking_app/features/home/presentation/view/order_details_screen.dart';
 import 'package:tracking_app/generated/locale_keys.g.dart';
 
 class OnboardingScreen extends StatelessWidget {
@@ -49,11 +48,12 @@ class OnboardingScreen extends StatelessWidget {
             SizedBox(height: context.hp(2)),
             ElevatedButton(
               onPressed: () {
-                Navigator.of(context).push(
-                  MaterialPageRoute(
-                      builder: (context) => DetailsScreen(order: order,)
-                  ),
-                );
+                // Navigator.of(context).push(
+                //   MaterialPageRoute(
+                //       builder: (context) => DetailsScreen(
+                //             order: order,
+                //           )),
+                // );
               },
               key: const Key(TestKeys.applyOnboarding),
               style: ElevatedButton.styleFrom(

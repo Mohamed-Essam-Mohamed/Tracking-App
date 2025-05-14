@@ -24,6 +24,7 @@ class OrderEntity extends Equatable {
     this.store = const StoreEntity(),
     this.shippingAddress = const ShippingAddressEntity(),
     this.paidAt = '',
+    this.createdAt = '',
   });
   final String sId;
   final UserEntity user;
@@ -33,7 +34,7 @@ class OrderEntity extends Equatable {
   final bool isPaid;
   final bool isDelivered;
   final String state;
-
+  final String createdAt;
   final String orderNumber;
   final int iV;
   final StoreEntity store;
@@ -54,7 +55,8 @@ class OrderEntity extends Equatable {
         iV,
         store,
         shippingAddress,
-        paidAt
+        paidAt,
+        createdAt
       ];
 }
 
