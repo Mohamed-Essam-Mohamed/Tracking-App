@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'package:tracking_app/core/constants/app_colors.dart';
+import 'package:tracking_app/core/theme/app_theme.dart';
 import 'package:tracking_app/features/home/domain/entities/item_order_details_entity.dart';
 import 'package:tracking_app/features/home/presentation/widgets/card_item_widget.dart';
 
@@ -22,9 +23,9 @@ class ItemPendingOrder extends StatelessWidget {
           children: [
             Text(
               'Flower order',
-              style: Theme.of(context).textTheme.titleSmall!.copyWith(
-                    fontWeight: FontWeight.w500,
-                  ),
+              style: AppTheme.lightTheme.textTheme.labelMedium?.copyWith(
+                fontWeight: FontWeight.w500,
+              ),
             ),
             const SizedBox(height: 16),
             Text(
