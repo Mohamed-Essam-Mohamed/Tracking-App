@@ -5,6 +5,8 @@ import 'package:tracking_app/core/network/common/api_result.dart';
 import 'package:tracking_app/core/network/remote/api_manager.dart';
 import 'package:tracking_app/features/auth/data/api/auth_retrofit_client.dart';
 import 'package:tracking_app/features/auth/data/models/apply_model.dart';
+import 'package:tracking_app/features/auth/data/models/response/login/driver_data_dto.dart';
+import 'package:tracking_app/features/auth/data/models/response/login/vehicle_type_dto.dart';
 import 'package:tracking_app/features/auth/data/models/vehicles_model.dart';
 import 'package:tracking_app/features/auth/domain/entities/apply_entity.dart';
 import 'package:tracking_app/features/auth/domain/entities/vehicles_entitiy.dart';
@@ -88,6 +90,30 @@ class RemoteAuthDataSourceImp extends RemoteAuthDataSource {
     final response = await _apiManager.execute<String?>(() async {
       return _apiService.verifyResetCode(verifyCode);
     });
+
+    return response;
+  }
+
+
+
+  @override
+  Future<Result<DriverDataDto?>> getDriverData() async {
+    final response = await _apiManager.execute<DriverDataDto?>(
+          () async {
+        return await _apiService.getDriverData();
+      },
+    );
+
+    return response;
+  }
+
+  @override
+  Future<Result<VehicleTypeDto?>> getVehicleType(String vehicleType) async {
+    final response = await _apiManager.execute<VehicleTypeDto?>(
+          () async {
+        return await _apiService.getVehicle(vehicleType);
+      },
+    );
 
     return response;
   }

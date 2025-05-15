@@ -3,7 +3,9 @@ import 'package:tracking_app/features/auth/data/models/request/forget_request_dt
 import 'package:dio/dio.dart';
 import 'package:tracking_app/features/auth/data/models/request/login/login_request_dto.dart';
 import 'package:tracking_app/features/auth/data/models/response/forget_response_dto.dart';
+import 'package:tracking_app/features/auth/data/models/response/login/driver_data_dto.dart';
 import 'package:tracking_app/features/auth/data/models/response/login/login_response_dto.dart';
+import 'package:tracking_app/features/auth/data/models/response/login/vehicle_type_dto.dart';
 import 'package:tracking_app/features/auth/data/models/response/reset_password_request.dart';
 import 'package:tracking_app/features/auth/data/models/response/reset_password_response.dart';
 import 'package:tracking_app/features/auth/data/models/response/verify_code_request.dart';
@@ -12,6 +14,9 @@ import 'package:tracking_app/features/auth/domain/entities/vehicles_entitiy.dart
 
 abstract class RemoteAuthDataSource {
   Future<Result<LoginResponseDto?>> login(LoginRequestDto loginRequest);
+  Future<Result<DriverDataDto?>> getDriverData();
+  Future<Result<VehicleTypeDto?>> getVehicleType(String vehicleType);
+
   Future<Result<ForgetResponseDto?>> forgetPassword(ForgetRequestDto forgetRequest);
   Future<Result<String?>> verifyCode(VerifyCodeRequest verifyCode);
   Future<Result<ResetPasswordResponse?>> resetPassword(

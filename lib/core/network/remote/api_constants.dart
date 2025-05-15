@@ -6,4 +6,8 @@ abstract class ApiConstants {
   static const String forgetPassword = 'drivers/forgotPassword';
   static const String verifyResetCode = 'drivers/verifyResetCode';
   static const String resetPassword = 'drivers/resetPassword';
+  static const String profileData = 'drivers/profile-data';
+  static const String getVehicle = 'vehicles/';
+
+
 }
