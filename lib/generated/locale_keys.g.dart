@@ -179,6 +179,10 @@ abstract class  LocaleKeys {
   static const OrderDetails_Total = 'OrderDetails.Total';
   static const OrderDetails_PaymentMethod = 'OrderDetails.PaymentMethod';
   static const OrderDetails_ArrivedAtPickupPoint = 'OrderDetails.ArrivedAtPickupPoint';
+  static const OrderDetails_startDeliver = 'OrderDetails.startDeliver';
+  static const OrderDetails_arrivedToUser = 'OrderDetails.arrivedToUser';
+  static const OrderDetails_deliveredToUser = 'OrderDetails.deliveredToUser';
+  static const OrderDetails_completed = 'OrderDetails.completed';
   static const OrderDetails = 'OrderDetails';
   static const onBoarding_login = 'onBoarding.login';
   static const onBoarding_Apply = 'onBoarding.Apply';

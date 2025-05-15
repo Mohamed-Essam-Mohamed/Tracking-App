@@ -286,7 +286,11 @@
     "UserAddress": "User address",
     "Total": "Total",
     "PaymentMethod": "Payment method",
-    "ArrivedAtPickupPoint": "Arrived at Pickup point"
+    "ArrivedAtPickupPoint": "Arrived at Pickup point",
+    "startDeliver": "Start deliver",
+    "arrivedToUser": "Arrived to the user",
+    "deliveredToUser": "Delivered to the user",
+    "completed": "Completed"
 },
 
     "onBoarding": {

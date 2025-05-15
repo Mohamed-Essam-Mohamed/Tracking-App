@@ -182,7 +182,11 @@
         "UserAddress": "عنوان المستخدم",
         "Total": "الإجمالي",
         "PaymentMethod": "طريقة الدفع",
-        "ArrivedAtPickupPoint": "تم الوصول إلى نقطة الاستلام"
+        "ArrivedAtPickupPoint": "تم الوصول إلى نقطة الاستلام",
+        "startDeliver": "بدء التوصيل",
+        "arrivedToUser": "وصلت إلى المستخدم",
+        "deliveredToUser": "تم التسليم للمستخدم",
+        "completed": "مكتمل"
     },
     "onBoarding": {
         "login": "تسجيل",
