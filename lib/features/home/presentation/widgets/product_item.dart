@@ -1,5 +1,7 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:tracking_app/core/common/widget/custom_cache_network_image.dart';
+import 'package:tracking_app/core/constants/app_assets.dart';
 import 'package:tracking_app/core/constants/app_colors.dart';
 import 'package:tracking_app/core/theme/app_theme.dart';
 import 'package:tracking_app/generated/locale_keys.g.dart';
@@ -21,16 +23,22 @@ class ProductItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(vertical:2),
+      padding: const EdgeInsets.symmetric(vertical: 2),
       child: Card(
           color: AppColors.white,
           child: Padding(
             padding: const EdgeInsets.all(16),
             child: Row(
               children: [
-                CircleAvatar(
-                  backgroundImage: NetworkImage(image),
-                  radius: 24,
+                // CircleAvatar(
+                //   backgroundImage: NetworkImage(image),
+                //   radius: 24,
+                // ),
+                CustomCacheNetworkImage(
+                  imageUrl: _checkImageUrl(image) ?? imageCover,
+                  isCircular: true,
+                  width: 44,
+                  height: 44,
                 ),
                 const SizedBox(width: 12),
                 Expanded(
@@ -38,8 +46,7 @@ class ProductItem extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Row(children: [
-                        Text(name,
-                            style: AppTheme.lightTheme.textTheme.bodySmall),
+                        Text(name, style: AppTheme.lightTheme.textTheme.bodySmall),
                         const Spacer(),
                         Text('x $quantity',
                             style: AppTheme.lightTheme.textTheme.labelSmall
@@ -58,5 +65,14 @@ class ProductItem extends StatelessWidget {
             ),
           )),
     );
+  }
+
+  String? _checkImageUrl(String image) {
+    final uri = Uri.tryParse(image);
+
+    if (uri == null || !(uri.isAbsolute)) {
+      return null;
+    }
+    return image;
   }
 }

@@ -48,12 +48,7 @@ class OnboardingScreen extends StatelessWidget {
             SizedBox(height: context.hp(2)),
             ElevatedButton(
               onPressed: () {
-                // Navigator.of(context).push(
-                //   MaterialPageRoute(
-                //       builder: (context) => DetailsScreen(
-                //             order: order,
-                //           )),
-                // );
+                Navigator.of(context).pushNamed(Routes.applyScreen);
               },
               key: const Key(TestKeys.applyOnboarding),
               style: ElevatedButton.styleFrom(

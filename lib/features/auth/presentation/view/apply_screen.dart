@@ -182,7 +182,7 @@ class _ApplyScreenState extends State<ApplyScreen> {
                           borderSide: const BorderSide(color: AppColors.black),
                           borderRadius: BorderRadius.circular(6),
                         ),
-                        suffixIcon: IconButton(
+                        suffixIcon: IconButton( 
                           icon: const Icon(Icons.keyboard_arrow_down_sharp),
                           onPressed: () {
                             showCountryPicker(

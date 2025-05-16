@@ -59,6 +59,16 @@ import 'package:tracking_app/features/home/presentation/view_model/order_details
     as _i36;
 import 'package:tracking_app/features/home/presentation/view_model/pending_order/pending_order_cubit.dart'
     as _i175;
+import 'package:tracking_app/features/profile/data/api/profile_retrofit_client.dart'
+    as _i846;
+import 'package:tracking_app/features/profile/data/data_sources/remote/profile_data_source_imp.dart'
+    as _i759;
+import 'package:tracking_app/features/profile/data/repositories_impl/profile_repository_imp.dart'
+    as _i747;
+import 'package:tracking_app/features/profile/domain/data_source/profile_data_source.dart'
+    as _i745;
+import 'package:tracking_app/features/profile/domain/repositories/profile_repository.dart'
+    as _i859;
 
 extension GetItInjectableX on _i174.GetIt {
 // initializes the registration of main-scope dependencies inside of GetIt
@@ -84,6 +94,8 @@ extension GetItInjectableX on _i174.GetIt {
         () => _i272.AuthRetrofitClient(gh<_i361.Dio>()));
     gh.lazySingleton<_i95.HomeRetrofitClient>(
         () => _i95.HomeRetrofitClient(gh<_i361.Dio>()));
+    gh.lazySingleton<_i846.ProfileRetrofitClient>(
+        () => _i846.ProfileRetrofitClient(gh<_i361.Dio>()));
     gh.factory<_i13.RemoteAuthDataSource>(() => _i121.RemoteAuthDataSourceImp(
           gh<_i481.ApiManager>(),
           gh<_i272.AuthRetrofitClient>(),
@@ -94,8 +106,14 @@ extension GetItInjectableX on _i174.GetIt {
         ));
     gh.factory<_i421.HomeRepository>(
         () => _i325.HomeRepositoryImp(gh<_i623.HomeRemoteDataSource>()));
+    gh.factory<_i745.ProfileDataSource>(() => _i759.ProfileDataSourceImp(
+          gh<_i481.ApiManager>(),
+          gh<_i846.ProfileRetrofitClient>(),
+        ));
     gh.factory<_i632.AuthRepository>(
         () => _i701.AuthRepositoryImp(gh<_i13.RemoteAuthDataSource>()));
+    gh.factory<_i859.ProfileRepository>(
+        () => _i747.ProfileRepositoryImp(gh<_i745.ProfileDataSource>()));
     gh.factory<_i505.GetAllPendingOrderUseCase>(
         () => _i505.GetAllPendingOrderUseCase(gh<_i421.HomeRepository>()));
     gh.factory<_i12.EmailVerificationUseCase>(

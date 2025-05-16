@@ -13,7 +13,6 @@ import 'package:tracking_app/features/auth/presentation/view/reset_password_scre
 import 'package:tracking_app/features/auth/presentation/view/success_delivery.dart';
 import 'package:tracking_app/features/auth/presentation/view_model/forget_password/forget_password_cubit.dart';
 import 'package:tracking_app/features/home/presentation/view/pending_order_screen.dart';
-import 'package:tracking_app/features/home/presentation/view/order_details_screen.dart';
 
 class RouteGenerator {
   static Route<dynamic>? getRoute(RouteSettings settings) {
@@ -34,7 +33,8 @@ class RouteGenerator {
       case Routes.forgetPassword:
         return MaterialPageRoute(builder: (_) => const ForgetPasswordScreen());
       case Routes.pendingOrder:
-        return MaterialPageRoute(builder: (_) => const PendingOrderScreen());
+        return MaterialPageRoute(builder: (_) => const HomeScreen());
+
       // case Routes.detailsScreen:
       //   return MaterialPageRoute(builder: (_) => const DetailsScreen());
 

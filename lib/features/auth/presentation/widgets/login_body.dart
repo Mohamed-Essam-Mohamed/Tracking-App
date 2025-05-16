@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -36,6 +38,7 @@ class _LoginBodyState extends State<LoginBody> {
       child: BlocConsumer<LoginCubit, LoginState>(
         listener: (context, state) {
           if (state.baseState is BaseSuccessState) {
+            log("Login Success");
             Navigator.pushReplacementNamed(context, Routes.appSection);
           } else if (state.baseState is BaseErrorState) {
             WidgetsBinding.instance.addPostFrameCallback((_) {
