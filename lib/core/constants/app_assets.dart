@@ -1,7 +1,10 @@
 class SvgAsset {
   static const taskAlt = 'assets/svg/task_alt.svg';
-  static const backgroundSuccessApply = "assets/svg/background_success_apply.svg";
-  static const backgroundSuccessApply2 = "assets/svg/background_success_apply2.svg";
+  static const backgroundSuccessApply =
+      "assets/svg/background_success_apply.svg";
+  static const backgroundSuccessApply2 =
+      "assets/svg/background_success_apply2.svg";
+  static const backgroundSuccessDelivery = "assets/svg/success_delivery.svg";
 
   static const add = 'assets/svg/add.svg';
   static const address = 'assets/svg/address.svg';
@@ -14,7 +17,8 @@ class SvgAsset {
   static const check = 'assets/svg/check.svg';
   static const checkCircle = 'assets/svg/check_circle.svg';
   static const checklist = 'assets/svg/Checklist.svg';
-  static const defaultMarkerComponent = 'assets/svg/Default marker component.svg';
+  static const defaultMarkerComponent =
+      'assets/svg/Default marker component.svg';
   static const delete = 'assets/svg/delete.svg';
   static const deliveryBoy = 'assets/svg/Delivery Boy.svg';
   static const diamond = 'assets/svg/Diamond.svg';

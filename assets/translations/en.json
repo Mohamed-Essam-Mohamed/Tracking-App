@@ -300,7 +300,7 @@
         "flowery_rider_app":"flowery rider app"
     },
     "successApply": {
-        "Your_application_has_been": "Your application has been ",
+        "your_application_has_been": "Your application has been ",
         "submitted": "submitted!",
         "Thank_you_for_providing_your_application": "Thank you for providing your application,",
         "Login": "Login",
@@ -308,7 +308,10 @@
         "we_will_review_your_application_and_will": "we will review your application and will "
 
     },
-
+    "successDelivery": {
+        "thank_you": "Thank you!!",
+        "order_delivered_success": "The order delivered \n successfully"
+    },
 
     "Ok": "Ok",
     "Loading": "Loading...",

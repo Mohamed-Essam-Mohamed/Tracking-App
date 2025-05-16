@@ -195,7 +195,7 @@
         "flowery_rider_app":"flowery rider app"
     },
     "successApply": {
-        "Your_application_has_been": "تم تقديم طلبك",
+        "your_application_has_been": "تم تقديم طلبك",
         "submitted": "بنجاح!",
         "Thank_you_for_providing_your_application": "شكرًا لتقديمك طلب الانضمام،",
         "Login": "تسجيل الدخول",
@@ -205,6 +205,10 @@
         "Delivered_on" : "تم التسليم في 3 سبتمبر 2024",
         "order_number" : "رقم الطلب ",
         "no_orders" : "عذرًا، يبدو أنك لم تكمل أي طلب بعد."
+    },
+     "successDelivery": {
+        "thank_you": "شكراً لك!!",
+        "order_delivered_success": "تم تسليم الطلب\nبنجاح"
     },
     "about_app": {
         "about_app_title": "حول تطبيق فلاوري",

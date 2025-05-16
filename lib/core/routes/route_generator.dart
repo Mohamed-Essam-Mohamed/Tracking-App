@@ -10,6 +10,7 @@ import 'package:tracking_app/features/auth/presentation/view/onboarding_screen.d
 import 'package:tracking_app/features/auth/presentation/view/email_verification_screen.dart';
 import 'package:tracking_app/features/auth/presentation/view/forget_password_screen.dart';
 import 'package:tracking_app/features/auth/presentation/view/reset_password_screen.dart';
+import 'package:tracking_app/features/auth/presentation/view/success_delivery.dart';
 import 'package:tracking_app/features/auth/presentation/view_model/forget_password/forget_password_cubit.dart';
 import 'package:tracking_app/features/home/presentation/view/pending_order_screen.dart';
 import 'package:tracking_app/features/home/presentation/view/order_details_screen.dart';
@@ -22,6 +23,8 @@ class RouteGenerator {
         return AnimationRoute(page: const OnboardingScreen());
       case Routes.successApply:
         return AnimationRoute(page: const SuccessApply());
+      case Routes.successDelivery:
+        return AnimationRoute(page: const SuccessDelivery());
       case Routes.login:
         return AnimationRoute(page: const LoginScreen());
       case Routes.appSection:
