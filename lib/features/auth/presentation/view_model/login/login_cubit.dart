@@ -80,6 +80,7 @@ class LoginCubit extends Cubit<LoginState> {
             _saveUserData();
           }
           await _setLoggedInState(true);
+          await _saveToken(result.data!.token!);
 
           emit(state.copyWith(baseState: BaseSuccessState(data: result)));
         }
@@ -115,6 +116,11 @@ class LoginCubit extends Cubit<LoginState> {
     pref.setBool('isLoggedIn', isLoggedIn);
   }
 
+  Future<void> _saveToken(String token) async {
+    final pref = await SharedPreferences.getInstance();
+    pref.setString('token', token);
+  }
+
   @override
   Future<void> close() {
     emailController
@@ -126,3 +132,5 @@ class LoginCubit extends Cubit<LoginState> {
     return super.close();
   }
 }
+
+

@@ -1,11 +1,14 @@
 abstract class ApiConstants {
-  static const String baseUrl = "https://flower.elevateegy.com/api/v1/";
-  static const String apply = "drivers/apply";
-  static const String vehicles = "vehicles";
+  static const String baseUrl = 'https://flower.elevateegy.com/api/v1/';
+  static const String apply = 'drivers/apply';
+  static const String vehicles = 'vehicles';
   static const String loginRoute = 'drivers/signin';
   static const String forgetPassword = 'drivers/forgotPassword';
   static const String verifyResetCode = 'drivers/verifyResetCode';
   static const String resetPassword = 'drivers/resetPassword';
   static const String orderDetails = 'orders/driver-orders';
   static const String pendingOrders = 'orders/pending-orders';
+  static const String changePasswordRoute = 'drivers/change-password';
+
+
 }
