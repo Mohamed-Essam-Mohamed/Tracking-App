@@ -5,9 +5,11 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:tracking_app/core/constants/app_assets.dart';
 import 'package:tracking_app/core/constants/app_colors.dart';
 import 'package:tracking_app/core/routes/routes.dart';
+import 'package:tracking_app/features/auth/data/models/request/edit_profile_request.dart';
+import 'package:tracking_app/features/auth/data/models/response/edit_profile_response.dart';
+import 'package:tracking_app/features/auth/presentation/view/edit_profile_screen.dart';
 import 'package:tracking_app/features/home/presentation/view/pending_order_screen.dart';
 import 'package:tracking_app/features/order/presentation/view/order_screen.dart';
-import 'package:tracking_app/features/profile/presentation/view/profile_screen.dart';
 import 'package:tracking_app/generated/locale_keys.g.dart';
 
 Future<void> logout(BuildContext context) async {
@@ -28,8 +30,8 @@ class _AppSectionState extends State<AppSection> {
   final List<Widget> _pages = [
     const HomeScreen(),
     const OrderScreen(),
-    const ProfileScreen(),
-  ];
+     EditProfileScreen(userData:EditProfileRequest(firstName: "a",lastName: "n",email: "w",phone: ",",url: "https://www.pandaancha.mx/plds/articulos/froala/bing-image-creator-crea-imagenes-ia-bing-microsoft-edge-1-1200x1200-228971832.png") )
+     ];
 
   Key _cartKey = UniqueKey();
 

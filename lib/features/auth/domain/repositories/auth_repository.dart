@@ -1,4 +1,7 @@
+import 'dart:io';
+
 import 'package:tracking_app/core/network/common/api_result.dart';
+import 'package:tracking_app/features/auth/data/models/request/edit_profile_request.dart';
 import 'package:tracking_app/features/auth/data/models/request/forget_request_dto.dart';
 import 'package:tracking_app/features/auth/data/models/response/reset_password_request.dart';
 import 'package:tracking_app/features/auth/data/models/response/verify_code_request.dart';
@@ -19,4 +22,6 @@ abstract class AuthRepository {
   Future<Result<String?>> verifyCode(VerifyCodeRequest verifyCode);
   Future<Result<ResetPasswordEntity?>> resetPassword(
       ResetPasswordRequest resetPasswordRequest);
+  Future<Result<String>> editProfile(EditProfileRequest request);
+  Future<Result<String>> uploadPhoto(File request);
 }

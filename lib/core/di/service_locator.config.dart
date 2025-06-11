@@ -19,6 +19,8 @@ import 'package:tracking_app/core/network/remote/api_manager.dart' as _i481;
 import 'package:tracking_app/core/network/remote/dio_module.dart' as _i896;
 import 'package:tracking_app/features/auth/data/api/auth_retrofit_client.dart'
     as _i272;
+import 'package:tracking_app/features/auth/data/api/upload_photo_api_service.dart'
+    as _i870;
 import 'package:tracking_app/features/auth/data/data_sources_imp/remote/remote_auth_data_source_imp.dart'
     as _i121;
 import 'package:tracking_app/features/auth/data/repositories_imp/auth_repository_imp.dart'
@@ -29,6 +31,8 @@ import 'package:tracking_app/features/auth/domain/repositories/auth_repository.d
     as _i632;
 import 'package:tracking_app/features/auth/domain/use_cases/apply_use_cases.dart'
     as _i834;
+import 'package:tracking_app/features/auth/domain/use_cases/edit_profile_use_case.dart'
+    as _i243;
 import 'package:tracking_app/features/auth/domain/use_cases/email_verification_use_case.dart'
     as _i12;
 import 'package:tracking_app/features/auth/domain/use_cases/forget_password_use_case.dart'
@@ -37,8 +41,12 @@ import 'package:tracking_app/features/auth/domain/use_cases/login_use_case.dart'
     as _i862;
 import 'package:tracking_app/features/auth/domain/use_cases/reset_password_use_case.dart'
     as _i44;
+import 'package:tracking_app/features/auth/domain/use_cases/upload_photo_use_case.dart'
+    as _i799;
 import 'package:tracking_app/features/auth/presentation/view_model/apply/apply_cubit.dart'
     as _i554;
+import 'package:tracking_app/features/auth/presentation/view_model/cubit/edit_profile_cubit.dart'
+    as _i758;
 import 'package:tracking_app/features/auth/presentation/view_model/forget_password/forget_password_cubit.dart'
     as _i943;
 import 'package:tracking_app/features/auth/presentation/view_model/login/login_cubit.dart'
@@ -59,16 +67,6 @@ import 'package:tracking_app/features/home/presentation/view_model/order_details
     as _i36;
 import 'package:tracking_app/features/home/presentation/view_model/pending_order/pending_order_cubit.dart'
     as _i175;
-import 'package:tracking_app/features/profile/data/api/profile_retrofit_client.dart'
-    as _i846;
-import 'package:tracking_app/features/profile/data/data_sources/remote/profile_data_source_imp.dart'
-    as _i759;
-import 'package:tracking_app/features/profile/data/repositories_impl/profile_repository_imp.dart'
-    as _i747;
-import 'package:tracking_app/features/profile/domain/data_source/profile_data_source.dart'
-    as _i745;
-import 'package:tracking_app/features/profile/domain/repositories/profile_repository.dart'
-    as _i859;
 
 extension GetItInjectableX on _i174.GetIt {
 // initializes the registration of main-scope dependencies inside of GetIt
@@ -94,26 +92,21 @@ extension GetItInjectableX on _i174.GetIt {
         () => _i272.AuthRetrofitClient(gh<_i361.Dio>()));
     gh.lazySingleton<_i95.HomeRetrofitClient>(
         () => _i95.HomeRetrofitClient(gh<_i361.Dio>()));
-    gh.lazySingleton<_i846.ProfileRetrofitClient>(
-        () => _i846.ProfileRetrofitClient(gh<_i361.Dio>()));
-    gh.factory<_i13.RemoteAuthDataSource>(() => _i121.RemoteAuthDataSourceImp(
-          gh<_i481.ApiManager>(),
-          gh<_i272.AuthRetrofitClient>(),
-        ));
+    gh.lazySingleton<_i870.UploadPhotoApiService>(
+        () => _i870.UploadPhotoApiService(gh<_i361.Dio>()));
     gh.factory<_i623.HomeRemoteDataSource>(() => _i35.HomeRemoteDataSourcesImp(
           gh<_i481.ApiManager>(),
           gh<_i95.HomeRetrofitClient>(),
         ));
+    gh.factory<_i13.RemoteAuthDataSource>(() => _i121.RemoteAuthDataSourceImp(
+          gh<_i481.ApiManager>(),
+          gh<_i272.AuthRetrofitClient>(),
+          gh<_i870.UploadPhotoApiService>(),
+        ));
     gh.factory<_i421.HomeRepository>(
         () => _i325.HomeRepositoryImp(gh<_i623.HomeRemoteDataSource>()));
-    gh.factory<_i745.ProfileDataSource>(() => _i759.ProfileDataSourceImp(
-          gh<_i481.ApiManager>(),
-          gh<_i846.ProfileRetrofitClient>(),
-        ));
     gh.factory<_i632.AuthRepository>(
         () => _i701.AuthRepositoryImp(gh<_i13.RemoteAuthDataSource>()));
-    gh.factory<_i859.ProfileRepository>(
-        () => _i747.ProfileRepositoryImp(gh<_i745.ProfileDataSource>()));
     gh.factory<_i505.GetAllPendingOrderUseCase>(
         () => _i505.GetAllPendingOrderUseCase(gh<_i421.HomeRepository>()));
     gh.factory<_i12.EmailVerificationUseCase>(
@@ -126,12 +119,20 @@ extension GetItInjectableX on _i174.GetIt {
         () => _i44.ResetPasswordUseCase(gh<_i632.AuthRepository>()));
     gh.factory<_i578.LoginCubit>(
         () => _i578.LoginCubit(gh<_i862.LoginUseCase>()));
+    gh.factory<_i243.EditProfileUseCase>(
+        () => _i243.EditProfileUseCase(gh<_i632.AuthRepository>()));
+    gh.factory<_i799.UploadPhotoUseCase>(
+        () => _i799.UploadPhotoUseCase(gh<_i632.AuthRepository>()));
     gh.factory<_i834.ApplyUseCases>(
         () => _i834.ApplyUseCases(gh<_i632.AuthRepository>()));
     gh.factory<_i943.ForgetPasswordCubit>(() => _i943.ForgetPasswordCubit(
           gh<_i717.ForgetPasswordUseCase>(),
           gh<_i12.EmailVerificationUseCase>(),
           gh<_i44.ResetPasswordUseCase>(),
+        ));
+    gh.factory<_i758.EditProfileCubit>(() => _i758.EditProfileCubit(
+          gh<_i243.EditProfileUseCase>(),
+          gh<_i799.UploadPhotoUseCase>(),
         ));
     gh.factory<_i175.PendingOrderCubit>(
         () => _i175.PendingOrderCubit(gh<_i505.GetAllPendingOrderUseCase>()));

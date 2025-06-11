@@ -1,10 +1,15 @@
+import 'dart:io';
+
 import 'package:dio/dio.dart';
 
 import 'package:injectable/injectable.dart';
 import 'package:tracking_app/core/network/common/api_result.dart';
 import 'package:tracking_app/core/network/remote/api_manager.dart';
+import 'package:tracking_app/core/utils/app_shared_preference.dart';
 import 'package:tracking_app/features/auth/data/api/auth_retrofit_client.dart';
+import 'package:tracking_app/features/auth/data/api/upload_photo_api_service.dart';
 import 'package:tracking_app/features/auth/data/models/apply_model.dart';
+import 'package:tracking_app/features/auth/data/models/request/edit_profile_request.dart';
 import 'package:tracking_app/features/auth/data/models/vehicles_model.dart';
 import 'package:tracking_app/features/auth/domain/entities/apply_entity.dart';
 import 'package:tracking_app/features/auth/domain/entities/vehicles_entitiy.dart';
@@ -20,8 +25,9 @@ import 'package:tracking_app/features/auth/domain/data_sources/remote/remote_aut
 
 @Injectable(as: RemoteAuthDataSource)
 class RemoteAuthDataSourceImp extends RemoteAuthDataSource {
-  RemoteAuthDataSourceImp(this._apiManager, this._apiService);
+  RemoteAuthDataSourceImp(this._apiManager, this._apiService, this.authApiService);
   final ApiManager _apiManager;
+  final UploadPhotoApiService authApiService;
 
   final AuthRetrofitClient _apiService;
 
@@ -91,6 +97,38 @@ class RemoteAuthDataSourceImp extends RemoteAuthDataSource {
 
     return response;
   }
+  @override
+  Future<Result<String>> editProfile(EditProfileRequest request) async {
+    return await  _apiManager.execute<String>(() async {
+      final token = await SharedPreferencesUtils.getString("token");
+      if (token == null) {
+        throw Exception("Token is not available");
+      }
+
+      final response = await  _apiService.editProfile(" Bearer ${token}",request);
+      print(SharedPreferencesUtils.getString("token").toString());
+      return response.message!;
+    });
+  }
+
+  @override
+  Future<Result<String>> uploadPhoto(File request) async{
+    return await _apiManager.execute<String>(() async {
+      final token = await  SharedPreferencesUtils.getString("token");
+      if (token == null) {
+        throw Exception("Token is not available");
+      }
+
+      final response = await authApiService.uploadPhoto(request);
+      print(SharedPreferencesUtils.getString("token").toString());
+      print("llllllllllllllllllllllllllllllllllllllllllllllll");
+      print(response.toString());
+      return response.toString();
+
+    });
+  }
+
+
 }
 
 

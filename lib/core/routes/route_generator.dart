@@ -3,7 +3,9 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:tracking_app/core/routes/animation_routes.dart';
 import 'package:tracking_app/core/routes/routes.dart';
 import 'package:tracking_app/features/app_section/app_section.dart';
+import 'package:tracking_app/features/auth/data/models/request/edit_profile_request.dart';
 import 'package:tracking_app/features/auth/presentation/view/apply_screen.dart';
+import 'package:tracking_app/features/auth/presentation/view/edit_profile_screen.dart';
 import 'package:tracking_app/features/auth/presentation/view/login_screen.dart';
 import 'package:tracking_app/features/auth/presentation/view/success_apply.dart';
 import 'package:tracking_app/features/auth/presentation/view/onboarding_screen.dart';
@@ -50,6 +52,11 @@ class RouteGenerator {
                   value: arg as ForgetPasswordCubit,
                   child: const ResetPasswordScreen(),
                 ));
+      case Routes.editProfile:
+        return MaterialPageRoute(
+            builder: (_) => EditProfileScreen(
+              userData: arg as EditProfileRequest,
+            ));
       default:
         return null;
     }

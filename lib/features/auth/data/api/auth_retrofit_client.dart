@@ -4,8 +4,10 @@ import 'package:retrofit/error_logger.dart';
 import 'package:retrofit/http.dart';
 import 'package:tracking_app/core/network/remote/api_constants.dart';
 import 'package:tracking_app/features/auth/data/models/apply_model.dart';
+import 'package:tracking_app/features/auth/data/models/request/edit_profile_request.dart';
 import 'package:tracking_app/features/auth/data/models/request/forget_request_dto.dart';
 import 'package:tracking_app/features/auth/data/models/request/login/login_request_dto.dart';
+import 'package:tracking_app/features/auth/data/models/response/edit_profile_response.dart';
 import 'package:tracking_app/features/auth/data/models/response/forget_response_dto.dart';
 import 'package:tracking_app/features/auth/data/models/response/login/login_response_dto.dart';
 import 'package:tracking_app/features/auth/data/models/response/reset_password_request.dart';
@@ -37,7 +39,12 @@ abstract class AuthRetrofitClient {
   @PUT(ApiConstants.resetPassword)
   Future<ResetPasswordResponse> resetPassword(
       @Body() ResetPasswordRequest resetPasswordRequest);
-  // ex :
+  @PUT("drivers/editProfile")
+  Future<EditProfileResponse> editProfile(
+      @Header("Authorization") String token,
+      @Body() EditProfileRequest request);
+
+// ex :
   //  @POST(ApiConstants.nameEndpoint)
   // Future<ModelResponseDto> function(
   //     @Body() ModelRequestDto modelRequestDto);
