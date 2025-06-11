@@ -1,4 +1,7 @@
+import 'dart:io';
+
 import 'package:tracking_app/core/network/common/api_result.dart';
+import 'package:tracking_app/features/auth/data/models/request/edit_profile_request.dart';
 import 'package:tracking_app/features/auth/data/models/request/forget_request_dto.dart';
 import 'package:dio/dio.dart';
 import 'package:tracking_app/features/auth/data/models/request/login/login_request_dto.dart';
@@ -23,4 +26,6 @@ abstract class RemoteAuthDataSource {
       ResetPasswordRequest resetPasswordRequest);
   Future<Result<ApplyEntity>> apply(FormData formData);
   Future<Result<VehiclesModelEntity>> getAllVehicles();
+  Future<Result<String>>editProfile(EditProfileRequest request);
+  Future<Result<String>>uploadPhoto(File request);
 }
