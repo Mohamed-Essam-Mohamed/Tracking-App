@@ -2,7 +2,8 @@ import 'package:dio/dio.dart';
 import 'package:injectable/injectable.dart';
 import 'package:retrofit/http.dart';
 import 'package:tracking_app/core/network/remote/api_constants.dart';
-
+import 'package:retrofit/error_logger.dart';
+import 'package:tracking_app/features/profile/data/models/response/logout/logout_response_dto.dart';
 part 'profile_retrofit_client.g.dart';
 
 @lazySingleton
@@ -11,6 +12,10 @@ abstract class ProfileRetrofitClient {
   @factoryMethod
   factory ProfileRetrofitClient(Dio dio) = _ProfileRetrofitClient;
 
+  @GET(ApiConstants.vehicles)
+  Future<LogoutResponseDto> logout(
+      @Header('Authorization') String? token
+      );
   // ex :
   //  @POST(ApiConstants.nameEndpoint)
   // Future<ModelResponseDto> function(

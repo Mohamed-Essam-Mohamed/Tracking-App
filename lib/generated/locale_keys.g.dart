@@ -2,11 +2,11 @@
 
 // ignore_for_file: constant_identifier_names
 
-abstract class LocaleKeys {
+abstract class  LocaleKeys {
   static const Authentication_Login = 'Authentication.Login';
   static const Authentication_SignUp = 'Authentication.SignUp';
-  static const Authentication_Email = 'Authentication.Email';
   static const Authentication_SendOtp = 'Authentication.SendOtp';
+  static const Authentication_Email = 'Authentication.Email';
   static const Authentication_EnterYourEmail = 'Authentication.EnterYourEmail';
   static const Authentication_InvalidEmail = 'Authentication.InvalidEmail';
   static const Authentication_Password = 'Authentication.Password';
@@ -16,15 +16,13 @@ abstract class LocaleKeys {
   static const Authentication_PasswordNotMatched = 'Authentication.PasswordNotMatched';
   static const Authentication_NewPassword = 'Authentication.NewPassword';
   static const Authentication_currentPassword = 'Authentication.currentPassword';
+  static const Authentication_TitleForgetPassword = 'Authentication.TitleForgetPassword';
+  static const Authentication_SubtitleForgetPassword = 'Authentication.SubtitleForgetPassword';
   static const Authentication_RememberMe = 'Authentication.RememberMe';
   static const Authentication_ContinueAsGuest = 'Authentication.ContinueAsGuest';
   static const Authentication_ForgetPassword = 'Authentication.ForgetPassword';
-  static const Authentication_TitleForgetPassword = 'Authentication.TitleForgetPassword';
-  static const Authentication_SubtitleForgetPassword =
-      'Authentication.SubtitleForgetPassword';
   static const Authentication_DonotHaveAnAccount = 'Authentication.DonotHaveAnAccount';
-  static const Authentication_AlreadyHaveAnAccount =
-      'Authentication.AlreadyHaveAnAccount';
+  static const Authentication_AlreadyHaveAnAccount = 'Authentication.AlreadyHaveAnAccount';
   static const Authentication_FirstName = 'Authentication.FirstName';
   static const Authentication_LastName = 'Authentication.LastName';
   static const Authentication_EnterFirstName = 'Authentication.EnterFirstName';
@@ -34,33 +32,28 @@ abstract class LocaleKeys {
   static const Authentication_Gender = 'Authentication.Gender';
   static const Authentication_Female = 'Authentication.Female';
   static const Authentication_Male = 'Authentication.Male';
-  static const Authentication_CreatingAnAccountYouAgreeToOur =
-      'Authentication.CreatingAnAccountYouAgreeToOur';
+  static const Authentication_CreatingAnAccountYouAgreeToOur = 'Authentication.CreatingAnAccountYouAgreeToOur';
   static const Authentication_TermsConditions = 'Authentication.TermsConditions';
-  static const Authentication_PleaseEnterYourEmail =
-      'Authentication.PleaseEnterYourEmail';
+  static const Authentication_PleaseEnterYourEmail = 'Authentication.PleaseEnterYourEmail';
   static const Authentication_InvalidCode = 'Authentication.InvalidCode';
   static const Authentication_PleaseEnterYourCode = 'Authentication.PleaseEnterYourCode';
   static const Authentication_Confirm = 'Authentication.Confirm';
   static const Authentication_Resend = 'Authentication.Resend';
   static const Authentication_DidnotReceiveCode = 'Authentication.DidnotReceiveCode';
-  static const Authentication_EmailVerification = 'Authentication.EmailVerification';
-  static const Authentication_SubEmailVerification =
-      'Authentication.SubEmailVerification';
+  static const Authentication_SubEmailVerification = 'Authentication.SubEmailVerification';
   static const Authentication_EnterCode = 'Authentication.EnterCode';
   static const Authentication_Done = 'Authentication.Done';
   static const Authentication_DoneSedCode = 'Authentication.DoneSedCode';
+  static const Authentication_EmailVerification = 'Authentication.EmailVerification';
   static const Authentication_Continue = 'Authentication.Continue';
-  static const Authentication_PasswordRequirements =
-      'Authentication.PasswordRequirements';
+  static const Authentication_PasswordRequirements = 'Authentication.PasswordRequirements';
   static const Authentication_takeAPhoto = 'Authentication.takeAPhoto';
   static const Authentication_ChooseFromGallery = 'Authentication.ChooseFromGallery';
   static const Authentication_3 = 'Authentication.3';
   static const Authentication = 'Authentication';
   static const Profile_Deleting_address = 'Profile.Deleting_address';
   static const Profile_Failed_to_delete_address = 'Profile.Failed_to_delete_address';
-  static const Profile_Address_deleted_successfully =
-      'Profile.Address_deleted_successfully';
+  static const Profile_Address_deleted_successfully = 'Profile.Address_deleted_successfully';
   static const Profile_Saved_address = 'Profile.Saved_address';
   static const Profile_Unknown_City = 'Profile.Unknown_City';
   static const Profile_Add_new_address = 'Profile.Add_new_address';
@@ -74,8 +67,8 @@ abstract class LocaleKeys {
   static const Profile_ChangePassword = 'Profile.ChangePassword';
   static const Profile_newPassword = 'Profile.newPassword';
   static const Profile_currentPassword = 'Profile.currentPassword';
-  static const Profile_Update = 'Profile.Update';
   static const Profile_ResetPassword = 'Profile.ResetPassword';
+  static const Profile_Update = 'Profile.Update';
   static const Profile = 'Profile';
   static const Home_Home = 'Home.Home';
   static const Home_Categories = 'Home.Categories';
@@ -83,6 +76,7 @@ abstract class LocaleKeys {
   static const Home_Profile = 'Home.Profile';
   static const Home_Occasion = 'Home.Occasion';
   static const Home_BestSeller = 'Home.BestSeller';
+  static const Home_ViewAll = 'Home.ViewAll';
   static const Home_DiscoverSomethingNow = 'Home.DiscoverSomethingNow';
   static const Home_AddToCart = 'Home.AddToCart';
   static const Home_BestSellerSubTitle = 'Home.BestSellerSubTitle';
@@ -91,6 +85,7 @@ abstract class LocaleKeys {
   static const Home_PlaceOrder = 'Home.PlaceOrder';
   static const Home_Next = 'Home.Next';
   static const Home_SortBy = 'Home.SortBy';
+  static const Home_search = 'Home.search';
   static const Home_Description = 'Home.Description';
   static const Home_EGP = 'Home.EGP';
   static const Home_Status = 'Home.Status';
@@ -119,13 +114,13 @@ abstract class LocaleKeys {
   static const Error_CodeCannotBeEmpty = 'Error.CodeCannotBeEmpty';
   static const Error_CodeShouldBeAtLeast6Digits = 'Error.CodeShouldBeAtLeast6Digits';
   static const Error_NameCannotBeEmpty = 'Error.NameCannotBeEmpty';
-  static const Error_InvalidName = 'Error.InvalidName';
-  static const Error_InvalidIdNumber = 'Error.InvalidIdNumber';
-  static const Error_InvalidVehicleNumber = 'Error.InvalidVehicleNumber';
   static const Error_PhoneNumberCannotBeEmpty = 'Error.PhoneNumberCannotBeEmpty';
   static const Error_IdNumberCannotBeEmpty = 'Error.IdNumberCannotBeEmpty';
   static const Error_vehicleNumberCannotBeEmpty = 'Error.vehicleNumberCannotBeEmpty';
   static const Error_InvalidPhoneNumber = 'Error.InvalidPhoneNumber';
+  static const Error_InvalidIdNumber = 'Error.InvalidIdNumber';
+  static const Error_InvalidVehicleNumber = 'Error.InvalidVehicleNumber';
+  static const Error_InvalidName = 'Error.InvalidName';
   static const Error_ConfirmPasswordMustMatch = 'Error.ConfirmPasswordMustMatch';
   static const Error_OtpCodeIsInvalidOrExpired = 'Error.OtpCodeIsInvalidOrExpired';
   static const Error_PasswordEnterAValidPassword = 'Error.PasswordEnterAValidPassword';
@@ -135,10 +130,10 @@ abstract class LocaleKeys {
   static const Error_Receive_timeout = 'Error.Receive_timeout';
   static const Error_Timeout_occurred = 'Error.Timeout_occurred';
   static const Error_Invalid_certificate = 'Error.Invalid_certificate';
+  static const Error_general_error = 'Error.general_error';
   static const Error_Unexpected_server_error = 'Error.Unexpected_server_error';
   static const Error_Request_cancelled = 'Error.Request_cancelled';
   static const Error_Connection_failed = 'Error.Connection_failed';
-  static const Error_general_error = 'Error.general_error';
   static const Error_Unexpected_error = 'Error.Unexpected_error';
   static const Error_Not_found = 'Error.Not_found';
   static const Error_Internal_server_error = 'Error.Internal_server_error';
@@ -152,10 +147,8 @@ abstract class LocaleKeys {
   static const Error_Service_unavailable = 'Error.Service_unavailable';
   static const Error_DataParsingException = 'Error.DataParsingException';
   static const Error_SoldOut = 'Error.SoldOut';
-  static const Error_YouHaveToLoginToUseThisFeature =
-      'Error.YouHaveToLoginToUseThisFeature';
-  static const Error_PleaseEnterBoEmailAndPassword =
-      'Error.PleaseEnterBoEmailAndPassword';
+  static const Error_YouHaveToLoginToUseThisFeature = 'Error.YouHaveToLoginToUseThisFeature';
+  static const Error_PleaseEnterBoEmailAndPassword = 'Error.PleaseEnterBoEmailAndPassword';
   static const Error_ImageCannotBeEmpty = 'Error.ImageCannotBeEmpty';
   static const Error = 'Error';
   static const Messages_OtpSentToYourEmail = 'Messages.OtpSentToYourEmail';
@@ -196,19 +189,19 @@ abstract class LocaleKeys {
   static const onBoarding_welcome_to = 'onBoarding.welcome_to';
   static const onBoarding_flowery_rider_app = 'onBoarding.flowery_rider_app';
   static const onBoarding = 'onBoarding';
-  static const successApply_Your_application_has_been =
-      'successApply.Your_application_has_been';
+  static const successApply_your_application_has_been = 'successApply.your_application_has_been';
   static const successApply_submitted = 'successApply.submitted';
-  static const successApply_Thank_you_for_providing_your_application =
-      'successApply.Thank_you_for_providing_your_application';
+  static const successApply_Thank_you_for_providing_your_application = 'successApply.Thank_you_for_providing_your_application';
   static const successApply_Login = 'successApply.Login';
   static const successApply_get_back_to_you_soon = 'successApply.get_back_to_you_soon';
-  static const successApply_we_will_review_your_application_and_will =
-      'successApply.we_will_review_your_application_and_will';
+  static const successApply_we_will_review_your_application_and_will = 'successApply.we_will_review_your_application_and_will';
   static const successApply_Delivered_on = 'successApply.Delivered_on';
   static const successApply_order_number = 'successApply.order_number';
   static const successApply_no_orders = 'successApply.no_orders';
   static const successApply = 'successApply';
+  static const successDelivery_thank_you = 'successDelivery.thank_you';
+  static const successDelivery_order_delivered_success = 'successDelivery.order_delivered_success';
+  static const successDelivery = 'successDelivery';
   static const about_app_about_app_title = 'about_app.about_app_title';
   static const about_app_about_app = 'about_app.about_app';
   static const about_app_our_story_title = 'about_app.our_story_title';
@@ -222,53 +215,30 @@ abstract class LocaleKeys {
   static const about_app_closing_title = 'about_app.closing_title';
   static const about_app_closing = 'about_app.closing';
   static const about_app = 'about_app';
-  static const terms_and_conditions_terms_and_conditions =
-      'terms_and_conditions.terms_and_conditions';
-  static const terms_and_conditions_terms_and_conditions_title =
-      'terms_and_conditions.terms_and_conditions_title';
-  static const terms_and_conditions_introduction_title =
-      'terms_and_conditions.introduction_title';
-  static const terms_and_conditions_introduction_content =
-      'terms_and_conditions.introduction_content';
-  static const terms_and_conditions_use_of_app_title =
-      'terms_and_conditions.use_of_app_title';
-  static const terms_and_conditions_use_of_app_content =
-      'terms_and_conditions.use_of_app_content';
-  static const terms_and_conditions_purchases_and_payments_title =
-      'terms_and_conditions.purchases_and_payments_title';
-  static const terms_and_conditions_purchases_and_payments_content =
-      'terms_and_conditions.purchases_and_payments_content';
-  static const terms_and_conditions_delivery_title =
-      'terms_and_conditions.delivery_title';
-  static const terms_and_conditions_delivery_content =
-      'terms_and_conditions.delivery_content';
-  static const terms_and_conditions_refunds_and_cancellations_title =
-      'terms_and_conditions.refunds_and_cancellations_title';
-  static const terms_and_conditions_refunds_and_cancellations_content =
-      'terms_and_conditions.refunds_and_cancellations_content';
-  static const terms_and_conditions_intellectual_property_title =
-      'terms_and_conditions.intellectual_property_title';
-  static const terms_and_conditions_intellectual_property_content =
-      'terms_and_conditions.intellectual_property_content';
-  static const terms_and_conditions_user_content_title =
-      'terms_and_conditions.user_content_title';
-  static const terms_and_conditions_user_content_content =
-      'terms_and_conditions.user_content_content';
-  static const terms_and_conditions_limitation_of_liability_title =
-      'terms_and_conditions.limitation_of_liability_title';
-  static const terms_and_conditions_limitation_of_liability_content =
-      'terms_and_conditions.limitation_of_liability_content';
-  static const terms_and_conditions_governing_law_title =
-      'terms_and_conditions.governing_law_title';
-  static const terms_and_conditions_governing_law_content =
-      'terms_and_conditions.governing_law_content';
-  static const terms_and_conditions_contact_us_title =
-      'terms_and_conditions.contact_us_title';
-  static const terms_and_conditions_contact_us_content =
-      'terms_and_conditions.contact_us_content';
+  static const terms_and_conditions_terms_and_conditions = 'terms_and_conditions.terms_and_conditions';
+  static const terms_and_conditions_terms_and_conditions_title = 'terms_and_conditions.terms_and_conditions_title';
+  static const terms_and_conditions_introduction_title = 'terms_and_conditions.introduction_title';
+  static const terms_and_conditions_introduction_content = 'terms_and_conditions.introduction_content';
+  static const terms_and_conditions_use_of_app_title = 'terms_and_conditions.use_of_app_title';
+  static const terms_and_conditions_use_of_app_content = 'terms_and_conditions.use_of_app_content';
+  static const terms_and_conditions_purchases_and_payments_title = 'terms_and_conditions.purchases_and_payments_title';
+  static const terms_and_conditions_purchases_and_payments_content = 'terms_and_conditions.purchases_and_payments_content';
+  static const terms_and_conditions_delivery_title = 'terms_and_conditions.delivery_title';
+  static const terms_and_conditions_delivery_content = 'terms_and_conditions.delivery_content';
+  static const terms_and_conditions_refunds_and_cancellations_title = 'terms_and_conditions.refunds_and_cancellations_title';
+  static const terms_and_conditions_refunds_and_cancellations_content = 'terms_and_conditions.refunds_and_cancellations_content';
+  static const terms_and_conditions_intellectual_property_title = 'terms_and_conditions.intellectual_property_title';
+  static const terms_and_conditions_intellectual_property_content = 'terms_and_conditions.intellectual_property_content';
+  static const terms_and_conditions_user_content_title = 'terms_and_conditions.user_content_title';
+  static const terms_and_conditions_user_content_content = 'terms_and_conditions.user_content_content';
+  static const terms_and_conditions_limitation_of_liability_title = 'terms_and_conditions.limitation_of_liability_title';
+  static const terms_and_conditions_limitation_of_liability_content = 'terms_and_conditions.limitation_of_liability_content';
+  static const terms_and_conditions_governing_law_title = 'terms_and_conditions.governing_law_title';
+  static const terms_and_conditions_governing_law_content = 'terms_and_conditions.governing_law_content';
+  static const terms_and_conditions_contact_us_title = 'terms_and_conditions.contact_us_title';
+  static const terms_and_conditions_contact_us_content = 'terms_and_conditions.contact_us_content';
   static const terms_and_conditions_closing_title = 'terms_and_conditions.closing_title';
-  static const terms_and_conditions_closing_content =
-      'terms_and_conditions.closing_content';
+  static const terms_and_conditions_closing_content = 'terms_and_conditions.closing_content';
   static const terms_and_conditions = 'terms_and_conditions';
   static const apply_Apply = 'apply.Apply';
   static const apply_Welcome = 'apply.Welcome';
@@ -290,8 +260,7 @@ abstract class LocaleKeys {
   static const apply_PhoneNumber = 'apply.PhoneNumber';
   static const apply_VehicleLicense = 'apply.VehicleLicense';
   static const apply_VehicleNumber = 'apply.VehicleNumber';
-  static const apply_UploadVehicleLicenseAndIDImage =
-      'apply.UploadVehicleLicenseAndIDImage';
+  static const apply_UploadVehicleLicenseAndIDImage = 'apply.UploadVehicleLicenseAndIDImage';
   static const apply_EnterFirstLegalName = 'apply.EnterFirstLegalName';
   static const apply_EnterSecondLegalName = 'apply.EnterSecondLegalName';
   static const apply_ConfirmPassword = 'apply.ConfirmPassword';
@@ -321,107 +290,13 @@ abstract class LocaleKeys {
   static const checkout_Delivery_Fee = 'checkout.Delivery_Fee';
   static const checkout_Total = 'checkout.Total';
   static const checkout_Place_order = 'checkout.Place_order';
-  static const checkout_title_cash_payment_success =
-      'checkout.title_cash_payment_success';
-  static const checkout_description_cash_payment_success =
-      'checkout.description_cash_payment_success';
-  static const checkout_title_credit_payment_success =
-      'checkout.title_credit_payment_success';
-  static const checkout_description_credit_payment_success =
-      'checkout.description_credit_payment_success';
+  static const checkout_title_cash_payment_success = 'checkout.title_cash_payment_success';
+  static const checkout_description_cash_payment_success = 'checkout.description_cash_payment_success';
+  static const checkout_title_credit_payment_success = 'checkout.title_credit_payment_success';
+  static const checkout_description_credit_payment_success = 'checkout.description_credit_payment_success';
   static const checkout_title_cash_payment_fail = 'checkout.title_cash_payment_fail';
-  static const checkout_description_cash_payment_fail =
-      'checkout.description_cash_payment_fail';
+  static const checkout_description_cash_payment_fail = 'checkout.description_cash_payment_fail';
   static const checkout = 'checkout';
-  static const about_app_about_app_title = 'about_app.about_app_title';
-  static const about_app_about_app = 'about_app.about_app';
-  static const about_app_our_story_title = 'about_app.our_story_title';
-  static const about_app_our_story = 'about_app.our_story';
-  static const about_app_what_we_offer_title = 'about_app.what_we_offer_title';
-  static const about_app_what_we_offer = 'about_app.what_we_offer';
-  static const about_app_our_commitment_title = 'about_app.our_commitment_title';
-  static const about_app_our_commitment = 'about_app.our_commitment';
-  static const about_app_get_in_touch_title = 'about_app.get_in_touch_title';
-  static const about_app_get_in_touch = 'about_app.get_in_touch';
-  static const about_app_closing_title = 'about_app.closing_title';
-  static const about_app_closing = 'about_app.closing';
-  static const about_app = 'about_app';
-  static const terms_and_conditions_terms_and_conditions =
-      'terms_and_conditions.terms_and_conditions';
-  static const terms_and_conditions_terms_and_conditions_title =
-      'terms_and_conditions.terms_and_conditions_title';
-  static const terms_and_conditions_introduction_title =
-      'terms_and_conditions.introduction_title';
-  static const terms_and_conditions_introduction_content =
-      'terms_and_conditions.introduction_content';
-  static const terms_and_conditions_use_of_app_title =
-      'terms_and_conditions.use_of_app_title';
-  static const terms_and_conditions_use_of_app_content =
-      'terms_and_conditions.use_of_app_content';
-  static const terms_and_conditions_purchases_and_payments_title =
-      'terms_and_conditions.purchases_and_payments_title';
-  static const terms_and_conditions_purchases_and_payments_content =
-      'terms_and_conditions.purchases_and_payments_content';
-  static const terms_and_conditions_delivery_title =
-      'terms_and_conditions.delivery_title';
-  static const terms_and_conditions_delivery_content =
-      'terms_and_conditions.delivery_content';
-  static const terms_and_conditions_refunds_and_cancellations_title =
-      'terms_and_conditions.refunds_and_cancellations_title';
-  static const terms_and_conditions_refunds_and_cancellations_content =
-      'terms_and_conditions.refunds_and_cancellations_content';
-  static const terms_and_conditions_intellectual_property_title =
-      'terms_and_conditions.intellectual_property_title';
-  static const terms_and_conditions_intellectual_property_content =
-      'terms_and_conditions.intellectual_property_content';
-  static const terms_and_conditions_user_content_title =
-      'terms_and_conditions.user_content_title';
-  static const terms_and_conditions_user_content_content =
-      'terms_and_conditions.user_content_content';
-  static const terms_and_conditions_limitation_of_liability_title =
-      'terms_and_conditions.limitation_of_liability_title';
-  static const terms_and_conditions_limitation_of_liability_content =
-      'terms_and_conditions.limitation_of_liability_content';
-  static const terms_and_conditions_governing_law_title =
-      'terms_and_conditions.governing_law_title';
-  static const terms_and_conditions_governing_law_content =
-      'terms_and_conditions.governing_law_content';
-  static const terms_and_conditions_contact_us_title =
-      'terms_and_conditions.contact_us_title';
-  static const terms_and_conditions_contact_us_content =
-      'terms_and_conditions.contact_us_content';
-  static const terms_and_conditions_closing_title = 'terms_and_conditions.closing_title';
-  static const terms_and_conditions_closing_content =
-      'terms_and_conditions.closing_content';
-  static const terms_and_conditions = 'terms_and_conditions';
-  static const OrderDetails_orderdetails = 'OrderDetails.orderdetails';
-  static const OrderDetails_Status = 'OrderDetails.Status';
-  static const OrderDetails_OrderID = 'OrderDetails.OrderID';
-  static const OrderDetails_PickupAddress = 'OrderDetails.PickupAddress';
-  static const OrderDetails_UserAddress = 'OrderDetails.UserAddress';
-  static const OrderDetails_Total = 'OrderDetails.Total';
-  static const OrderDetails_PaymentMethod = 'OrderDetails.PaymentMethod';
-  static const OrderDetails_ArrivedAtPickupPoint = 'OrderDetails.ArrivedAtPickupPoint';
-  static const OrderDetails = 'OrderDetails';
-  static const onBoarding_login = 'onBoarding.login';
-  static const onBoarding_Apply = 'onBoarding.Apply';
-  static const onBoarding_welcome_to = 'onBoarding.welcome_to';
-  static const onBoarding_flowery_rider_app = 'onBoarding.flowery_rider_app';
-  static const onBoarding = 'onBoarding';
-  static const successApply_your_application_has_been =
-      'successApply.your_application_has_been';
-  static const successApply_submitted = 'successApply.submitted';
-  static const successApply_Thank_you_for_providing_your_application =
-      'successApply.Thank_you_for_providing_your_application';
-  static const successApply_Login = 'successApply.Login';
-  static const successApply_get_back_to_you_soon = 'successApply.get_back_to_you_soon';
-  static const successApply_we_will_review_your_application_and_will =
-      'successApply.we_will_review_your_application_and_will';
-  static const successApply = 'successApply';
-  static const successDelivery_thank_you = 'successDelivery.thank_you';
-  static const successDelivery_order_delivered_success =
-      'successDelivery.order_delivered_success';
-  static const successDelivery = 'successDelivery';
   static const Ok = 'Ok';
   static const Loading = 'Loading';
   static const Continue = 'Continue';
@@ -449,4 +324,5 @@ abstract class LocaleKeys {
   static const search_colosestToYou = 'search.colosestToYou';
   static const search_dependingOnYourTheTypOfFood = 'search.dependingOnYourTheTypOfFood';
   static const search = 'search';
+
 }
