@@ -10,6 +10,5 @@ class Routes {
   static const String resetPassword = '/resetPassword';
   static const String orderDetailsScreen = '/orderDetailsScreen';
   static const String detailsScreen = '/detailsScreen';
-
   static const String pendingOrder = '/pendingOrder';
 }

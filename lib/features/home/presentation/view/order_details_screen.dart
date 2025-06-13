@@ -34,6 +34,8 @@ class _OrderDetailsScreenState extends State<OrderDetailsScreen> {
     }
   }
 
+
+
   void _makePhoneCall(String phoneNumber) {
     final Uri launchUri = Uri(
       scheme: 'tel',
@@ -46,13 +48,14 @@ class _OrderDetailsScreenState extends State<OrderDetailsScreen> {
   void initState() {
     super.initState();
     _cubit = context.read<OrderDetailsCubit>();
+    _cubit.initializeDriverOrder(widget.order.orderNumber);
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(LocaleKeys.OrderDetails_orderdetails.tr(),
+        title: Text(LocaleKeys.OrderDetails_orderDetails.tr(),
             style: AppTheme.lightTheme.textTheme.titleLarge),
         leading: const BackButton(),
       ),
@@ -99,7 +102,7 @@ class _OrderDetailsScreenState extends State<OrderDetailsScreen> {
                             openWhatsApp(phoneNumber: widget.order.user.phone),
                       ),
                       const SizedBox(height: 16),
-                      Text(LocaleKeys.OrderDetails_orderdetails.tr(),
+                      Text(LocaleKeys.OrderDetails_orderDetails.tr(),
                           style: AppTheme.lightTheme.textTheme.titleMedium),
                       const SizedBox(height: 8),
                       ...List.generate(widget.order.orderItems.length, (index) {
@@ -150,7 +153,8 @@ class _OrderDetailsScreenState extends State<OrderDetailsScreen> {
                     onPressed: _cubit.currentStatus == OrderStatus.completed
                         ? null
                         : () {
-                            _cubit.advanceOrderStatus();
+                            _cubit.advanceOrderStatus(widget.order.orderNumber);
+                            // _cubit.collectDriverData(widget.order.orderNumber);
                           },
                     child: Text(
                       _cubit.getButtonText(_cubit.currentStatus),
@@ -183,7 +187,7 @@ class _OrderDetailsScreenState extends State<OrderDetailsScreen> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              '${LocaleKeys.OrderDetails_Status.tr()} : ${order.state}',
+              '${LocaleKeys.OrderDetails_Status.tr()} : ${context.watch<OrderDetailsCubit>().currentStatus.name}',
               style: AppTheme.lightTheme.textTheme.titleSmall?.copyWith(
                 color: AppColors.green,
                 fontWeight: FontWeight.w600,

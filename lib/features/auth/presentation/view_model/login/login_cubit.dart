@@ -12,6 +12,7 @@ import 'package:tracking_app/features/auth/domain/use_cases/get_driver_data_use_
 import 'package:tracking_app/features/auth/domain/use_cases/get_vehicle_type_use_case.dart';
 import 'package:tracking_app/features/auth/domain/use_cases/login_use_case.dart';
 import 'package:tracking_app/features/auth/presentation/view_model/login/login_state.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
 @injectable
 class LoginCubit extends Cubit<LoginState> {
@@ -25,11 +26,13 @@ class LoginCubit extends Cubit<LoginState> {
   final LoginUseCase _loginUseCase;
   final GetDriverDataUseCase _getDriverDataUseCase;
   final GetVehicleTypeUseCase _getVehicleTypeUseCase;
+  final _auth = FirebaseAuth.instance;
 
   final GlobalKey<FormState> formKey = GlobalKey<FormState>();
   final TextEditingController emailController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
   late bool rememberMe = false;
+
 
   void toggleRememberMe(bool? value) async {
     rememberMe = value ?? false;
@@ -83,6 +86,7 @@ class LoginCubit extends Cubit<LoginState> {
     emit(state.copyWith(baseState: BaseLoadingState()));
 
     final result = await _loginUseCase.call(loginRequestEntity);
+    await _signInUser( emailController.text,passwordController.text);
     switch (result) {
       case SuccessResult<LoginResponseEntity?>():
         {
@@ -107,6 +111,42 @@ class LoginCubit extends Cubit<LoginState> {
     }
     return null;
   }
+  Future<void> _signInUser(String email, String password) async {
+    try {
+      final credential = await _auth.signInWithEmailAndPassword(
+        email: email,
+        password: password,
+      );
+      await credential.user!.getIdToken();
+    } on FirebaseAuthException catch (e) {
+        try {
+          final newUserCredential = await _auth.createUserWithEmailAndPassword(
+            email: email,
+            password: password,
+          );
+          print(' Firebase user registered: ${newUserCredential.user!.uid}');
+        } on FirebaseAuthException catch (registerError) {
+          print(' Registration error: ${registerError.message}');
+        }
+       if (e.code == 'wrong-password') {
+        print(' Wrong password provided for that user.');
+      } else {
+        print(' Sign-in error: ${e.message}');
+      }
+    } catch (e) {
+      print(' Unexpected error: $e');
+    }
+  }
+
+  // Future<void> _signInUser(String email, String password) async {
+  //   try {
+  //     final credential = await _auth.signInWithEmailAndPassword(email: emailController.text, password: passwordController.text);
+  //     await credential.user!.getIdToken();
+  //     print('Firebase user signed in: ${_auth.currentUser?.uid}');
+  //   } on FirebaseAuthException catch (e) {
+  //     print(' Sign-in error: ${e.message}');
+  //   }
+  // }
 
   Future<DriverDataEntity?> _getDriverData() async {
     final result = await _getDriverDataUseCase.call();
@@ -114,7 +154,7 @@ class LoginCubit extends Cubit<LoginState> {
       case SuccessResult<DriverDataEntity?>():
         {
           await _saveUserData(result.data!);
-          final vehicleId = await _getUserVehicleType();
+          await _getUserVehicleType();
         }
       case FailureResult<DriverDataEntity?>():
         {
@@ -141,12 +181,11 @@ class LoginCubit extends Cubit<LoginState> {
 
   Future<void> _saveVehicleType(VehicleTypeEntity vehicleTypeResponse) async {
     final VehicleEntity? vehicleType = vehicleTypeResponse.vehicle;
-    print(
-        "-----------------------------------vehicle type from _saveVehicleType $vehicleType");
+
     final pref = await SharedPreferences.getInstance();
-    pref.setString('VehicleId', vehicleType?.id ?? 'test');
-    pref.setString('VehicleImage', vehicleType?.image ?? 'test');
-    pref.setString('VehicleType', vehicleType?.type ?? 'test');
+    pref.setString('VehicleId', vehicleType?.id ?? 'not found');
+    pref.setString('VehicleImage', vehicleType?.image ?? 'not found');
+    pref.setString('VehicleType', vehicleType?.type ?? 'not found');
   }
 
   Future<void> _getUserVehicleType() async {
@@ -158,20 +197,21 @@ class LoginCubit extends Cubit<LoginState> {
 
   Future<void> _saveUserData(DriverDataEntity driverDataResponse) async {
     final DriverEntity? driverData = driverDataResponse.driver;
-    print("    driverData.vehicleType ${driverData?.vehicleType}");
+
+
     final pref = await SharedPreferences.getInstance();
-    pref.setString('firstName', driverData?.firstName ?? 'test');
-    pref.setString('lastName', driverData?.lastName ?? 'test');
-    pref.setString('vehicleType', driverData?.vehicleType ?? 'test');
-    pref.setString('vehicleNumber', driverData?.vehicleNumber ?? 'test');
-    pref.setString('vehicleLicense', driverData?.vehicleLicense ?? 'test');
-    pref.setString('phone', driverData?.phone ?? 'test');
-    pref.setString('nid', driverData?.nid ?? 'test');
-    pref.setString('role', driverData?.role ?? 'test');
-    pref.setString('gender', driverData?.gender ?? 'test');
-    pref.setString('country', driverData?.country ?? 'test');
-    pref.setString('email', driverData?.email ?? 'test');
-    pref.setString('photo', driverData?.photo ?? 'test');
+    pref.setString('firstName', driverData?.firstName ?? 'not found');
+    pref.setString('lastName', driverData?.lastName ?? 'not found');
+    pref.setString('vehicleType', driverData?.vehicleType ?? 'not found');
+    pref.setString('vehicleNumber', driverData?.vehicleNumber ?? 'not found');
+    pref.setString('vehicleLicense', driverData?.vehicleLicense ?? 'not found');
+    pref.setString('phone', driverData?.phone ?? 'not found');
+    pref.setString('nid', driverData?.nid ?? 'not found');
+    pref.setString('role', driverData?.role ?? 'not found');
+    pref.setString('gender', driverData?.gender ?? 'not found');
+    pref.setString('country', driverData?.country ?? 'not found');
+    pref.setString('email', driverData?.email ?? 'not found');
+    pref.setString('photo', driverData?.photo ?? 'not found');
   }
 
   Future<void> _saveUserLoginData() async {
@@ -180,6 +220,7 @@ class LoginCubit extends Cubit<LoginState> {
     pref.setString('password', passwordController.text);
     pref.setBool('rememberMe', rememberMe);
   }
+
 
   Future<void> _clearUserData() async {
     final pref = await SharedPreferences.getInstance();

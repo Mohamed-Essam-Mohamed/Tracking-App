@@ -28,7 +28,7 @@ class DriverDataDto {
 @JsonSerializable()
 class DriverDto {
   DriverDto({
-      this.id, 
+      this.id,
       this.country, 
       this.firstName, 
       this.lastName, 
@@ -44,7 +44,7 @@ class DriverDto {
       this.role, 
       this.createdAt,});
 
-
+  @JsonKey(name: '_id')
   String? id;
   String? country;
   String? firstName;

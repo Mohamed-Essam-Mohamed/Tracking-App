@@ -59,7 +59,7 @@ dependencies:
   #? Firebase: For Firebase services
   firebase_core: ^3.13.0        
   firebase_crashlytics: ^4.3.5  
-  firebase_auth: ^5.5.2
+  firebase_auth: ^5.6.0
   cloud_firestore: ^5.6.7
   firebase_messaging: ^15.2.5   
   retry: ^3.1.2

@@ -45,6 +45,10 @@ class AuthRepositoryImp implements AuthRepository {
     return FailureResult(Exception('Unknown error occurred'));
   }
 
+
+
+
+
   @override
   Future<Result<ForgetPasswordEntity?>> forgetPassword(
       ForgetRequestDto forgetRequest) async {
@@ -82,7 +86,6 @@ class AuthRepositoryImp implements AuthRepository {
   @override
   Future<Result<DriverDataEntity?>> getDriverData() async {
     final result = await _dataSource.getDriverData();
-
     if (result is SuccessResult<DriverDataDto?>) {
       return SuccessResult(result.data?.toDomain());
     } else if (result is FailureResult<DriverDataDto?>) {
@@ -102,4 +105,8 @@ class AuthRepositoryImp implements AuthRepository {
     }
     return FailureResult(Exception('Unknown error occurred'));
   }
+
+
+
+
 }

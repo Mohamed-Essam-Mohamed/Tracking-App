@@ -129,14 +129,14 @@ extension GetItInjectableX on _i174.GetIt {
         () => _i12.EmailVerificationUseCase(gh<_i632.AuthRepository>()));
     gh.factory<_i717.ForgetPasswordUseCase>(
         () => _i717.ForgetPasswordUseCase(gh<_i632.AuthRepository>()));
-    gh.factory<_i862.LoginUseCase>(
-        () => _i862.LoginUseCase(gh<_i632.AuthRepository>()));
-    gh.factory<_i44.ResetPasswordUseCase>(
-        () => _i44.ResetPasswordUseCase(gh<_i632.AuthRepository>()));
     gh.factory<_i48.GetDriverDataUseCase>(
         () => _i48.GetDriverDataUseCase(gh<_i632.AuthRepository>()));
     gh.factory<_i371.GetVehicleTypeUseCase>(
         () => _i371.GetVehicleTypeUseCase(gh<_i632.AuthRepository>()));
+    gh.factory<_i862.LoginUseCase>(
+        () => _i862.LoginUseCase(gh<_i632.AuthRepository>()));
+    gh.factory<_i44.ResetPasswordUseCase>(
+        () => _i44.ResetPasswordUseCase(gh<_i632.AuthRepository>()));
     gh.factory<_i834.ApplyUseCases>(
         () => _i834.ApplyUseCases(gh<_i632.AuthRepository>()));
     gh.factory<_i943.ForgetPasswordCubit>(() => _i943.ForgetPasswordCubit(
