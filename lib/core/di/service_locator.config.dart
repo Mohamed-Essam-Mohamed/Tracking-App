@@ -69,6 +69,8 @@ import 'package:tracking_app/features/profile/domain/data_source/profile_data_so
     as _i745;
 import 'package:tracking_app/features/profile/domain/repositories/profile_repository.dart'
     as _i859;
+import 'package:tracking_app/features/profile/domain/use_cases/logout_usecase.dart'
+    as _i212;
 
 extension GetItInjectableX on _i174.GetIt {
 // initializes the registration of main-scope dependencies inside of GetIt
@@ -116,6 +118,8 @@ extension GetItInjectableX on _i174.GetIt {
         () => _i747.ProfileRepositoryImp(gh<_i745.ProfileDataSource>()));
     gh.factory<_i505.GetAllPendingOrderUseCase>(
         () => _i505.GetAllPendingOrderUseCase(gh<_i421.HomeRepository>()));
+    gh.factory<_i212.LogoutUseCase>(
+        () => _i212.LogoutUseCase(gh<_i859.ProfileRepository>()));
     gh.factory<_i12.EmailVerificationUseCase>(
         () => _i12.EmailVerificationUseCase(gh<_i632.AuthRepository>()));
     gh.factory<_i717.ForgetPasswordUseCase>(

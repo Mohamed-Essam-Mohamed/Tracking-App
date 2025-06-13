@@ -19,6 +19,6 @@ class ProfileState extends Equatable {
   List<Object?> get props => [baseState];
 }
 
-sealed class LogoutScreenAction {}
+sealed class ProfileScreenAction {}
 
-final class LogoutAction extends LogoutScreenAction {}
+final class LogoutAction extends ProfileScreenAction {}

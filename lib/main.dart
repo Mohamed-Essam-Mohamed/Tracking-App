@@ -27,7 +27,7 @@ Future<void> main() async {
 
   final pref = await SharedPreferences.getInstance();
   final isLoggedIn = pref.getBool('isLoggedIn') ?? false;
-  final initialRoute = Routes.onboarding;
+  final initialRoute = isLoggedIn ? Routes.onboarding : Routes.login;
 
   runApp(EasyLocalization(
     supportedLocales: AppValues.supportedLocales,
@@ -52,7 +52,7 @@ class MyApp extends StatelessWidget {
       theme: AppTheme.lightTheme,
       title: AppValues.appTitle,
       onGenerateRoute: RouteGenerator.getRoute,
-      initialRoute: Routes.appSection,
+      initialRoute: initialRoute,
     );
   }
 }

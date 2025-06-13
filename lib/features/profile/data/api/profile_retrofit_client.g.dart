@@ -20,10 +20,12 @@ class _ProfileRetrofitClient implements ProfileRetrofitClient {
   final ParseErrorLogger? errorLogger;
 
   @override
-  Future<LogoutResponseDto> logout() async {
+  Future<LogoutResponseDto> logout(String? token) async {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
-    final _headers = <String, dynamic>{};
+    queryParameters.removeWhere((k, v) => v == null);
+    final _headers = <String, dynamic>{r'Authorization': token};
+    _headers.removeWhere((k, v) => v == null);
     const Map<String, dynamic>? _data = null;
     final _options = _setStreamType<LogoutResponseDto>(
       Options(method: 'GET', headers: _headers, extra: _extra)
