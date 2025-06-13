@@ -1,0 +1,10 @@
+diff a/lib/features/profile/data/api/profile_retrofit_client.dart b/lib/features/profile/data/api/profile_retrofit_client.dart	(rejected hunks)
+@@ -2,7 +2,7 @@
+ import 'package:injectable/injectable.dart';
+ import 'package:retrofit/http.dart';
+ import 'package:tracking_app/core/network/remote/api_constants.dart';
+-
++import 'package:retrofit/error_logger.dart';
+ part 'profile_retrofit_client.g.dart';
+ 
+ @lazySingleton
