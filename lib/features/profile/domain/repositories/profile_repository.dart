@@ -1,1 +1,8 @@
-abstract class ProfileRepository {}
+import 'package:tracking_app/core/network/common/api_result.dart';
+import 'package:tracking_app/features/profile/domain/entities/change_password/change_password__request_entity.dart';
+import 'package:tracking_app/features/profile/domain/entities/change_password/change_password__response_entity.dart';
+
+abstract class ProfileRepository {
+  Future<Result<ChangePasswordResponseEntity?>> changePassword(ChangePasswordRequestEntity? passwordData);
+
+}

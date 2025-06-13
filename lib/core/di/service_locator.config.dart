@@ -69,6 +69,10 @@ import 'package:tracking_app/features/profile/domain/data_source/profile_data_so
     as _i745;
 import 'package:tracking_app/features/profile/domain/repositories/profile_repository.dart'
     as _i859;
+import 'package:tracking_app/features/profile/domain/use_cases/change_password_usecase.dart'
+    as _i163;
+import 'package:tracking_app/features/profile/presentation/view_model/change_password/change_password_cubit.dart'
+    as _i213;
 
 extension GetItInjectableX on _i174.GetIt {
 // initializes the registration of main-scope dependencies inside of GetIt
@@ -116,6 +120,8 @@ extension GetItInjectableX on _i174.GetIt {
         () => _i747.ProfileRepositoryImp(gh<_i745.ProfileDataSource>()));
     gh.factory<_i505.GetAllPendingOrderUseCase>(
         () => _i505.GetAllPendingOrderUseCase(gh<_i421.HomeRepository>()));
+    gh.factory<_i163.ChangePasswordUseCase>(
+        () => _i163.ChangePasswordUseCase(gh<_i859.ProfileRepository>()));
     gh.factory<_i12.EmailVerificationUseCase>(
         () => _i12.EmailVerificationUseCase(gh<_i632.AuthRepository>()));
     gh.factory<_i717.ForgetPasswordUseCase>(
@@ -124,6 +130,8 @@ extension GetItInjectableX on _i174.GetIt {
         () => _i862.LoginUseCase(gh<_i632.AuthRepository>()));
     gh.factory<_i44.ResetPasswordUseCase>(
         () => _i44.ResetPasswordUseCase(gh<_i632.AuthRepository>()));
+    gh.factory<_i213.ChangePasswordCubit>(
+        () => _i213.ChangePasswordCubit(gh<_i163.ChangePasswordUseCase>()));
     gh.factory<_i578.LoginCubit>(
         () => _i578.LoginCubit(gh<_i862.LoginUseCase>()));
     gh.factory<_i834.ApplyUseCases>(
