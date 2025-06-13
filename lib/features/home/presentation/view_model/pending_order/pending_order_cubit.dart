@@ -30,4 +30,10 @@ class PendingOrderCubit extends Cubit<PendingOrderState> {
         ));
     }
   }
+
+  @override
+  void onChange(Change<PendingOrderState> change) {
+    // TODO: implement onChange
+    super.onChange(change);
+  }
 }
