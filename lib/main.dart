@@ -38,8 +38,9 @@ Future<void> main() async {
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({super.key, required this.initialRoute});
   final String initialRoute;
+
+  const MyApp({super.key, required this.initialRoute});
 
   // This widget is the root of your application.
   @override
@@ -52,7 +53,7 @@ class MyApp extends StatelessWidget {
       theme: AppTheme.lightTheme,
       title: AppValues.appTitle,
       onGenerateRoute: RouteGenerator.getRoute,
-      initialRoute: Routes.appSection,
+      initialRoute: initialRoute,
     );
   }
 }

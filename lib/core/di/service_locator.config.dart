@@ -33,6 +33,10 @@ import 'package:tracking_app/features/auth/domain/use_cases/email_verification_u
     as _i12;
 import 'package:tracking_app/features/auth/domain/use_cases/forget_password_use_case.dart'
     as _i717;
+import 'package:tracking_app/features/auth/domain/use_cases/get_driver_data_use_case.dart'
+    as _i48;
+import 'package:tracking_app/features/auth/domain/use_cases/get_vehicle_type_use_case.dart'
+    as _i371;
 import 'package:tracking_app/features/auth/domain/use_cases/login_use_case.dart'
     as _i862;
 import 'package:tracking_app/features/auth/domain/use_cases/reset_password_use_case.dart'
@@ -87,9 +91,14 @@ extension GetItInjectableX on _i174.GetIt {
     gh.singleton<_i481.ApiManager>(() => _i481.ApiManager());
     gh.lazySingleton<_i974.Logger>(() => loggerModule.loggerProvider);
     gh.lazySingleton<_i974.PrettyPrinter>(() => loggerModule.prettyPrinter);
-    gh.lazySingleton<_i361.Dio>(() => dioModule.provideDio());
     gh.lazySingleton<_i528.PrettyDioLogger>(
         () => dioModule.providerInterceptor());
+    gh.lazySingleton<_i896.AuthInterceptor>(
+        () => dioModule.provideAuthInterceptor());
+    gh.lazySingleton<_i361.Dio>(() => dioModule.provideDio(
+          gh<_i528.PrettyDioLogger>(),
+          gh<_i896.AuthInterceptor>(),
+        ));
     gh.lazySingleton<_i272.AuthRetrofitClient>(
         () => _i272.AuthRetrofitClient(gh<_i361.Dio>()));
     gh.lazySingleton<_i95.HomeRetrofitClient>(
@@ -124,8 +133,10 @@ extension GetItInjectableX on _i174.GetIt {
         () => _i862.LoginUseCase(gh<_i632.AuthRepository>()));
     gh.factory<_i44.ResetPasswordUseCase>(
         () => _i44.ResetPasswordUseCase(gh<_i632.AuthRepository>()));
-    gh.factory<_i578.LoginCubit>(
-        () => _i578.LoginCubit(gh<_i862.LoginUseCase>()));
+    gh.factory<_i48.GetDriverDataUseCase>(
+        () => _i48.GetDriverDataUseCase(gh<_i632.AuthRepository>()));
+    gh.factory<_i371.GetVehicleTypeUseCase>(
+        () => _i371.GetVehicleTypeUseCase(gh<_i632.AuthRepository>()));
     gh.factory<_i834.ApplyUseCases>(
         () => _i834.ApplyUseCases(gh<_i632.AuthRepository>()));
     gh.factory<_i943.ForgetPasswordCubit>(() => _i943.ForgetPasswordCubit(
@@ -137,6 +148,11 @@ extension GetItInjectableX on _i174.GetIt {
         () => _i175.PendingOrderCubit(gh<_i505.GetAllPendingOrderUseCase>()));
     gh.factory<_i554.ApplyCubit>(
         () => _i554.ApplyCubit(gh<_i834.ApplyUseCases>()));
+    gh.factory<_i578.LoginCubit>(() => _i578.LoginCubit(
+          gh<_i862.LoginUseCase>(),
+          gh<_i48.GetDriverDataUseCase>(),
+          gh<_i371.GetVehicleTypeUseCase>(),
+        ));
     return this;
   }
 }
