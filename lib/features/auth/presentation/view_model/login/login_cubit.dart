@@ -90,9 +90,8 @@ class LoginCubit extends Cubit<LoginState> {
           if (rememberMe) {
             _saveUserLoginData();
           }
-          await _setLoggedInState(true, result.data?.token);
           _getDriverData();
-          await _setLoggedInState(true);
+          await _setLoggedInState(true, result.data?.token);
           await _saveToken(result.data!.token!);
 
           emit(state.copyWith(baseState: BaseSuccessState(data: result)));

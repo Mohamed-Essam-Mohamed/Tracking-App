@@ -73,8 +73,9 @@ class _ProfileRetrofitClient implements ProfileRetrofitClient {
     final _result = await _dio.fetch<Map<String, dynamic>?>(_options);
     late ChangePasswordResponseDto? _value;
     try {
-      _value =
-          _result.data == null ? null : ChangePasswordResponseDto.fromJson(_result.data!);
+      _value = _result.data == null
+          ? null
+          : ChangePasswordResponseDto.fromJson(_result.data!);
     } on Object catch (e, s) {
       errorLogger?.logError(e, s, _options);
       rethrow;
