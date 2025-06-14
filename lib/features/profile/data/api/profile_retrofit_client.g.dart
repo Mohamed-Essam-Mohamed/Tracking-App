@@ -9,7 +9,7 @@ part of 'profile_retrofit_client.dart';
 // ignore_for_file: unnecessary_brace_in_string_interps,no_leading_underscores_for_local_identifiers,unused_element,unnecessary_string_interpolations
 
 class _ProfileRetrofitClient implements ProfileRetrofitClient {
-  _ProfileRetrofitClient(this._dio, {this.baseUrl, this.errorLogger}) {
+  _ProfileRetrofitClient(this._dio) {
     baseUrl ??= 'https://flower.elevateegy.com/api/v1/';
   }
 
@@ -17,7 +17,7 @@ class _ProfileRetrofitClient implements ProfileRetrofitClient {
 
   String? baseUrl;
 
-  final ParseErrorLogger? errorLogger;
+  // final ParseErrorLogger? errorLogger;
 
   RequestOptions _setStreamType<T>(RequestOptions requestOptions) {
     if (T != dynamic &&
