@@ -25,25 +25,24 @@ class ProfileRepositoryImp implements ProfileRepository {
     }
     return FailureResult(Exception('Unknown error occurred'));
   }
-}
-
-  final ProfileDataSource _profileDataSource;
 
   @override
   Future<Result<ChangePasswordResponseEntity?>> changePassword(
       ChangePasswordRequestEntity? passwordData) async {
-    final result = await _profileDataSource.changePassword(
-        passwordData!.toDto());
+    final result = await _profileDataSource.changePassword(passwordData!.toDto());
 
     if (result is SuccessResult<ChangePasswordResponseDto?>) {
       return SuccessResult(result.data?.toDomain());
-    }
-    else if (result is FailureResult<ChangePasswordResponseDto?>) {
+    } else if (result is FailureResult<ChangePasswordResponseDto?>) {
       return FailureResult(result.exception);
     }
     return FailureResult(Exception("Unknown error occurred"));
   }
 }
+
+
+ 
+
 
 
 

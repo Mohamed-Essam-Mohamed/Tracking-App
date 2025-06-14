@@ -1,15 +1,11 @@
 import 'package:tracking_app/core/network/common/api_result.dart';
 import 'package:tracking_app/features/profile/domain/entities/logout/logout_response_entity.dart';
-
-abstract class ProfileRepository {
-  Future<Result<LogoutResponseEntity?>> logout();
-
-}
 import 'package:tracking_app/core/network/common/api_result.dart';
 import 'package:tracking_app/features/profile/domain/entities/change_password/change_password__request_entity.dart';
 import 'package:tracking_app/features/profile/domain/entities/change_password/change_password__response_entity.dart';
 
 abstract class ProfileRepository {
-  Future<Result<ChangePasswordResponseEntity?>> changePassword(ChangePasswordRequestEntity? passwordData);
-
+  Future<Result<LogoutResponseEntity?>> logout();
+  Future<Result<ChangePasswordResponseEntity?>> changePassword(
+      ChangePasswordRequestEntity? passwordData);
 }
