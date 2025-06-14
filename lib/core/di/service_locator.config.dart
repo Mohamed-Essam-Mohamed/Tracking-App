@@ -33,6 +33,10 @@ import 'package:tracking_app/features/auth/domain/use_cases/email_verification_u
     as _i12;
 import 'package:tracking_app/features/auth/domain/use_cases/forget_password_use_case.dart'
     as _i717;
+import 'package:tracking_app/features/auth/domain/use_cases/get_driver_data_use_case.dart'
+    as _i48;
+import 'package:tracking_app/features/auth/domain/use_cases/get_vehicle_type_use_case.dart'
+    as _i371;
 import 'package:tracking_app/features/auth/domain/use_cases/login_use_case.dart'
     as _i862;
 import 'package:tracking_app/features/auth/domain/use_cases/reset_password_use_case.dart'
@@ -83,6 +87,12 @@ import 'package:tracking_app/features/profile/domain/data_source/profile_data_so
     as _i745;
 import 'package:tracking_app/features/profile/domain/repositories/profile_repository.dart'
     as _i859;
+import 'package:tracking_app/features/profile/domain/use_cases/change_password_usecase.dart'
+    as _i163;
+import 'package:tracking_app/features/profile/domain/use_cases/logout_usecase.dart'
+    as _i212;
+import 'package:tracking_app/features/profile/presentation/view_model/change_password/change_password_cubit.dart'
+    as _i213;
 
 extension GetItInjectableX on _i174.GetIt {
 // initializes the registration of main-scope dependencies inside of GetIt
@@ -101,9 +111,14 @@ extension GetItInjectableX on _i174.GetIt {
     gh.singleton<_i481.ApiManager>(() => _i481.ApiManager());
     gh.lazySingleton<_i974.Logger>(() => loggerModule.loggerProvider);
     gh.lazySingleton<_i974.PrettyPrinter>(() => loggerModule.prettyPrinter);
-    gh.lazySingleton<_i361.Dio>(() => dioModule.provideDio());
     gh.lazySingleton<_i528.PrettyDioLogger>(
         () => dioModule.providerInterceptor());
+    gh.lazySingleton<_i896.AuthInterceptor>(
+        () => dioModule.provideAuthInterceptor());
+    gh.lazySingleton<_i361.Dio>(() => dioModule.provideDio(
+          gh<_i528.PrettyDioLogger>(),
+          gh<_i896.AuthInterceptor>(),
+        ));
     gh.lazySingleton<_i272.AuthRetrofitClient>(
         () => _i272.AuthRetrofitClient(gh<_i361.Dio>()));
     gh.lazySingleton<_i95.HomeRetrofitClient>(
@@ -139,10 +154,18 @@ extension GetItInjectableX on _i174.GetIt {
         () => _i505.GetAllPendingOrderUseCase(gh<_i421.HomeRepository>()));
     gh.factory<_i760.DriverOrdersRepository>(() =>
         _i290.DriverOrdersRepositoryImp(gh<_i728.DriverOrdersDataSource>()));
+    gh.factory<_i163.ChangePasswordUseCase>(
+        () => _i163.ChangePasswordUseCase(gh<_i859.ProfileRepository>()));
+    gh.factory<_i212.LogoutUseCase>(
+        () => _i212.LogoutUseCase(gh<_i859.ProfileRepository>()));
     gh.factory<_i12.EmailVerificationUseCase>(
         () => _i12.EmailVerificationUseCase(gh<_i632.AuthRepository>()));
     gh.factory<_i717.ForgetPasswordUseCase>(
         () => _i717.ForgetPasswordUseCase(gh<_i632.AuthRepository>()));
+    gh.factory<_i48.GetDriverDataUseCase>(
+        () => _i48.GetDriverDataUseCase(gh<_i632.AuthRepository>()));
+    gh.factory<_i371.GetVehicleTypeUseCase>(
+        () => _i371.GetVehicleTypeUseCase(gh<_i632.AuthRepository>()));
     gh.factory<_i862.LoginUseCase>(
         () => _i862.LoginUseCase(gh<_i632.AuthRepository>()));
     gh.factory<_i44.ResetPasswordUseCase>(
@@ -151,6 +174,8 @@ extension GetItInjectableX on _i174.GetIt {
         () => _i153.DriverOrdersUseCases(gh<_i760.DriverOrdersRepository>()));
     gh.factory<_i578.LoginCubit>(
         () => _i578.LoginCubit(gh<_i862.LoginUseCase>()));
+    gh.factory<_i213.ChangePasswordCubit>(
+        () => _i213.ChangePasswordCubit(gh<_i163.ChangePasswordUseCase>()));
     gh.factory<_i834.ApplyUseCases>(
         () => _i834.ApplyUseCases(gh<_i632.AuthRepository>()));
     gh.factory<_i943.ForgetPasswordCubit>(() => _i943.ForgetPasswordCubit(
@@ -162,6 +187,11 @@ extension GetItInjectableX on _i174.GetIt {
         () => _i175.PendingOrderCubit(gh<_i505.GetAllPendingOrderUseCase>()));
     gh.factory<_i554.ApplyCubit>(
         () => _i554.ApplyCubit(gh<_i834.ApplyUseCases>()));
+    gh.factory<_i578.LoginCubit>(() => _i578.LoginCubit(
+          gh<_i862.LoginUseCase>(),
+          gh<_i48.GetDriverDataUseCase>(),
+          gh<_i371.GetVehicleTypeUseCase>(),
+        ));
     gh.factory<_i379.DriverOrdersCubit>(
         () => _i379.DriverOrdersCubit(gh<_i153.DriverOrdersUseCases>()));
     return this;

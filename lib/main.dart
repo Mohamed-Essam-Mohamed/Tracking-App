@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:easy_localization/easy_localization.dart';
 import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:flutter/material.dart';
@@ -11,7 +9,7 @@ import 'package:tracking_app/core/routes/route_generator.dart';
 import 'package:tracking_app/core/routes/routes.dart';
 import 'package:tracking_app/core/theme/app_theme.dart';
 import 'package:tracking_app/core/utils/app_shared_preference.dart';
-import 'firebase_options.dart';
+import 'package:tracking_app/firebase_options.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -27,7 +25,7 @@ Future<void> main() async {
 
   final pref = await SharedPreferences.getInstance();
   final isLoggedIn = pref.getBool('isLoggedIn') ?? false;
-  final initialRoute = Routes.onboarding;
+  final initialRoute = isLoggedIn ? Routes.appSection : Routes.onboarding;
 
   runApp(EasyLocalization(
     supportedLocales: AppValues.supportedLocales,
@@ -38,8 +36,9 @@ Future<void> main() async {
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({super.key, required this.initialRoute});
   final String initialRoute;
+
+  const MyApp({super.key, required this.initialRoute});
 
   // This widget is the root of your application.
   @override
@@ -52,7 +51,7 @@ class MyApp extends StatelessWidget {
       theme: AppTheme.lightTheme,
       title: AppValues.appTitle,
       onGenerateRoute: RouteGenerator.getRoute,
-      initialRoute: Routes.appSection,
+      initialRoute: initialRoute,
     );
   }
 }

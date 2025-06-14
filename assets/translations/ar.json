@@ -176,7 +176,7 @@
         "no_orders": "عذرًا، يبدو أنك لم تكمل أي طلب بعد."
     },
     "OrderDetails":{
-        "orderdetails": "تفاصيل الطلب",
+        "orderDetails": "تفاصيل الطلب",
         "Status": "الحالة",
         "OrderID": "رقم الطلب",
         "PickupAddress": "عنوان الاستلام",

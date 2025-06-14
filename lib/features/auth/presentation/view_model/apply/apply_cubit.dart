@@ -44,6 +44,7 @@ class ApplyCubit extends Cubit<ApplyState> {
       final result = await applyUseCases.getAllVehicles();
       if (result is SuccessResult<VehiclesModelEntity>) {
         vehiclesList = result.data.vehicles ?? [];
+        print('vehiclesList frooooooooooom : $vehiclesList');
         emit(VehiclesSuccessState(result.data));
       } else if (result is FailureResult<VehiclesModelEntity>) {
         emit(VehiclesErrorState(result.exception.toString()));

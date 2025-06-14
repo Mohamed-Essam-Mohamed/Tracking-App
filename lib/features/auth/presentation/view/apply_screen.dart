@@ -308,7 +308,7 @@ class _ApplyScreenState extends State<ApplyScreen> {
                           borderRadius: BorderRadius.circular(6),
                         ),
                       ),
-                      validator: (val) => Validator.validateVehicleNumber(val),
+                      // validator: (val) => Validator.validateVehicleNumber(val),
                     ),
                     const SizedBox(height: 16),
                     TextFormField(

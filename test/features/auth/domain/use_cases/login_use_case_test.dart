@@ -1,4 +1,3 @@
-
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
@@ -19,7 +18,7 @@ void main() {
   setUp(() {
     repo = MockAuthRepository();
     useCase = LoginUseCase(repo);
-    requestData = LoginRequestEntity(
+    requestData = const LoginRequestEntity(
       password: 'new@123',
       email: 'new@mail.com',
     );
@@ -28,36 +27,33 @@ void main() {
   group('LoginUseCase Tests', () {
     test(
         'should call login on the repo and return SuccessResult when repository succeeds',
-            () async {
-          final response = LoginResponseEntity(
-              message: 'user logged successfully');
-          final result = SuccessResult<LoginResponseEntity?>(response);
-          provideDummy<Result<LoginResponseEntity?>>(result);
-          when(repo.login(requestData)).thenAnswer((_) async => result);
+        () async {
+      final response = LoginResponseEntity(message: 'user logged successfully');
+      final result = SuccessResult<LoginResponseEntity?>(response);
+      provideDummy<Result<LoginResponseEntity?>>(result);
+      when(repo.login(requestData)).thenAnswer((_) async => result);
 
-          final actual = await useCase.call(requestData);
+      final actual = await useCase.call(requestData);
 
-          verify(repo.login(requestData)).called(1);
-          expect(actual, isA<SuccessResult<LoginResponseEntity?>>());
-          expect((actual as SuccessResult).data.message,
-              'user logged successfully');
-        });
+      verify(repo.login(requestData)).called(1);
+      expect(actual, isA<SuccessResult<LoginResponseEntity?>>());
+      expect((actual as SuccessResult).data.message, 'user logged successfully');
+    });
 
-    test(
-        'should call login on the repo and return FailureResult when repository fails',
-            () async {
-          final exception = Exception('email or password not valid');
-          final result = FailureResult<LoginResponseEntity?>(exception);
-          provideDummy<Result<LoginResponseEntity?>>(result);
+    test('should call login on the repo and return FailureResult when repository fails',
+        () async {
+      final exception = Exception('email or password not valid');
+      final result = FailureResult<LoginResponseEntity?>(exception);
+      provideDummy<Result<LoginResponseEntity?>>(result);
 
-          when(repo.login(requestData)).thenAnswer((_) async => result);
+      when(repo.login(requestData)).thenAnswer((_) async => result);
 
-          final actual = await useCase.call(requestData);
+      final actual = await useCase.call(requestData);
 
-          verify(repo.login(requestData)).called(1);
-          expect(actual, isA<FailureResult<LoginResponseEntity?>>());
-          expect((actual as FailureResult).exception.toString(),
-              contains('email or password not valid'));
-        });
+      verify(repo.login(requestData)).called(1);
+      expect(actual, isA<FailureResult<LoginResponseEntity?>>());
+      expect((actual as FailureResult).exception.toString(),
+          contains('email or password not valid'));
+    });
   });
 }

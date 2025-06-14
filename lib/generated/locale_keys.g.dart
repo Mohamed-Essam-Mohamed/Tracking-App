@@ -172,7 +172,7 @@ abstract class  LocaleKeys {
   static const profile_order_number = 'profile.order_number';
   static const profile_no_orders = 'profile.no_orders';
   static const profile = 'profile';
-  static const OrderDetails_orderdetails = 'OrderDetails.orderdetails';
+  static const OrderDetails_orderDetails = 'OrderDetails.orderDetails';
   static const OrderDetails_Status = 'OrderDetails.Status';
   static const OrderDetails_OrderID = 'OrderDetails.OrderID';
   static const OrderDetails_PickupAddress = 'OrderDetails.PickupAddress';
