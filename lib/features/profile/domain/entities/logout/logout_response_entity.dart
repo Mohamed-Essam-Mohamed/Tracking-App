@@ -1,12 +1,7 @@
-
 class LogoutResponseEntity {
-  LogoutResponseEntity({
-    this.message,});
+  const LogoutResponseEntity({
+    this.message,
+  });
 
-
-  String? message;
-
-
-  }
-
-
+  final String? message;
+}

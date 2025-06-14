@@ -1,13 +1,17 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:tracking_app/core/constants/app_assets.dart';
 import 'package:tracking_app/core/constants/app_colors.dart';
+import 'package:tracking_app/core/di/service_locator.dart';
 import 'package:tracking_app/core/routes/routes.dart';
 import 'package:tracking_app/features/home/presentation/view/pending_order_screen.dart';
 import 'package:tracking_app/features/my_orders/presentation/view/driver_orders_screen.dart';
 import 'package:tracking_app/features/profile/presentation/view/profile_screen.dart';
+import 'package:tracking_app/features/profile/presentation/view_model/profile/profile_cubit.dart';
+import 'package:tracking_app/features/profile/presentation/view_model/profile/profile_state.dart';
 import 'package:tracking_app/generated/locale_keys.g.dart';
 
 Future<void> logout(BuildContext context) async {
@@ -28,7 +32,10 @@ class _AppSectionState extends State<AppSection> {
   final List<Widget> _pages = [
     const HomeScreen(),
     const MyOrdersPage(),
-    const ProfileScreen(),
+    BlocProvider<ProfileCubit>(
+      create: (context) => serviceLocator<ProfileCubit>()..doIntent(GetProfileAction()),
+      child: const ProfileScreen(),
+    ),
   ];
 
   Key _cartKey = UniqueKey();
