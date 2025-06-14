@@ -117,6 +117,8 @@ extension GetItInjectableX on _i174.GetIt {
         () => _i272.AuthRetrofitClient(gh<_i361.Dio>()));
     gh.lazySingleton<_i95.HomeRetrofitClient>(
         () => _i95.HomeRetrofitClient(gh<_i361.Dio>()));
+    gh.lazySingleton<_i846.ProfileRetrofitClient>(
+        () => _i846.ProfileRetrofitClient(gh<_i361.Dio>()));
     gh.lazySingleton<_i870.UploadPhotoApiService>(
         () => _i870.UploadPhotoApiService(gh<_i361.Dio>()));
     gh.factory<_i623.HomeRemoteDataSource>(() => _i35.HomeRemoteDataSourcesImp(
@@ -130,8 +132,14 @@ extension GetItInjectableX on _i174.GetIt {
         ));
     gh.factory<_i421.HomeRepository>(
         () => _i325.HomeRepositoryImp(gh<_i623.HomeRemoteDataSource>()));
+    gh.factory<_i745.ProfileDataSource>(() => _i759.ProfileDataSourceImp(
+          gh<_i481.ApiManager>(),
+          gh<_i846.ProfileRetrofitClient>(),
+        ));
     gh.factory<_i632.AuthRepository>(
         () => _i701.AuthRepositoryImp(gh<_i13.RemoteAuthDataSource>()));
+    gh.factory<_i859.ProfileRepository>(
+        () => _i747.ProfileRepositoryImp(gh<_i745.ProfileDataSource>()));
     gh.factory<_i505.GetAllPendingOrderUseCase>(
         () => _i505.GetAllPendingOrderUseCase(gh<_i421.HomeRepository>()));
     gh.factory<_i163.ChangePasswordUseCase>(
@@ -150,14 +158,12 @@ extension GetItInjectableX on _i174.GetIt {
         () => _i862.LoginUseCase(gh<_i632.AuthRepository>()));
     gh.factory<_i44.ResetPasswordUseCase>(
         () => _i44.ResetPasswordUseCase(gh<_i632.AuthRepository>()));
-    gh.factory<_i578.LoginCubit>(
-        () => _i578.LoginCubit(gh<_i862.LoginUseCase>()));
+    gh.factory<_i213.ChangePasswordCubit>(
+        () => _i213.ChangePasswordCubit(gh<_i163.ChangePasswordUseCase>()));
     gh.factory<_i243.EditProfileUseCase>(
         () => _i243.EditProfileUseCase(gh<_i632.AuthRepository>()));
     gh.factory<_i799.UploadPhotoUseCase>(
         () => _i799.UploadPhotoUseCase(gh<_i632.AuthRepository>()));
-    gh.factory<_i213.ChangePasswordCubit>(
-        () => _i213.ChangePasswordCubit(gh<_i163.ChangePasswordUseCase>()));
     gh.factory<_i834.ApplyUseCases>(
         () => _i834.ApplyUseCases(gh<_i632.AuthRepository>()));
     gh.factory<_i943.ForgetPasswordCubit>(() => _i943.ForgetPasswordCubit(

@@ -26,6 +26,8 @@ abstract class AuthRetrofitClient {
   factory AuthRetrofitClient(Dio dio) = _AuthRetrofitClient;
   @POST(ApiConstants.apply)
   Future<ApplyModelDto> apply(@Body() FormData formData);
+  @PUT("vehicle/{id}")
+  Future<Driver> editVeicle(@Path('id') String id, @Body() FormData formData);
 
   @GET(ApiConstants.vehicles)
   Future<VehiclesModelDto> getAllVehicles();

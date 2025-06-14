@@ -107,24 +107,6 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                         ),
                       ],
                     ),
-                    Positioned(
-                      right: 0,
-                      top: 0,
-                      bottom: 12,
-                      child: Container(
-                        width: context.wp(4),
-                        height: context.hp(2.5),
-                        decoration: BoxDecoration(
-                            color: AppColors.red,
-                            borderRadius: BorderRadius.circular(10)),
-                        child: Center(
-                            child: Text(
-                              "3",
-                              style: AppTheme.lightTheme.textTheme.bodyMedium!
-                                  .copyWith(color: AppColors.white),
-                            )),
-                      ),
-                    ),
                   ]),
                   BlocBuilder<EditProfileCubit, EditProfileState>(
                     bloc: cubit,

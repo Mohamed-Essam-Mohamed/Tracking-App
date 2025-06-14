@@ -4,30 +4,34 @@
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
 import 'dart:async' as _i3;
-import 'dart:io' as _i17;
+import 'dart:io' as _i19;
 
 import 'package:dio/dio.dart' as _i6;
 import 'package:mockito/mockito.dart' as _i1;
 import 'package:mockito/src/dummies.dart' as _i7;
 import 'package:tracking_app/core/network/common/api_result.dart' as _i4;
 import 'package:tracking_app/features/auth/data/models/request/edit_profile_request.dart'
-    as _i16;
+    as _i18;
 import 'package:tracking_app/features/auth/data/models/request/forget_request_dto.dart'
-    as _i12;
+    as _i14;
 import 'package:tracking_app/features/auth/data/models/response/reset_password_request.dart'
-    as _i15;
+    as _i17;
 import 'package:tracking_app/features/auth/data/models/response/verify_code_request.dart'
-    as _i13;
+    as _i15;
 import 'package:tracking_app/features/auth/domain/entities/apply_entity.dart'
     as _i5;
 import 'package:tracking_app/features/auth/domain/entities/forget_password_entity.dart'
-    as _i11;
+    as _i13;
 import 'package:tracking_app/features/auth/domain/entities/request/login/login_request_entity.dart'
     as _i10;
 import 'package:tracking_app/features/auth/domain/entities/reset_password_entity.dart'
-    as _i14;
+    as _i16;
+import 'package:tracking_app/features/auth/domain/entities/response/login/driver_data_entity.dart'
+    as _i11;
 import 'package:tracking_app/features/auth/domain/entities/response/login/login_response_entity.dart'
     as _i9;
+import 'package:tracking_app/features/auth/domain/entities/response/login/vehicle_type_entity.dart'
+    as _i12;
 import 'package:tracking_app/features/auth/domain/entities/vehicles_entitiy.dart'
     as _i8;
 import 'package:tracking_app/features/auth/domain/repositories/auth_repository.dart'
@@ -97,24 +101,52 @@ class MockAuthRepository extends _i1.Mock implements _i2.AuthRepository {
           as _i3.Future<_i4.Result<_i9.LoginResponseEntity?>>);
 
   @override
-  _i3.Future<_i4.Result<_i11.ForgetPasswordEntity?>> forgetPassword(
-    _i12.ForgetRequestDto? forgetRequest,
+  _i3.Future<_i4.Result<_i11.DriverDataEntity?>> getDriverData() =>
+      (super.noSuchMethod(
+            Invocation.method(#getDriverData, []),
+            returnValue: _i3.Future<_i4.Result<_i11.DriverDataEntity?>>.value(
+              _i7.dummyValue<_i4.Result<_i11.DriverDataEntity?>>(
+                this,
+                Invocation.method(#getDriverData, []),
+              ),
+            ),
+          )
+          as _i3.Future<_i4.Result<_i11.DriverDataEntity?>>);
+
+  @override
+  _i3.Future<_i4.Result<_i12.VehicleTypeEntity?>> getVehicleType(
+    String? vehicleType,
+  ) =>
+      (super.noSuchMethod(
+            Invocation.method(#getVehicleType, [vehicleType]),
+            returnValue: _i3.Future<_i4.Result<_i12.VehicleTypeEntity?>>.value(
+              _i7.dummyValue<_i4.Result<_i12.VehicleTypeEntity?>>(
+                this,
+                Invocation.method(#getVehicleType, [vehicleType]),
+              ),
+            ),
+          )
+          as _i3.Future<_i4.Result<_i12.VehicleTypeEntity?>>);
+
+  @override
+  _i3.Future<_i4.Result<_i13.ForgetPasswordEntity?>> forgetPassword(
+    _i14.ForgetRequestDto? forgetRequest,
   ) =>
       (super.noSuchMethod(
             Invocation.method(#forgetPassword, [forgetRequest]),
             returnValue:
-                _i3.Future<_i4.Result<_i11.ForgetPasswordEntity?>>.value(
-                  _i7.dummyValue<_i4.Result<_i11.ForgetPasswordEntity?>>(
+                _i3.Future<_i4.Result<_i13.ForgetPasswordEntity?>>.value(
+                  _i7.dummyValue<_i4.Result<_i13.ForgetPasswordEntity?>>(
                     this,
                     Invocation.method(#forgetPassword, [forgetRequest]),
                   ),
                 ),
           )
-          as _i3.Future<_i4.Result<_i11.ForgetPasswordEntity?>>);
+          as _i3.Future<_i4.Result<_i13.ForgetPasswordEntity?>>);
 
   @override
   _i3.Future<_i4.Result<String?>> verifyCode(
-    _i13.VerifyCodeRequest? verifyCode,
+    _i15.VerifyCodeRequest? verifyCode,
   ) =>
       (super.noSuchMethod(
             Invocation.method(#verifyCode, [verifyCode]),
@@ -128,24 +160,24 @@ class MockAuthRepository extends _i1.Mock implements _i2.AuthRepository {
           as _i3.Future<_i4.Result<String?>>);
 
   @override
-  _i3.Future<_i4.Result<_i14.ResetPasswordEntity?>> resetPassword(
-    _i15.ResetPasswordRequest? resetPasswordRequest,
+  _i3.Future<_i4.Result<_i16.ResetPasswordEntity?>> resetPassword(
+    _i17.ResetPasswordRequest? resetPasswordRequest,
   ) =>
       (super.noSuchMethod(
             Invocation.method(#resetPassword, [resetPasswordRequest]),
             returnValue:
-                _i3.Future<_i4.Result<_i14.ResetPasswordEntity?>>.value(
-                  _i7.dummyValue<_i4.Result<_i14.ResetPasswordEntity?>>(
+                _i3.Future<_i4.Result<_i16.ResetPasswordEntity?>>.value(
+                  _i7.dummyValue<_i4.Result<_i16.ResetPasswordEntity?>>(
                     this,
                     Invocation.method(#resetPassword, [resetPasswordRequest]),
                   ),
                 ),
           )
-          as _i3.Future<_i4.Result<_i14.ResetPasswordEntity?>>);
+          as _i3.Future<_i4.Result<_i16.ResetPasswordEntity?>>);
 
   @override
   _i3.Future<_i4.Result<String>> editProfile(
-    _i16.EditProfileRequest? request,
+    _i18.EditProfileRequest? request,
   ) =>
       (super.noSuchMethod(
             Invocation.method(#editProfile, [request]),
@@ -159,7 +191,7 @@ class MockAuthRepository extends _i1.Mock implements _i2.AuthRepository {
           as _i3.Future<_i4.Result<String>>);
 
   @override
-  _i3.Future<_i4.Result<String>> uploadPhoto(_i17.File? request) =>
+  _i3.Future<_i4.Result<String>> uploadPhoto(_i19.File? request) =>
       (super.noSuchMethod(
             Invocation.method(#uploadPhoto, [request]),
             returnValue: _i3.Future<_i4.Result<String>>.value(

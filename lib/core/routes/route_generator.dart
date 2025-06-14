@@ -6,6 +6,7 @@ import 'package:tracking_app/features/app_section/app_section.dart';
 import 'package:tracking_app/features/auth/data/models/request/edit_profile_request.dart';
 import 'package:tracking_app/features/auth/presentation/view/apply_screen.dart';
 import 'package:tracking_app/features/auth/presentation/view/edit_profile_screen.dart';
+import 'package:tracking_app/features/auth/presentation/view/edit_vechile.dart';
 import 'package:tracking_app/features/auth/presentation/view/login_screen.dart';
 import 'package:tracking_app/features/auth/presentation/view/success_apply.dart';
 import 'package:tracking_app/features/auth/presentation/view/onboarding_screen.dart';
@@ -39,6 +40,8 @@ class RouteGenerator {
         return MaterialPageRoute(builder: (_) => const ForgetPasswordScreen());
       case Routes.pendingOrder:
         return MaterialPageRoute(builder: (_) => const HomeScreen());
+      case Routes.editviechle:
+        return MaterialPageRoute(builder: (_) => const EditVechileScreen());
 
       // case Routes.detailsScreen:
       //   return MaterialPageRoute(builder: (_) => const DetailsScreen());

@@ -30,7 +30,7 @@ class _AppSectionState extends State<AppSection> {
   final List<Widget> _pages = [
     const HomeScreen(),
     const OrderScreen(),
-     EditProfileScreen(userData:EditProfileRequest(firstName: "a",lastName: "n",email: "w",phone: ",",url: "https://www.pandaancha.mx/plds/articulos/froala/bing-image-creator-crea-imagenes-ia-bing-microsoft-edge-1-1200x1200-228971832.png") )
+     EditProfileScreen(userData:EditProfileRequest(firstName: "amr",lastName: "nabil",email: "amira333@gmail.com",phone: "+201070498179",url: "https://www.pandaancha.mx/plds/articulos/froala/bing-image-creator-crea-imagenes-ia-bing-microsoft-edge-1-1200x1200-228971832.png") )
      ];
 
   Key _cartKey = UniqueKey();

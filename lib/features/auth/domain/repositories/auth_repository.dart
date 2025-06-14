@@ -6,6 +6,7 @@ import 'package:tracking_app/features/auth/data/models/request/forget_request_dt
 import 'package:tracking_app/features/auth/data/models/response/reset_password_request.dart';
 import 'package:tracking_app/features/auth/data/models/response/verify_code_request.dart';
 import 'package:tracking_app/features/auth/domain/entities/apply_entity.dart';
+import 'package:tracking_app/features/auth/domain/entities/edit_vechile_entite.dart';
 import 'package:tracking_app/features/auth/domain/entities/forget_password_entity.dart';
 import 'package:tracking_app/features/auth/domain/entities/request/login/login_request_entity.dart';
 import 'package:tracking_app/features/auth/domain/entities/reset_password_entity.dart';
@@ -18,6 +19,8 @@ import 'package:tracking_app/features/auth/domain/entities/vehicles_entitiy.dart
 
 abstract class AuthRepository {
   Future<Result<ApplyEntity>> apply(FormData formData);
+  Future<Result<EditVechileEntite>> editVeicle(FormData formData);
+
   Future<Result<VehiclesModelEntity>> getAllVehicles();
   Future<Result<LoginResponseEntity?>> login(LoginRequestEntity? loginRequest);
   Future<Result<DriverDataEntity?>> getDriverData();

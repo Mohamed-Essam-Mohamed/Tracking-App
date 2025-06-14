@@ -13,6 +13,7 @@ import 'package:tracking_app/features/auth/data/models/response/reset_password_r
 import 'package:tracking_app/features/auth/data/models/response/reset_password_response.dart';
 import 'package:tracking_app/features/auth/data/models/response/verify_code_request.dart';
 import 'package:tracking_app/features/auth/domain/entities/apply_entity.dart';
+import 'package:tracking_app/features/auth/domain/entities/edit_vechile_entite.dart';
 import 'package:tracking_app/features/auth/domain/entities/vehicles_entitiy.dart';
 
 abstract class RemoteAuthDataSource {
@@ -25,6 +26,8 @@ abstract class RemoteAuthDataSource {
   Future<Result<ResetPasswordResponse?>> resetPassword(
       ResetPasswordRequest resetPasswordRequest);
   Future<Result<ApplyEntity>> apply(FormData formData);
+  Future<Result<EditVechileEntite>> editVeicle(FormData formData);
+
   Future<Result<VehiclesModelEntity>> getAllVehicles();
   Future<Result<String>>editProfile(EditProfileRequest request);
   Future<Result<String>>uploadPhoto(File request);

@@ -229,6 +229,8 @@ class LoginCubit extends Cubit<LoginState> {
     final pref = await SharedPreferences.getInstance();
     pref.setBool('isLoggedIn', isLoggedIn);
     pref.setString('token', userToken ?? '');
+    print(userToken);
+    print("llllllllllllllllllllllllllllllllllll");
   }
 
   Future<void> _saveToken(String token) async {

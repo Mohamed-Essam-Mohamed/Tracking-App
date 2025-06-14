@@ -9,11 +9,13 @@ import 'package:tracking_app/core/utils/app_shared_preference.dart';
 import 'package:tracking_app/features/auth/data/api/auth_retrofit_client.dart';
 import 'package:tracking_app/features/auth/data/api/upload_photo_api_service.dart';
 import 'package:tracking_app/features/auth/data/models/apply_model.dart';
+import 'package:tracking_app/features/auth/data/models/edit_vechile_model.dart';
 import 'package:tracking_app/features/auth/data/models/response/login/driver_data_dto.dart';
 import 'package:tracking_app/features/auth/data/models/response/login/vehicle_type_dto.dart';
 import 'package:tracking_app/features/auth/data/models/request/edit_profile_request.dart';
 import 'package:tracking_app/features/auth/data/models/vehicles_model.dart';
 import 'package:tracking_app/features/auth/domain/entities/apply_entity.dart';
+import 'package:tracking_app/features/auth/domain/entities/edit_vechile_entite.dart';
 import 'package:tracking_app/features/auth/domain/entities/vehicles_entitiy.dart';
 
 import 'package:tracking_app/features/auth/data/models/request/forget_request_dto.dart';
@@ -152,6 +154,21 @@ class RemoteAuthDataSourceImp extends RemoteAuthDataSource {
       return response.toString();
 
     });
+  }
+
+  @override
+  Future<Result<EditVechileEntite>> editVeicle(FormData formData,String id) async{
+    final result = await _apiManager.execute<EditVechileModel>(() async {
+      final response = await _apiService.editVeicle(id,formData);
+      return response;
+    });
+
+    switch (result) {
+      case SuccessResult<EditVechileModel>():
+        return SuccessResult<EditVechileEntite>(result);
+      case FailureResult<EditVechileModel>():
+        return FailureResult<EditVechileEntite>(result.exception);
+    }
   }
 
 

@@ -12,6 +12,7 @@ import 'package:tracking_app/features/auth/data/models/response/login/vehicle_ty
 import 'package:tracking_app/features/auth/data/models/response/reset_password_request.dart';
 import 'package:tracking_app/features/auth/data/models/response/verify_code_request.dart';
 import 'package:tracking_app/features/auth/domain/data_sources/remote/remote_auth_data_source.dart';
+import 'package:tracking_app/features/auth/domain/entities/edit_vechile_entite.dart';
 import 'package:tracking_app/features/auth/domain/entities/forget_password_entity.dart';
 import 'package:tracking_app/features/auth/domain/entities/apply_entity.dart';
 import 'package:tracking_app/features/auth/domain/entities/request/login/login_request_entity.dart';
@@ -122,5 +123,10 @@ class AuthRepositoryImp implements AuthRepository {
   Future<Result<String>> uploadPhoto(File request) async{
     final result = await _dataSource.uploadPhoto(request);
     return result;
+  }
+
+  @override
+  Future<Result<EditVechileEntite>> editVeicle(FormData formData) async {
+    return await _dataSource.editVeicle(formData);
   }
 }
