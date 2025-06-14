@@ -59,6 +59,20 @@ import 'package:tracking_app/features/home/presentation/view_model/order_details
     as _i36;
 import 'package:tracking_app/features/home/presentation/view_model/pending_order/pending_order_cubit.dart'
     as _i175;
+import 'package:tracking_app/features/my_orders/data/api/driver_orders_retrofit_client.dart'
+    as _i363;
+import 'package:tracking_app/features/my_orders/data/data_sources/driver_orders_data_source_imp.dart'
+    as _i448;
+import 'package:tracking_app/features/my_orders/data/data_sources/remote/driver_orders_data_source.dart'
+    as _i728;
+import 'package:tracking_app/features/my_orders/data/repositories_imp/driver_orders_repository_imp.dart'
+    as _i290;
+import 'package:tracking_app/features/my_orders/domain/repositories/driver_orders_repository.dart'
+    as _i760;
+import 'package:tracking_app/features/my_orders/domain/use_cases/driver_orders_use_cases.dart'
+    as _i153;
+import 'package:tracking_app/features/my_orders/presentation/view_model/driver_orders_cubit.dart'
+    as _i379;
 import 'package:tracking_app/features/profile/data/api/profile_retrofit_client.dart'
     as _i846;
 import 'package:tracking_app/features/profile/data/data_sources/remote/profile_data_source_imp.dart'
@@ -94,6 +108,8 @@ extension GetItInjectableX on _i174.GetIt {
         () => _i272.AuthRetrofitClient(gh<_i361.Dio>()));
     gh.lazySingleton<_i95.HomeRetrofitClient>(
         () => _i95.HomeRetrofitClient(gh<_i361.Dio>()));
+    gh.lazySingleton<_i363.DriverOrdersRetrofitClient>(
+        () => _i363.DriverOrdersRetrofitClient(gh<_i361.Dio>()));
     gh.lazySingleton<_i846.ProfileRetrofitClient>(
         () => _i846.ProfileRetrofitClient(gh<_i361.Dio>()));
     gh.factory<_i13.RemoteAuthDataSource>(() => _i121.RemoteAuthDataSourceImp(
@@ -106,6 +122,11 @@ extension GetItInjectableX on _i174.GetIt {
         ));
     gh.factory<_i421.HomeRepository>(
         () => _i325.HomeRepositoryImp(gh<_i623.HomeRemoteDataSource>()));
+    gh.factory<_i728.DriverOrdersDataSource>(
+        () => _i448.DriverOrdersDataSourceImp(
+              gh<_i481.ApiManager>(),
+              gh<_i363.DriverOrdersRetrofitClient>(),
+            ));
     gh.factory<_i745.ProfileDataSource>(() => _i759.ProfileDataSourceImp(
           gh<_i481.ApiManager>(),
           gh<_i846.ProfileRetrofitClient>(),
@@ -116,6 +137,8 @@ extension GetItInjectableX on _i174.GetIt {
         () => _i747.ProfileRepositoryImp(gh<_i745.ProfileDataSource>()));
     gh.factory<_i505.GetAllPendingOrderUseCase>(
         () => _i505.GetAllPendingOrderUseCase(gh<_i421.HomeRepository>()));
+    gh.factory<_i760.DriverOrdersRepository>(() =>
+        _i290.DriverOrdersRepositoryImp(gh<_i728.DriverOrdersDataSource>()));
     gh.factory<_i12.EmailVerificationUseCase>(
         () => _i12.EmailVerificationUseCase(gh<_i632.AuthRepository>()));
     gh.factory<_i717.ForgetPasswordUseCase>(
@@ -124,6 +147,8 @@ extension GetItInjectableX on _i174.GetIt {
         () => _i862.LoginUseCase(gh<_i632.AuthRepository>()));
     gh.factory<_i44.ResetPasswordUseCase>(
         () => _i44.ResetPasswordUseCase(gh<_i632.AuthRepository>()));
+    gh.factory<_i153.DriverOrdersUseCases>(
+        () => _i153.DriverOrdersUseCases(gh<_i760.DriverOrdersRepository>()));
     gh.factory<_i578.LoginCubit>(
         () => _i578.LoginCubit(gh<_i862.LoginUseCase>()));
     gh.factory<_i834.ApplyUseCases>(
@@ -137,6 +162,8 @@ extension GetItInjectableX on _i174.GetIt {
         () => _i175.PendingOrderCubit(gh<_i505.GetAllPendingOrderUseCase>()));
     gh.factory<_i554.ApplyCubit>(
         () => _i554.ApplyCubit(gh<_i834.ApplyUseCases>()));
+    gh.factory<_i379.DriverOrdersCubit>(
+        () => _i379.DriverOrdersCubit(gh<_i153.DriverOrdersUseCases>()));
     return this;
   }
 }

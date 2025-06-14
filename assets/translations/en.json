@@ -70,6 +70,7 @@
 
     },
     "Home": {
+        "Orders": "Orders",
         "Home": "Home",
         "Categories": "Categories",
         "Cart": "Cart",

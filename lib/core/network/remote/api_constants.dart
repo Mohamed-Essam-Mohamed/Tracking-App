@@ -8,4 +8,5 @@ abstract class ApiConstants {
   static const String resetPassword = 'drivers/resetPassword';
   static const String orderDetails = 'orders/driver-orders';
   static const String pendingOrders = 'orders/pending-orders';
+  static const String myOrders = 'orders/driver-orders';
 }

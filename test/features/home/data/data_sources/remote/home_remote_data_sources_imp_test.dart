@@ -11,7 +11,7 @@ import 'home_remote_data_sources_imp_test.mocks.dart';
 
 @GenerateMocks([ApiManager, HomeRetrofitClient])
 void main() {
-  group('testing get all pending order data source', () {
+  group('testing get all pending my_orders data source', () {
     late HomeRemoteDataSourcesImp dataSource;
     late MockApiManager mockApiManager;
     late MockHomeRetrofitClient mockClient;
@@ -20,7 +20,7 @@ void main() {
       mockClient = MockHomeRetrofitClient();
       dataSource = HomeRemoteDataSourcesImp(mockApiManager, mockClient);
     });
-    // test('get all pending order should return success', () async {
+    // test('get all pending my_orders should return success', () async {
     //   final successResult =
     //       SuccessResult<ItemOrderDetailsEntity>(const ItemOrderDetailsEntity());
     //   provideDummy<Result<ItemOrderDetailsEntity>>(successResult);

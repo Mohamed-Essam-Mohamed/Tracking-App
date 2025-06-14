@@ -2,7 +2,7 @@ import 'package:dio/dio.dart';
 import 'package:injectable/injectable.dart';
 import 'package:retrofit/http.dart';
 import 'package:tracking_app/core/network/remote/api_constants.dart';
-
+import 'package:retrofit/error_logger.dart';
 part 'profile_retrofit_client.g.dart';
 
 @lazySingleton

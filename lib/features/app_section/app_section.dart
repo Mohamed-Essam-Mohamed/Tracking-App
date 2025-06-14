@@ -6,7 +6,7 @@ import 'package:tracking_app/core/constants/app_assets.dart';
 import 'package:tracking_app/core/constants/app_colors.dart';
 import 'package:tracking_app/core/routes/routes.dart';
 import 'package:tracking_app/features/home/presentation/view/pending_order_screen.dart';
-import 'package:tracking_app/features/order/presentation/view/order_screen.dart';
+import 'package:tracking_app/features/my_orders/presentation/view/driver_orders_screen.dart';
 import 'package:tracking_app/features/profile/presentation/view/profile_screen.dart';
 import 'package:tracking_app/generated/locale_keys.g.dart';
 
@@ -27,7 +27,7 @@ class _AppSectionState extends State<AppSection> {
   int _currentIndex = 0;
   final List<Widget> _pages = [
     const HomeScreen(),
-    const OrderScreen(),
+    const MyOrdersPage(),
     const ProfileScreen(),
   ];
 
@@ -68,7 +68,7 @@ class _AppSectionState extends State<AppSection> {
           BottomNavigationBarItem(
             icon: _iconBar(SvgAsset.order),
             activeIcon: _activeIconBar(SvgAsset.order),
-            label: LocaleKeys.Home_Categories.tr(),
+            label: LocaleKeys.Home_Orders.tr(),
           ),
           BottomNavigationBarItem(
             icon: _iconBar(SvgAsset.person),
