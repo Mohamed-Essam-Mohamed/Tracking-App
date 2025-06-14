@@ -1,4 +1,3 @@
-
 import 'package:easy_localization/easy_localization.dart';
 import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:flutter/material.dart';
@@ -26,7 +25,7 @@ Future<void> main() async {
 
   final pref = await SharedPreferences.getInstance();
   final isLoggedIn = pref.getBool('isLoggedIn') ?? false;
-  final initialRoute = isLoggedIn ? Routes.appSection : Routes.onboarding;
+  final initialRoute = isLoggedIn ? Routes.onboarding : Routes.login;
 
   runApp(EasyLocalization(
     supportedLocales: AppValues.supportedLocales,
@@ -51,7 +50,7 @@ class MyApp extends StatelessWidget {
       theme: AppTheme.lightTheme,
       title: AppValues.appTitle,
       onGenerateRoute: RouteGenerator.getRoute,
-      initialRoute: initialRoute ,
+      initialRoute: initialRoute,
     );
   }
 }

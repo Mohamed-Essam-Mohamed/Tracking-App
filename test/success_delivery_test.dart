@@ -4,6 +4,7 @@
 // import 'package:shared_preferences/shared_preferences.dart';
 // import 'package:tracking_app/core/constants/keys.dart';
 // import 'package:tracking_app/features/auth/presentation/view/success_delivery.dart';
+// import 'package:tracking_app/generated/codegen_loader.g.dart';
 // import 'package:tracking_app/generated/locale_keys.g.dart';
 //
 // void main() {
