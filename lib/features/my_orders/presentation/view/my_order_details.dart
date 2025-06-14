@@ -32,7 +32,7 @@ class _MyOrderDetailsScreenState extends State<MyOrderDetailsScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(LocaleKeys.OrderDetails_orderdetails.tr(),
+        title: Text(LocaleKeys.OrderDetails_orderDetails.tr(),
             style: AppTheme.lightTheme.textTheme.titleLarge),
         leading: const BackButton(),
       ),
@@ -92,7 +92,7 @@ class _MyOrderDetailsScreenState extends State<MyOrderDetailsScreen> {
                         imagePath: widget.order.order?.user?.photo??'',
                       ),
                       const SizedBox(height: 16),
-                      Text(LocaleKeys.OrderDetails_orderdetails.tr(),
+                      Text(LocaleKeys.OrderDetails_orderDetails.tr(),
                           style: AppTheme.lightTheme.textTheme.titleMedium),
                       const SizedBox(height: 8),
                       ...List.generate(widget.order.order?.orderItems?.length ?? 0, (index) {
