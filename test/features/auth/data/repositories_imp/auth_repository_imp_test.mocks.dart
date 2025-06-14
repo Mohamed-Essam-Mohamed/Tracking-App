@@ -4,35 +4,34 @@
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
 import 'dart:async' as _i3;
+import 'dart:io' as _i17;
 
-import 'package:dio/dio.dart' as _i16;
+import 'package:dio/dio.dart' as _i14;
 import 'package:mockito/mockito.dart' as _i1;
 import 'package:mockito/src/dummies.dart' as _i7;
 import 'package:tracking_app/core/network/common/api_result.dart' as _i4;
+import 'package:tracking_app/features/auth/data/models/request/edit_profile_request.dart'
+    as _i16;
 import 'package:tracking_app/features/auth/data/models/request/forget_request_dto.dart'
-    as _i11;
+    as _i9;
 import 'package:tracking_app/features/auth/data/models/request/login/login_request_dto.dart'
     as _i6;
 import 'package:tracking_app/features/auth/data/models/response/forget_response_dto.dart'
-    as _i10;
-import 'package:tracking_app/features/auth/data/models/response/login/driver_data_dto.dart'
     as _i8;
 import 'package:tracking_app/features/auth/data/models/response/login/login_response_dto.dart'
     as _i5;
-import 'package:tracking_app/features/auth/data/models/response/login/vehicle_type_dto.dart'
-    as _i9;
 import 'package:tracking_app/features/auth/data/models/response/reset_password_request.dart'
-    as _i14;
-import 'package:tracking_app/features/auth/data/models/response/reset_password_response.dart'
-    as _i13;
-import 'package:tracking_app/features/auth/data/models/response/verify_code_request.dart'
     as _i12;
+import 'package:tracking_app/features/auth/data/models/response/reset_password_response.dart'
+    as _i11;
+import 'package:tracking_app/features/auth/data/models/response/verify_code_request.dart'
+    as _i10;
 import 'package:tracking_app/features/auth/domain/data_sources/remote/remote_auth_data_source.dart'
     as _i2;
 import 'package:tracking_app/features/auth/domain/entities/apply_entity.dart'
-    as _i15;
+    as _i13;
 import 'package:tracking_app/features/auth/domain/entities/vehicles_entitiy.dart'
-    as _i17;
+    as _i15;
 
 // ignore_for_file: type=lint
 // ignore_for_file: avoid_redundant_argument_values
@@ -73,51 +72,23 @@ class MockRemoteAuthDataSource extends _i1.Mock
           as _i3.Future<_i4.Result<_i5.LoginResponseDto?>>);
 
   @override
-  _i3.Future<_i4.Result<_i8.DriverDataDto?>> getDriverData() =>
-      (super.noSuchMethod(
-            Invocation.method(#getDriverData, []),
-            returnValue: _i3.Future<_i4.Result<_i8.DriverDataDto?>>.value(
-              _i7.dummyValue<_i4.Result<_i8.DriverDataDto?>>(
-                this,
-                Invocation.method(#getDriverData, []),
-              ),
-            ),
-          )
-          as _i3.Future<_i4.Result<_i8.DriverDataDto?>>);
-
-  @override
-  _i3.Future<_i4.Result<_i9.VehicleTypeDto?>> getVehicleType(
-    String? vehicleType,
-  ) =>
-      (super.noSuchMethod(
-            Invocation.method(#getVehicleType, [vehicleType]),
-            returnValue: _i3.Future<_i4.Result<_i9.VehicleTypeDto?>>.value(
-              _i7.dummyValue<_i4.Result<_i9.VehicleTypeDto?>>(
-                this,
-                Invocation.method(#getVehicleType, [vehicleType]),
-              ),
-            ),
-          )
-          as _i3.Future<_i4.Result<_i9.VehicleTypeDto?>>);
-
-  @override
-  _i3.Future<_i4.Result<_i10.ForgetResponseDto?>> forgetPassword(
-    _i11.ForgetRequestDto? forgetRequest,
+  _i3.Future<_i4.Result<_i8.ForgetResponseDto?>> forgetPassword(
+    _i9.ForgetRequestDto? forgetRequest,
   ) =>
       (super.noSuchMethod(
             Invocation.method(#forgetPassword, [forgetRequest]),
-            returnValue: _i3.Future<_i4.Result<_i10.ForgetResponseDto?>>.value(
-              _i7.dummyValue<_i4.Result<_i10.ForgetResponseDto?>>(
+            returnValue: _i3.Future<_i4.Result<_i8.ForgetResponseDto?>>.value(
+              _i7.dummyValue<_i4.Result<_i8.ForgetResponseDto?>>(
                 this,
                 Invocation.method(#forgetPassword, [forgetRequest]),
               ),
             ),
           )
-          as _i3.Future<_i4.Result<_i10.ForgetResponseDto?>>);
+          as _i3.Future<_i4.Result<_i8.ForgetResponseDto?>>);
 
   @override
   _i3.Future<_i4.Result<String?>> verifyCode(
-    _i12.VerifyCodeRequest? verifyCode,
+    _i10.VerifyCodeRequest? verifyCode,
   ) =>
       (super.noSuchMethod(
             Invocation.method(#verifyCode, [verifyCode]),
@@ -131,44 +102,72 @@ class MockRemoteAuthDataSource extends _i1.Mock
           as _i3.Future<_i4.Result<String?>>);
 
   @override
-  _i3.Future<_i4.Result<_i13.ResetPasswordResponse?>> resetPassword(
-    _i14.ResetPasswordRequest? resetPasswordRequest,
+  _i3.Future<_i4.Result<_i11.ResetPasswordResponse?>> resetPassword(
+    _i12.ResetPasswordRequest? resetPasswordRequest,
   ) =>
       (super.noSuchMethod(
             Invocation.method(#resetPassword, [resetPasswordRequest]),
             returnValue:
-                _i3.Future<_i4.Result<_i13.ResetPasswordResponse?>>.value(
-                  _i7.dummyValue<_i4.Result<_i13.ResetPasswordResponse?>>(
+                _i3.Future<_i4.Result<_i11.ResetPasswordResponse?>>.value(
+                  _i7.dummyValue<_i4.Result<_i11.ResetPasswordResponse?>>(
                     this,
                     Invocation.method(#resetPassword, [resetPasswordRequest]),
                   ),
                 ),
           )
-          as _i3.Future<_i4.Result<_i13.ResetPasswordResponse?>>);
+          as _i3.Future<_i4.Result<_i11.ResetPasswordResponse?>>);
 
   @override
-  _i3.Future<_i4.Result<_i15.ApplyEntity>> apply(_i16.FormData? formData) =>
+  _i3.Future<_i4.Result<_i13.ApplyEntity>> apply(_i14.FormData? formData) =>
       (super.noSuchMethod(
             Invocation.method(#apply, [formData]),
-            returnValue: _i3.Future<_i4.Result<_i15.ApplyEntity>>.value(
-              _i7.dummyValue<_i4.Result<_i15.ApplyEntity>>(
+            returnValue: _i3.Future<_i4.Result<_i13.ApplyEntity>>.value(
+              _i7.dummyValue<_i4.Result<_i13.ApplyEntity>>(
                 this,
                 Invocation.method(#apply, [formData]),
               ),
             ),
           )
-          as _i3.Future<_i4.Result<_i15.ApplyEntity>>);
+          as _i3.Future<_i4.Result<_i13.ApplyEntity>>);
 
   @override
-  _i3.Future<_i4.Result<_i17.VehiclesModelEntity>> getAllVehicles() =>
+  _i3.Future<_i4.Result<_i15.VehiclesModelEntity>> getAllVehicles() =>
       (super.noSuchMethod(
             Invocation.method(#getAllVehicles, []),
-            returnValue: _i3.Future<_i4.Result<_i17.VehiclesModelEntity>>.value(
-              _i7.dummyValue<_i4.Result<_i17.VehiclesModelEntity>>(
+            returnValue: _i3.Future<_i4.Result<_i15.VehiclesModelEntity>>.value(
+              _i7.dummyValue<_i4.Result<_i15.VehiclesModelEntity>>(
                 this,
                 Invocation.method(#getAllVehicles, []),
               ),
             ),
           )
-          as _i3.Future<_i4.Result<_i17.VehiclesModelEntity>>);
+          as _i3.Future<_i4.Result<_i15.VehiclesModelEntity>>);
+
+  @override
+  _i3.Future<_i4.Result<String>> editProfile(
+    _i16.EditProfileRequest? request,
+  ) =>
+      (super.noSuchMethod(
+            Invocation.method(#editProfile, [request]),
+            returnValue: _i3.Future<_i4.Result<String>>.value(
+              _i7.dummyValue<_i4.Result<String>>(
+                this,
+                Invocation.method(#editProfile, [request]),
+              ),
+            ),
+          )
+          as _i3.Future<_i4.Result<String>>);
+
+  @override
+  _i3.Future<_i4.Result<String>> uploadPhoto(_i17.File? request) =>
+      (super.noSuchMethod(
+            Invocation.method(#uploadPhoto, [request]),
+            returnValue: _i3.Future<_i4.Result<String>>.value(
+              _i7.dummyValue<_i4.Result<String>>(
+                this,
+                Invocation.method(#uploadPhoto, [request]),
+              ),
+            ),
+          )
+          as _i3.Future<_i4.Result<String>>);
 }

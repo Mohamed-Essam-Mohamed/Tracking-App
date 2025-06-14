@@ -1,6 +1,9 @@
+import 'dart:io';
+
 import 'package:dio/dio.dart';
 import 'package:injectable/injectable.dart';
 import 'package:tracking_app/core/network/common/api_result.dart';
+import 'package:tracking_app/features/auth/data/models/request/edit_profile_request.dart';
 import 'package:tracking_app/features/auth/data/models/request/forget_request_dto.dart';
 import 'package:tracking_app/features/auth/data/models/response/forget_response_dto.dart';
 import 'package:tracking_app/features/auth/data/models/response/login/driver_data_dto.dart';
@@ -109,4 +112,15 @@ class AuthRepositoryImp implements AuthRepository {
 
 
 
+
+  @override
+  Future<Result<String>> editProfile(EditProfileRequest request) async{
+    final result = await _dataSource.editProfile(request);
+    return result;
+  }
+  @override
+  Future<Result<String>> uploadPhoto(File request) async{
+    final result = await _dataSource.uploadPhoto(request);
+    return result;
+  }
 }
