@@ -17,8 +17,7 @@ import 'package:pretty_dio_logger/pretty_dio_logger.dart' as _i528;
 import 'package:tracking_app/core/logger/logger_module.dart' as _i403;
 import 'package:tracking_app/core/network/remote/api_manager.dart' as _i481;
 import 'package:tracking_app/core/network/remote/dio_module.dart' as _i896;
-import 'package:tracking_app/features/auth/data/api/auth_retrofit_client.dart'
-    as _i272;
+import 'package:tracking_app/features/auth/data/api/auth_retrofit_client.dart' as _i272;
 import 'package:tracking_app/features/auth/data/data_sources_imp/remote/remote_auth_data_source_imp.dart'
     as _i121;
 import 'package:tracking_app/features/auth/data/repositories_imp/auth_repository_imp.dart'
@@ -33,8 +32,11 @@ import 'package:tracking_app/features/auth/domain/use_cases/email_verification_u
     as _i12;
 import 'package:tracking_app/features/auth/domain/use_cases/forget_password_use_case.dart'
     as _i717;
-import 'package:tracking_app/features/auth/domain/use_cases/login_use_case.dart'
-    as _i862;
+import 'package:tracking_app/features/auth/domain/use_cases/get_driver_data_use_case.dart'
+    as _i48;
+import 'package:tracking_app/features/auth/domain/use_cases/get_vehicle_type_use_case.dart'
+    as _i371;
+import 'package:tracking_app/features/auth/domain/use_cases/login_use_case.dart' as _i862;
 import 'package:tracking_app/features/auth/domain/use_cases/reset_password_use_case.dart'
     as _i44;
 import 'package:tracking_app/features/auth/presentation/view_model/apply/apply_cubit.dart'
@@ -43,8 +45,7 @@ import 'package:tracking_app/features/auth/presentation/view_model/forget_passwo
     as _i943;
 import 'package:tracking_app/features/auth/presentation/view_model/login/login_cubit.dart'
     as _i578;
-import 'package:tracking_app/features/home/data/api/home_retrofit_client.dart'
-    as _i95;
+import 'package:tracking_app/features/home/data/api/home_retrofit_client.dart' as _i95;
 import 'package:tracking_app/features/home/data/data_sources/remote/home_remote_data_sources_imp.dart'
     as _i35;
 import 'package:tracking_app/features/home/data/repositories_impl/home_repository_imp.dart'
@@ -93,9 +94,12 @@ extension GetItInjectableX on _i174.GetIt {
     gh.singleton<_i481.ApiManager>(() => _i481.ApiManager());
     gh.lazySingleton<_i974.Logger>(() => loggerModule.loggerProvider);
     gh.lazySingleton<_i974.PrettyPrinter>(() => loggerModule.prettyPrinter);
-    gh.lazySingleton<_i361.Dio>(() => dioModule.provideDio());
-    gh.lazySingleton<_i528.PrettyDioLogger>(
-        () => dioModule.providerInterceptor());
+    gh.lazySingleton<_i528.PrettyDioLogger>(() => dioModule.providerInterceptor());
+    gh.lazySingleton<_i896.AuthInterceptor>(() => dioModule.provideAuthInterceptor());
+    gh.lazySingleton<_i361.Dio>(() => dioModule.provideDio(
+          gh<_i528.PrettyDioLogger>(),
+          gh<_i896.AuthInterceptor>(),
+        ));
     gh.lazySingleton<_i272.AuthRetrofitClient>(
         () => _i272.AuthRetrofitClient(gh<_i361.Dio>()));
     gh.lazySingleton<_i95.HomeRetrofitClient>(
@@ -130,14 +134,13 @@ extension GetItInjectableX on _i174.GetIt {
         () => _i12.EmailVerificationUseCase(gh<_i632.AuthRepository>()));
     gh.factory<_i717.ForgetPasswordUseCase>(
         () => _i717.ForgetPasswordUseCase(gh<_i632.AuthRepository>()));
-    gh.factory<_i862.LoginUseCase>(
-        () => _i862.LoginUseCase(gh<_i632.AuthRepository>()));
+    gh.factory<_i48.GetDriverDataUseCase>(
+        () => _i48.GetDriverDataUseCase(gh<_i632.AuthRepository>()));
+    gh.factory<_i371.GetVehicleTypeUseCase>(
+        () => _i371.GetVehicleTypeUseCase(gh<_i632.AuthRepository>()));
+    gh.factory<_i862.LoginUseCase>(() => _i862.LoginUseCase(gh<_i632.AuthRepository>()));
     gh.factory<_i44.ResetPasswordUseCase>(
         () => _i44.ResetPasswordUseCase(gh<_i632.AuthRepository>()));
-    gh.factory<_i213.ChangePasswordCubit>(
-        () => _i213.ChangePasswordCubit(gh<_i163.ChangePasswordUseCase>()));
-    gh.factory<_i578.LoginCubit>(
-        () => _i578.LoginCubit(gh<_i862.LoginUseCase>()));
     gh.factory<_i834.ApplyUseCases>(
         () => _i834.ApplyUseCases(gh<_i632.AuthRepository>()));
     gh.factory<_i943.ForgetPasswordCubit>(() => _i943.ForgetPasswordCubit(
@@ -147,8 +150,12 @@ extension GetItInjectableX on _i174.GetIt {
         ));
     gh.factory<_i175.PendingOrderCubit>(
         () => _i175.PendingOrderCubit(gh<_i505.GetAllPendingOrderUseCase>()));
-    gh.factory<_i554.ApplyCubit>(
-        () => _i554.ApplyCubit(gh<_i834.ApplyUseCases>()));
+    gh.factory<_i554.ApplyCubit>(() => _i554.ApplyCubit(gh<_i834.ApplyUseCases>()));
+    gh.factory<_i578.LoginCubit>(() => _i578.LoginCubit(
+          gh<_i862.LoginUseCase>(),
+          gh<_i48.GetDriverDataUseCase>(),
+          gh<_i371.GetVehicleTypeUseCase>(),
+        ));
     return this;
   }
 }

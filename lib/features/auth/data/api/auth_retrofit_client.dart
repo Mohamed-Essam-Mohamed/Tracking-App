@@ -7,7 +7,9 @@ import 'package:tracking_app/features/auth/data/models/apply_model.dart';
 import 'package:tracking_app/features/auth/data/models/request/forget_request_dto.dart';
 import 'package:tracking_app/features/auth/data/models/request/login/login_request_dto.dart';
 import 'package:tracking_app/features/auth/data/models/response/forget_response_dto.dart';
+import 'package:tracking_app/features/auth/data/models/response/login/driver_data_dto.dart';
 import 'package:tracking_app/features/auth/data/models/response/login/login_response_dto.dart';
+import 'package:tracking_app/features/auth/data/models/response/login/vehicle_type_dto.dart';
 import 'package:tracking_app/features/auth/data/models/response/reset_password_request.dart';
 import 'package:tracking_app/features/auth/data/models/response/reset_password_response.dart';
 import 'package:tracking_app/features/auth/data/models/response/verify_code_request.dart';
@@ -26,8 +28,15 @@ abstract class AuthRetrofitClient {
   @GET(ApiConstants.vehicles)
   Future<VehiclesModelDto> getAllVehicles();
 
+
   @POST(ApiConstants.loginRoute)
   Future<LoginResponseDto> login(@Body() LoginRequestDto loginRequest);
+
+  @GET(ApiConstants.profileData)
+  Future<DriverDataDto> getDriverData();
+
+  @GET('${ApiConstants.getVehicle}/{id}')
+  Future<VehicleTypeDto> getVehicle(@Path('id') String vehicleType);
 
   @POST(ApiConstants.forgetPassword)
   Future<ForgetResponseDto> forgetPassword(@Body() ForgetRequestDto forgetRequest);
