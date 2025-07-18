@@ -10,8 +10,8 @@ import 'package:tracking_app/features/auth/domain/repositories/auth_repository.d
 class EditVechileUsecase {
   EditVechileUsecase(this.authRepository);
   AuthRepository authRepository;
-  Future<Result<EditVechileEntite>> apply(FormData formData) {
-    return authRepository.editVeicle(formData);
+  Future<Result<String>> apply(FormData formData,String id) {
+    return authRepository.editVeicle(formData,id);
   }
 
   Future<Result<VehiclesModelEntity>> getAllVehicles() {

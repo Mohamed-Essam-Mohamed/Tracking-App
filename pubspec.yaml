@@ -64,6 +64,7 @@ dependencies:
   firebase_messaging: ^15.2.5   
   retry: ^3.1.2
   timelines: ^0.1.0
+  transparent_image: ^2.0.1
   
   
 dev_dependencies:

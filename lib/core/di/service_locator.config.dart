@@ -33,6 +33,8 @@ import 'package:tracking_app/features/auth/domain/use_cases/apply_use_cases.dart
     as _i834;
 import 'package:tracking_app/features/auth/domain/use_cases/edit_profile_use_case.dart'
     as _i243;
+import 'package:tracking_app/features/auth/domain/use_cases/edit_vechile_usecase.dart'
+    as _i176;
 import 'package:tracking_app/features/auth/domain/use_cases/email_verification_use_case.dart'
     as _i12;
 import 'package:tracking_app/features/auth/domain/use_cases/forget_password_use_case.dart'
@@ -51,6 +53,8 @@ import 'package:tracking_app/features/auth/presentation/view_model/apply/apply_c
     as _i554;
 import 'package:tracking_app/features/auth/presentation/view_model/cubit/edit_profile_cubit.dart'
     as _i758;
+import 'package:tracking_app/features/auth/presentation/view_model/cubit/edit_vechile_cubit.dart'
+    as _i864;
 import 'package:tracking_app/features/auth/presentation/view_model/forget_password/forget_password_cubit.dart'
     as _i943;
 import 'package:tracking_app/features/auth/presentation/view_model/login/login_cubit.dart'
@@ -166,6 +170,8 @@ extension GetItInjectableX on _i174.GetIt {
         () => _i799.UploadPhotoUseCase(gh<_i632.AuthRepository>()));
     gh.factory<_i834.ApplyUseCases>(
         () => _i834.ApplyUseCases(gh<_i632.AuthRepository>()));
+    gh.factory<_i176.EditVechileUsecase>(
+        () => _i176.EditVechileUsecase(gh<_i632.AuthRepository>()));
     gh.factory<_i943.ForgetPasswordCubit>(() => _i943.ForgetPasswordCubit(
           gh<_i717.ForgetPasswordUseCase>(),
           gh<_i12.EmailVerificationUseCase>(),
@@ -177,6 +183,8 @@ extension GetItInjectableX on _i174.GetIt {
         ));
     gh.factory<_i175.PendingOrderCubit>(
         () => _i175.PendingOrderCubit(gh<_i505.GetAllPendingOrderUseCase>()));
+    gh.factory<_i864.VehicleCubit>(
+        () => _i864.VehicleCubit(gh<_i176.EditVechileUsecase>()));
     gh.factory<_i554.ApplyCubit>(
         () => _i554.ApplyCubit(gh<_i834.ApplyUseCases>()));
     gh.factory<_i578.LoginCubit>(() => _i578.LoginCubit(

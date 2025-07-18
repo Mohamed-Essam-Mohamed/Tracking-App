@@ -1,16 +1,18 @@
 import 'dart:io';
+import 'dart:ui';
 import 'package:flutter/material.dart';
+  import 'package:transparent_image/transparent_image.dart';
 import 'package:tracking_app/core/extentions/media_query_extensions.dart';
 import 'package:tracking_app/features/auth/presentation/widgets/show_model_bootom_sheet.dart';
-
 import '../../../../core/constants/app_colors.dart';
 import '../view_model/cubit/edit_profile_cubit.dart';
 
-Widget buildProfileImage(EditProfileCubit cubit,BuildContext context, String url) {
+Widget buildProfileImage(EditProfileCubit cubit, BuildContext context, String url) {
+  final radius = context.sp(55);
+
   return Stack(
     alignment: Alignment.bottomRight,
     children: [
-
       GestureDetector(
         onTap: () {
           Navigator.of(context).push(
@@ -26,16 +28,48 @@ Widget buildProfileImage(EditProfileCubit cubit,BuildContext context, String url
         },
         child: Hero(
           tag: 'profileImage',
-          child: CircleAvatar(
-            radius: context.sp(55),
-            backgroundImage: cubit.image == null
-                ? NetworkImage(url)
-                : FileImage(cubit.image!) as ImageProvider,
+          child: ClipOval(
+            child: cubit.image != null
+                ? Image.file(
+              cubit.image!,
+              width: radius * 2,
+              height: radius * 2,
+              fit: BoxFit.cover,
+            )
+                : Stack(
+              alignment: Alignment.center,
+              children: [
+                // Blurred loading image
+                ClipOval(
+                  child: ImageFiltered(
+                    imageFilter: ImageFilter.blur(sigmaX: 8, sigmaY: 8),
+                    child: Image.network(
+                      url,
+                      width: radius * 2,
+                      height: radius * 2,
+                      fit: BoxFit.cover,
+                    ),
+                  ),
+                ),
+
+                // Actual image fades in on top
+                ClipOval(
+                  child: FadeInImage(
+                    placeholder: MemoryImage(kTransparentImage),
+                    image: NetworkImage(url),
+                    width: radius * 2,
+                    height: radius * 2,
+                    fit: BoxFit.cover,
+                    fadeInDuration: const Duration(milliseconds: 500),
+                  ),
+                ),
+              ],
+            ),
           ),
         ),
       ),
 
-
+      // Camera icon button
       Positioned(
         bottom: 0,
         right: 0,
@@ -48,15 +82,17 @@ Widget buildProfileImage(EditProfileCubit cubit,BuildContext context, String url
               color: AppColors.lightPink,
               borderRadius: BorderRadius.circular(8),
             ),
-            child: Icon(Icons.camera_alt_outlined, color: AppColors.gray, size: context.sp(25)),
+            child: Icon(
+              Icons.camera_alt_outlined,
+              color: AppColors.gray,
+              size: context.sp(25),
+            ),
           ),
         ),
       ),
     ],
   );
 }
-
-
 
 class FullScreenImagePage extends StatelessWidget {
   final File? imageFile;
@@ -77,8 +113,8 @@ class FullScreenImagePage extends StatelessWidget {
     return Scaffold(
       backgroundColor: Colors.transparent,
       body: GestureDetector(
-        behavior: HitTestBehavior.opaque, // makes whole screen tappable
-        onTap: () => Navigator.of(context).pop(), // tap anywhere to go back
+        behavior: HitTestBehavior.opaque,
+        onTap: () => Navigator.of(context).pop(),
         child: Center(
           child: Hero(
             tag: 'profileImage',

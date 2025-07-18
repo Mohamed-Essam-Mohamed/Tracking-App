@@ -26,7 +26,7 @@ abstract class RemoteAuthDataSource {
   Future<Result<ResetPasswordResponse?>> resetPassword(
       ResetPasswordRequest resetPasswordRequest);
   Future<Result<ApplyEntity>> apply(FormData formData);
-  Future<Result<EditVechileEntite>> editVeicle(FormData formData);
+  Future<Result<String>> editVeicle(FormData formData,String id);
 
   Future<Result<VehiclesModelEntity>> getAllVehicles();
   Future<Result<String>>editProfile(EditProfileRequest request);

@@ -157,17 +157,17 @@ class RemoteAuthDataSourceImp extends RemoteAuthDataSource {
   }
 
   @override
-  Future<Result<EditVechileEntite>> editVeicle(FormData formData,String id) async{
-    final result = await _apiManager.execute<EditVechileModel>(() async {
+  Future<Result<String>> editVeicle(FormData formData,String id) async{
+    final result = await _apiManager.execute<ApplyModelDto>(() async {
       final response = await _apiService.editVeicle(id,formData);
       return response;
     });
 
     switch (result) {
-      case SuccessResult<EditVechileModel>():
-        return SuccessResult<EditVechileEntite>(result);
-      case FailureResult<EditVechileModel>():
-        return FailureResult<EditVechileEntite>(result.exception);
+      case SuccessResult<ApplyModelDto>():
+        return SuccessResult<String>(result.data.message.toString());
+      case FailureResult<ApplyModelDto>():
+        return FailureResult<String>(result.exception);
     }
   }
 

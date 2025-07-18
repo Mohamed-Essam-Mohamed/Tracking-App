@@ -52,9 +52,7 @@ class CustomTextFormField extends StatelessWidget {
                 width: context.wp(0.3),
                 color: errorText != null ? AppColors.red : AppColors.gray,
               ), ),
-            hintStyle: TextStyle(
-              color: Colors.black54, // Same color as hint text in enabled state
-            ),
+            hintStyle: AppTheme.lightTheme.textTheme.bodyMedium!.copyWith(color: Colors.black),
             focusedBorder: OutlineInputBorder(
               borderSide: BorderSide(
                 width: context.wp(0.3),

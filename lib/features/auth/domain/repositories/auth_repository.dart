@@ -19,7 +19,7 @@ import 'package:tracking_app/features/auth/domain/entities/vehicles_entitiy.dart
 
 abstract class AuthRepository {
   Future<Result<ApplyEntity>> apply(FormData formData);
-  Future<Result<EditVechileEntite>> editVeicle(FormData formData);
+  Future<Result<String>> editVeicle(FormData formData,String id);
 
   Future<Result<VehiclesModelEntity>> getAllVehicles();
   Future<Result<LoginResponseEntity?>> login(LoginRequestEntity? loginRequest);

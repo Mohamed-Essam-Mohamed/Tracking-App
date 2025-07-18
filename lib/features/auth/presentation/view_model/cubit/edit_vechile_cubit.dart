@@ -28,6 +28,20 @@ class VehicleCubit extends Cubit<ApplyState> {
       emit(VehiclesErrorState(e.toString()));
     }
   }
+  void apply() async {
+    emit(VehiclesLoadingState());
+    try {
+      final result = await editVechileUsecase.getAllVehicles();
+      if (result is SuccessResult<VehiclesModelEntity>) {
+        vehiclesList = result.data.vehicles ?? [];
+        emit(VehiclesSuccessState(result.data));
+      } else if (result is FailureResult<VehiclesModelEntity>) {
+        emit(VehiclesErrorState(result.exception.toString()));
+      }
+    } catch (e) {
+      emit(VehiclesErrorState(e.toString()));
+    }
+  }
 
 // Optional: Add a method to submit or update vehicle info later if needed
 }

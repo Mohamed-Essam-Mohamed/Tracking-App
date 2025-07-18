@@ -45,11 +45,10 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
   void initState() {
     super.initState();
     cubit = serviceLocator.get<EditProfileCubit>();
-    firstNameC = TextEditingController(text: widget.userData.firstName);
-    lastNameC = TextEditingController(text: widget.userData.lastName);
-    emailC = TextEditingController(text: widget.userData.email);
-    phoneC = TextEditingController(text: widget.userData.phone);
-
+    firstNameC = TextEditingController();
+    lastNameC = TextEditingController();
+    emailC = TextEditingController();
+    phoneC = TextEditingController();
   }
 
   @override
@@ -120,9 +119,9 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                   Row(
                     children: [
                       Expanded(
-                          child: CustomTextFormField(
+                          child:CustomTextFormField(
                             controller: firstNameC,
-                            hint: "",
+                            hint: widget.userData.firstName ?? "",
                             label: LocaleKeys.Authentication_FirstName.tr(),
                           )),
                       SizedBox(
@@ -131,9 +130,9 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                       Expanded(
                           child: CustomTextFormField(
                             controller: lastNameC,
-                            hint: "",
+                            hint: widget.userData.lastName ?? "",
                             label: LocaleKeys.Authentication_LastName.tr(),
-                          )),
+                          ),),
                     ],
                   ),
                   SizedBox(
@@ -141,7 +140,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                   ),
                   CustomTextFormField(
                     controller: emailC,
-                    hint: "",
+                    hint: widget.userData.email ?? "",
                     label: LocaleKeys.Authentication_Email.tr(),
                   ),
                   SizedBox(
@@ -149,7 +148,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                   ),
                   CustomTextFormField(
                     controller: phoneC,
-                    hint: "",
+                    hint: widget.userData.phone ?? "",
                     label: LocaleKeys.Authentication_PhoneNumber.tr(),
                   ),
                   SizedBox(

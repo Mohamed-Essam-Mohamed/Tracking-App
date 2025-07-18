@@ -126,7 +126,7 @@ class AuthRepositoryImp implements AuthRepository {
   }
 
   @override
-  Future<Result<EditVechileEntite>> editVeicle(FormData formData) async {
-    return await _dataSource.editVeicle(formData);
+  Future<Result<String>> editVeicle(FormData formData,String id) async {
+    return await _dataSource.editVeicle(formData,id);
   }
 }
