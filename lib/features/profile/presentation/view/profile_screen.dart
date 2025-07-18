@@ -50,20 +50,22 @@ class ProfileScreen extends StatelessWidget {
               builder: (context, state) {
                 if (state.isGetProfileLoading || state.isGetProfileFailure) {
                   return const Skeletonizer(
-                    child: Column(
-                      spacing: 24,
-                      children: [
-                        InfoDriverWidget(
-                          imageUrl: defaultImage,
-                          email: 'OxJt2@example.com',
-                          name: 'John Doe',
-                          phone: '+20123456789',
-                        ),
-                        InfoVehicleWidget(
-                          vehicleType: 'Truck',
-                          vehicleId: '1234567890',
-                        ),
-                      ],
+                    child: InkWell(
+                      child: Column(
+                        spacing: 24,
+                        children: [
+                          InfoDriverWidget(
+                            imageUrl: defaultImage,
+                            email: 'OxJt2@example.com',
+                            name: 'John Doe',
+                            phone: '+20123456789',
+                          ),
+                          InfoVehicleWidget(
+                            vehicleType: 'Truck',
+                            vehicleId: '1234567890',
+                          ),
+                        ],
+                      ),
                     ),
                   );
                 }

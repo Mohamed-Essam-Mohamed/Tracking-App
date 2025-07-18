@@ -73,6 +73,22 @@ class MockAuthRepository extends _i1.Mock implements _i2.AuthRepository {
           as _i3.Future<_i4.Result<_i5.ApplyEntity>>);
 
   @override
+  _i3.Future<_i4.Result<String>> editVeicle(
+    _i6.FormData? formData,
+    String? id,
+  ) =>
+      (super.noSuchMethod(
+            Invocation.method(#editVeicle, [formData, id]),
+            returnValue: _i3.Future<_i4.Result<String>>.value(
+              _i7.dummyValue<_i4.Result<String>>(
+                this,
+                Invocation.method(#editVeicle, [formData, id]),
+              ),
+            ),
+          )
+          as _i3.Future<_i4.Result<String>>);
+
+  @override
   _i3.Future<_i4.Result<_i8.VehiclesModelEntity>> getAllVehicles() =>
       (super.noSuchMethod(
             Invocation.method(#getAllVehicles, []),

@@ -4,14 +4,14 @@
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
 import 'dart:async' as _i3;
-import 'dart:io' as _i20;
+import 'dart:io' as _i19;
 
 import 'package:dio/dio.dart' as _i16;
 import 'package:mockito/mockito.dart' as _i1;
 import 'package:mockito/src/dummies.dart' as _i7;
 import 'package:tracking_app/core/network/common/api_result.dart' as _i4;
 import 'package:tracking_app/features/auth/data/models/request/edit_profile_request.dart'
-    as _i19;
+    as _i18;
 import 'package:tracking_app/features/auth/data/models/request/forget_request_dto.dart'
     as _i11;
 import 'package:tracking_app/features/auth/data/models/request/login/login_request_dto.dart'
@@ -34,10 +34,8 @@ import 'package:tracking_app/features/auth/domain/data_sources/remote/remote_aut
     as _i2;
 import 'package:tracking_app/features/auth/domain/entities/apply_entity.dart'
     as _i15;
-import 'package:tracking_app/features/auth/domain/entities/edit_vechile_entite.dart'
-    as _i17;
 import 'package:tracking_app/features/auth/domain/entities/vehicles_entitiy.dart'
-    as _i18;
+    as _i17;
 
 // ignore_for_file: type=lint
 // ignore_for_file: avoid_redundant_argument_values
@@ -165,36 +163,37 @@ class MockRemoteAuthDataSource extends _i1.Mock
           as _i3.Future<_i4.Result<_i15.ApplyEntity>>);
 
   @override
-  _i3.Future<_i4.Result<_i17.EditVechileEntite>> editVeicle(
+  _i3.Future<_i4.Result<String>> editVeicle(
     _i16.FormData? formData,
+    String? id,
   ) =>
       (super.noSuchMethod(
-            Invocation.method(#editVeicle, [formData]),
-            returnValue: _i3.Future<_i4.Result<_i17.EditVechileEntite>>.value(
-              _i7.dummyValue<_i4.Result<_i17.EditVechileEntite>>(
+            Invocation.method(#editVeicle, [formData, id]),
+            returnValue: _i3.Future<_i4.Result<String>>.value(
+              _i7.dummyValue<_i4.Result<String>>(
                 this,
-                Invocation.method(#editVeicle, [formData]),
+                Invocation.method(#editVeicle, [formData, id]),
               ),
             ),
           )
-          as _i3.Future<_i4.Result<_i17.EditVechileEntite>>);
+          as _i3.Future<_i4.Result<String>>);
 
   @override
-  _i3.Future<_i4.Result<_i18.VehiclesModelEntity>> getAllVehicles() =>
+  _i3.Future<_i4.Result<_i17.VehiclesModelEntity>> getAllVehicles() =>
       (super.noSuchMethod(
             Invocation.method(#getAllVehicles, []),
-            returnValue: _i3.Future<_i4.Result<_i18.VehiclesModelEntity>>.value(
-              _i7.dummyValue<_i4.Result<_i18.VehiclesModelEntity>>(
+            returnValue: _i3.Future<_i4.Result<_i17.VehiclesModelEntity>>.value(
+              _i7.dummyValue<_i4.Result<_i17.VehiclesModelEntity>>(
                 this,
                 Invocation.method(#getAllVehicles, []),
               ),
             ),
           )
-          as _i3.Future<_i4.Result<_i18.VehiclesModelEntity>>);
+          as _i3.Future<_i4.Result<_i17.VehiclesModelEntity>>);
 
   @override
   _i3.Future<_i4.Result<String>> editProfile(
-    _i19.EditProfileRequest? request,
+    _i18.EditProfileRequest? request,
   ) =>
       (super.noSuchMethod(
             Invocation.method(#editProfile, [request]),
@@ -208,7 +207,7 @@ class MockRemoteAuthDataSource extends _i1.Mock
           as _i3.Future<_i4.Result<String>>);
 
   @override
-  _i3.Future<_i4.Result<String>> uploadPhoto(_i20.File? request) =>
+  _i3.Future<_i4.Result<String>> uploadPhoto(_i19.File? request) =>
       (super.noSuchMethod(
             Invocation.method(#uploadPhoto, [request]),
             returnValue: _i3.Future<_i4.Result<String>>.value(
