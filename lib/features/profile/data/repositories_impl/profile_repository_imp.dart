@@ -7,6 +7,7 @@ import 'package:tracking_app/features/profile/domain/data_source/profile_data_so
 import 'package:tracking_app/features/profile/domain/entities/logout/logout_response_entity.dart';
 import 'package:tracking_app/features/profile/domain/entities/change_password/change_password__request_entity.dart';
 import 'package:tracking_app/features/profile/domain/entities/change_password/change_password__response_entity.dart';
+import 'package:tracking_app/features/profile/domain/entities/profile_data/profile_data_entity.dart';
 import 'package:tracking_app/features/profile/domain/repositories/profile_repository.dart';
 
 @Injectable(as: ProfileRepository)
@@ -38,6 +39,10 @@ class ProfileRepositoryImp implements ProfileRepository {
     }
     return FailureResult(Exception("Unknown error occurred"));
   }
+
+  @override
+  Future<Result<ProfileDataEntity>> getProfileData() async =>
+      _profileDataSource.getProfileData();
 }
 
 

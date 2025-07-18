@@ -70,6 +70,7 @@ abstract class  LocaleKeys {
   static const Profile_ResetPassword = 'Profile.ResetPassword';
   static const Profile_Update = 'Profile.Update';
   static const Profile = 'Profile';
+  static const Home_Orders = 'Home.Orders';
   static const Home_Home = 'Home.Home';
   static const Home_Categories = 'Home.Categories';
   static const Home_Cart = 'Home.Cart';

@@ -22,7 +22,7 @@ class ItemPendingOrder extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              'Flower order',
+              'Flower my_orders',
               style: AppTheme.lightTheme.textTheme.labelMedium?.copyWith(
                 fontWeight: FontWeight.w500,
               ),

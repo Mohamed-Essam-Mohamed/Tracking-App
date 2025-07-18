@@ -15,6 +15,8 @@ class Routes {
 
 
 
+  static const String mydetailsScreen = '/mydetailsScreen';
+
   static const String pendingOrder = '/pendingOrder';
   static const String changePassword = '/changePassword';
 
