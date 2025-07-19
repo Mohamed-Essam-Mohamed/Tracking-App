@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:injectable/injectable.dart';
 import 'package:tracking_app/core/common/widget/error_widget.dart';
 import 'package:tracking_app/core/di/service_locator.dart';
+import 'package:tracking_app/core/network/remote/firebase_manager/firebase_order_entity.dart';
 import 'package:tracking_app/features/home/presentation/view/order_details_screen.dart';
 import 'package:tracking_app/features/home/presentation/view_model/order_details/order_details_cubit.dart';
 import 'package:tracking_app/features/home/presentation/view_model/pending_order/pending_order_cubit.dart';
@@ -13,6 +15,7 @@ class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final orderDetailsCubit = serviceLocator<OrderDetailsCubit>();
+    final OrderEntity orderDetails;
     return Scaffold(
       body: BlocProvider<PendingOrderCubit>(
         create: (context) => serviceLocator<PendingOrderCubit>()..getAllPendingOrder(),
@@ -41,7 +44,8 @@ class HomeScreen extends StatelessWidget {
                               MaterialPageRoute(
                                 builder: (context) => BlocProvider.value(
                                   value: orderDetailsCubit,
-                                  child: OrderDetailsScreen(order: state.orders[index]),
+                                  child: OrderDetailsScreen(order: state.orders[index],orderId: state.orders[index].orderNumber,
+                                  ),
                                 ),
                               ),
                             );

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+
 enum OrderStatus {
   accepted,
   preparing,
@@ -7,7 +8,6 @@ enum OrderStatus {
   delivered,
   completed,
 }
-
 class OrderProgressIndicator extends StatelessWidget {
    OrderProgressIndicator({super.key, required this.currentStatus});
   final OrderStatus currentStatus;

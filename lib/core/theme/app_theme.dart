@@ -12,7 +12,7 @@ class AppTheme {
     primaryColor: AppColors.pink[AppColors.colorCode50],
     secondaryHeaderColor: AppColors.black,
     fontFamily: AppFontsFamily.inter,
-    dialogTheme: DialogTheme(
+    dialogTheme: DialogThemeData(
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(24),
       ),
@@ -190,7 +190,7 @@ class AppTheme {
         fontFamily: AppFontsFamily.inter,
       ),
     ),
-    tabBarTheme: TabBarTheme(
+    tabBarTheme: TabBarThemeData(
       indicatorSize: TabBarIndicatorSize.tab,
       labelColor: AppColors.pink[AppColors.colorCode50],
       unselectedLabelColor: AppColors.white[AppColors.colorCode70],
