@@ -103,7 +103,7 @@ class Validator {
       return LocaleKeys.Error_vehicleNumberCannotBeEmpty.tr();
     }
     final vehicleNumber = val.trim();
-    if (!RegExp(r'^\d{4}$').hasMatch(vehicleNumber)) {
+    if (!RegExp(r'^\d{5}$').hasMatch(vehicleNumber)) {
       return LocaleKeys.Error_InvalidVehicleNumber.tr();
     }
     return null;

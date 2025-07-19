@@ -14,8 +14,8 @@ import 'package:tracking_app/generated/locale_keys.g.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class OrderDetailsScreen extends StatefulWidget {
-  const OrderDetailsScreen({super.key, required this.order});
-
+  const OrderDetailsScreen({super.key, required this.order ,required this.orderId});
+  final String orderId;
   final OrderEntity order;
 
   @override
@@ -25,31 +25,42 @@ class OrderDetailsScreen extends StatefulWidget {
 class _OrderDetailsScreenState extends State<OrderDetailsScreen> {
   late final OrderDetailsCubit _cubit;
 
-   Future<void> openWhatsApp({required String phoneNumber}) async {
-    final url = 'whatsapp://send?phone=$phoneNumber';
-    if (await canLaunch(url)) {
-      await launch(url);
+
+  Future<void> openWhatsApp({required String phoneNumber}) async {
+    final Uri whatsappUri = Uri.parse('https://wa.me/$phoneNumber');
+
+    if (await canLaunchUrl(whatsappUri)) {
+      await launchUrl(whatsappUri);
     } else {
-      throw 'Could not launch $url';
+      throw 'Could not launch $whatsappUri';
+    }
+  }
+
+  /// إجراء مكالمة
+  Future<void> makePhoneCall(String phoneNumber) async {
+    final Uri launchUri = Uri(
+      scheme: 'tel',
+      path: phoneNumber,
+    );
+
+    if (await canLaunchUrl(launchUri)) {
+      await launchUrl(launchUri);
+    } else {
+      throw 'Could not launch $launchUri';
     }
   }
 
 
 
-  void _makePhoneCall(String phoneNumber) {
-    final Uri launchUri = Uri(
-      scheme: 'tel',
-      path: phoneNumber,
-    );
-    launchUrl(launchUri);
-  }
 
   @override
   void initState() {
     super.initState();
     _cubit = context.read<OrderDetailsCubit>();
-    _cubit.initializeDriverOrder(widget.order.orderNumber);
+    _cubit.loadOrInitializeOrder(widget.orderId);
   }
+
+
 
   @override
   Widget build(BuildContext context) {
@@ -85,7 +96,7 @@ class _OrderDetailsScreenState extends State<OrderDetailsScreen> {
                         address: widget.order.store.address,
                         imagePath: widget.order.store.image,
                         onPressed: () =>
-                            _makePhoneCall(widget.order.store.phoneNumber),
+                            makePhoneCall(widget.order.store.phoneNumber),
                         onTap: () => openWhatsApp(
                             phoneNumber: widget.order.store.phoneNumber),
                       ),
@@ -97,7 +108,7 @@ class _OrderDetailsScreenState extends State<OrderDetailsScreen> {
                         address: widget.order.store.address,
                         imagePath: widget.order.user.photo,
                         onPressed: () =>
-                            _makePhoneCall(widget.order.user.phone),
+                            makePhoneCall(widget.order.user.phone),
                         onTap: () =>
                             openWhatsApp(phoneNumber: widget.order.user.phone),
                       ),

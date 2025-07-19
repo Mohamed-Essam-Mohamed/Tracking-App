@@ -101,7 +101,7 @@ class UserEntity extends Equatable {
 
 class OrderItemsEntity extends Equatable {
   const OrderItemsEntity({
-    this.product = const ProductEntity(),
+    this.product =  const ProductEntity(),
     this.price = 0,
     this.quantity = 0,
     this.sId = '',

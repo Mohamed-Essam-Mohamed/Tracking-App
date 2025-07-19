@@ -15,6 +15,7 @@ class OrderDetailsCubit extends Cubit<OrderDetailsState> {
 
   OrderStatus currentStatus = OrderStatus.accepted;
 
+
   String getButtonText(OrderStatus status) {
     switch (status) {
       case OrderStatus.accepted:
@@ -30,6 +31,47 @@ class OrderDetailsCubit extends Cubit<OrderDetailsState> {
     }
   }
 
+
+  Future<void> loadOrInitializeOrder(String orderId) async {
+    final user = FirebaseAuth.instance.currentUser;
+    if (user == null) return;
+
+    final fireStore = FirebaseFirestore.instance;
+    final docRef = fireStore
+        .collection('drivers')
+        .doc(user.uid)
+        .collection('orders')
+        .doc(orderId);
+
+    final snapshot = await docRef.get();
+
+    if (snapshot.exists) {
+      final statusString = snapshot.data()?['orderStatus'] ?? 'accepted';
+      currentStatus = OrderStatus.values.firstWhere(
+            (e) => e.name == statusString,
+        orElse: () => OrderStatus.accepted,
+      );
+    } else {
+      final data = await collectDriverData(orderId);
+      await docRef.set({
+        'uid': user.uid,
+        'firstName': data.firstName,
+        'lastName': data.lastName,
+        'phone': data.phone,
+        'vehicleImage': data.vehicleImage,
+        'orderNumber': data.orderNumber,
+        'orderStatus': data.orderStatus.name,
+        'driverLatLong': '31.205753,29.924526',
+        'userLatLong': '25.687243,32.639637',
+        'initializedAt': FieldValue.serverTimestamp(),
+      });
+      currentStatus = OrderStatus.accepted;
+    }
+
+    emit(OrderDetailsStatusChanged(currentStatus));
+  }
+
+
   void advanceOrderStatus(String orderId) async {
     emit(const OrderDetailsStatusChangedInitial());
     print('➡️ currentStatus before: $currentStatus');
@@ -41,63 +83,40 @@ class OrderDetailsCubit extends Cubit<OrderDetailsState> {
       print('➡️ currentStatus after: $currentStatus');
 
       await updateOrderStatusInFirebase(orderId, currentStatus);
-
     } else {
       print('🔔 وصلت لآخر حالة: $currentStatus');
     }
   }
 
 
-
   Future<SavedDriverDataEntity> collectDriverData(String? orderNumber) async {
     final pref = await SharedPreferences.getInstance();
 
     return SavedDriverDataEntity(
-        firstName: pref.getString('firstName') ?? '',
-        lastName: pref.getString('lastName') ?? '' ,
-        phone: pref.getString('phone') ?? '',
-        vehicleImage: pref.getString('VehicleImage') ?? '',
-    orderNumber: orderNumber ?? '' ,
-    orderStatus: currentStatus );
-
+      firstName: pref.getString('firstName') ?? '',
+      lastName: pref.getString('lastName') ?? '',
+      phone: pref.getString('phone') ?? '',
+      vehicleImage: pref.getString('VehicleImage') ?? '',
+      orderNumber: orderNumber ?? '',
+      orderStatus: currentStatus,
+    );
   }
-  Future<void> initializeDriverOrder(String? orderNumber) async {
-    final data = await collectDriverData(orderNumber);
 
-    final user = FirebaseAuth.instance.currentUser;
-    if (user == null) return;
-
-    final fireStore = FirebaseFirestore.instance;
-    final docRef = fireStore.collection('drivers').doc(user.uid).collection('orders').doc(orderNumber);
-    await docRef.set({
-      'uid': user.uid,
-      'firstName': data.firstName,
-      'lastName': data.lastName,
-      'phone': data.phone,
-      'vehicleImage': data.vehicleImage,
-      'orderNumber': data.orderNumber,
-      'orderStatus': data.orderStatus.name,
-      'driverLatLong' : '31.205753,29.924526',
-      'userLatLong' : '25.687243,32.639637',
-      'initializedAt': FieldValue.serverTimestamp(),
-    });
-  }
 
   Future<void> updateOrderStatusInFirebase(String orderNumber, OrderStatus status) async {
     final user = FirebaseAuth.instance.currentUser;
     if (user == null) return;
+
     final fireStore = FirebaseFirestore.instance;
-    final docRef = fireStore.collection('drivers').doc(user.uid).collection('orders').doc(orderNumber);
+    final docRef = fireStore
+        .collection('drivers')
+        .doc(user.uid)
+        .collection('orders')
+        .doc(orderNumber);
 
     await docRef.update({
       'orderStatus': status.name,
       'updatedAt': FieldValue.serverTimestamp(),
     });
   }
-
-
-
 }
-
-
-
