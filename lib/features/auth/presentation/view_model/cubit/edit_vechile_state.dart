@@ -15,13 +15,22 @@ class VehicleInitial extends VehicleState {
 class VehicleLoading extends VehicleState {
   const VehicleLoading();
 }
-
-class VehicleSuccess extends VehicleState {
-  const VehicleSuccess(this.vehiclesModelEntity);
+class VehiclesSuccessState extends VehicleState {
+  const VehiclesSuccessState(
+      this.vehiclesModelEntity,
+      );
   final VehiclesModelEntity vehiclesModelEntity;
 
   @override
   List<Object> get props => [vehiclesModelEntity];
+}
+
+class EditVehicleSuccess extends VehicleState {
+  const EditVehicleSuccess(this.message);
+  final String message;
+
+  @override
+  List<Object> get props => [message];
 }
 
 class VehicleError extends VehicleState {

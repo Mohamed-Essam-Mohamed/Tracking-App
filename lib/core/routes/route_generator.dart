@@ -3,7 +3,9 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:tracking_app/core/routes/animation_routes.dart';
 import 'package:tracking_app/core/routes/routes.dart';
 import 'package:tracking_app/features/app_section/app_section.dart';
+import 'package:tracking_app/features/auth/data/models/edit_vechile_model.dart';
 import 'package:tracking_app/features/auth/data/models/request/edit_profile_request.dart';
+import 'package:tracking_app/features/auth/domain/entities/edit_vechile_entite.dart';
 import 'package:tracking_app/features/auth/presentation/view/apply_screen.dart';
 import 'package:tracking_app/features/auth/presentation/view/edit_profile_screen.dart';
 import 'package:tracking_app/features/auth/presentation/view/edit_vechile.dart';
@@ -41,7 +43,10 @@ class RouteGenerator {
       case Routes.pendingOrder:
         return MaterialPageRoute(builder: (_) => const HomeScreen());
       case Routes.editviechle:
-        return MaterialPageRoute(builder: (_) => const EditVechileScreen());
+        return MaterialPageRoute(builder: (_) => EditVechileScreen(
+
+          userData: arg as EditVechileModel,
+        ));
 
       // case Routes.detailsScreen:
       //   return MaterialPageRoute(builder: (_) => const DetailsScreen());

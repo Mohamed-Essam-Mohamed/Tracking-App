@@ -154,6 +154,7 @@ abstract class  LocaleKeys {
   static const Error = 'Error';
   static const Messages_OtpSentToYourEmail = 'Messages.OtpSentToYourEmail';
   static const Messages = 'Messages';
+  static const profile_Profile = 'profile.Profile';
   static const profile_MyOrder = 'profile.MyOrder';
   static const profile_SavedAddress = 'profile.SavedAddress';
   static const profile_Notification = 'profile.Notification';

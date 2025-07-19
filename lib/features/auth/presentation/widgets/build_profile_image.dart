@@ -1,7 +1,5 @@
 import 'dart:io';
-import 'dart:ui';
 import 'package:flutter/material.dart';
-  import 'package:transparent_image/transparent_image.dart';
 import 'package:tracking_app/core/extentions/media_query_extensions.dart';
 import 'package:tracking_app/features/auth/presentation/widgets/show_model_bootom_sheet.dart';
 import '../../../../core/constants/app_colors.dart';
@@ -29,47 +27,55 @@ Widget buildProfileImage(EditProfileCubit cubit, BuildContext context, String ur
         child: Hero(
           tag: 'profileImage',
           child: ClipOval(
-            child: cubit.image != null
-                ? Image.file(
-              cubit.image!,
+            child: Container(
               width: radius * 2,
               height: radius * 2,
-              fit: BoxFit.cover,
-            )
-                : Stack(
-              alignment: Alignment.center,
-              children: [
-                // Blurred loading image
-                ClipOval(
-                  child: ImageFiltered(
-                    imageFilter: ImageFilter.blur(sigmaX: 8, sigmaY: 8),
-                    child: Image.network(
-                      url,
-                      width: radius * 2,
-                      height: radius * 2,
-                      fit: BoxFit.cover,
+              color: AppColors.gray.withOpacity(0.1),
+              child: cubit.image != null
+                  ? Image.file(
+                cubit.image!,
+                fit: BoxFit.cover,
+              )
+                  : Stack(
+                fit: StackFit.expand,
+                children: [
+                  // شكل البروفايل الافتراضي
+                  Container(
+                    color: AppColors.gray.withOpacity(0.15),
+                    child: Icon(
+                      Icons.person,
+                      size: radius,
+                      color: AppColors.gray,
                     ),
                   ),
-                ),
 
-                // Actual image fades in on top
-                ClipOval(
-                  child: FadeInImage(
-                    placeholder: MemoryImage(kTransparentImage),
-                    image: NetworkImage(url),
-                    width: radius * 2,
-                    height: radius * 2,
+                  // الصورة الحقيقية عند اكتمال التحميل
+                  Image.network(
+                    url,
                     fit: BoxFit.cover,
-                    fadeInDuration: const Duration(milliseconds: 500),
+                    loadingBuilder: (context, child, loadingProgress) {
+                      if (loadingProgress == null) {
+                        // الصورة اكتملت
+                        return AnimatedOpacity(
+                          opacity: 1,
+                          duration: const Duration(milliseconds: 300),
+                          child: child,
+                        );
+                      } else {
+                        // لسه بتتحمل، نعرض الشكل الافتراضي فقط
+                        return const SizedBox.shrink();
+                      }
+                    },
+                    errorBuilder: (context, error, stackTrace) => const SizedBox.shrink(),
                   ),
-                ),
-              ],
+                ],
+              ),
             ),
           ),
         ),
       ),
 
-      // Camera icon button
+      // زر الكاميرا
       Positioned(
         bottom: 0,
         right: 0,

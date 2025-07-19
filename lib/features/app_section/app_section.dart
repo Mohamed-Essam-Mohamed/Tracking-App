@@ -1,7 +1,7 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_svg/svg.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:tracking_app/core/constants/app_assets.dart';
 import 'package:tracking_app/core/constants/app_colors.dart';
@@ -29,29 +29,22 @@ class AppSection extends StatefulWidget {
 
 class _AppSectionState extends State<AppSection> {
   int _currentIndex = 0;
+
   final List<Widget> _pages = [
     const HomeScreen(),
     const MyOrdersPage(),
     BlocProvider<ProfileCubit>(
-      create: (context) => serviceLocator<ProfileCubit>()..doIntent(GetProfileAction()),
+      create: (context) =>
+      serviceLocator<ProfileCubit>()..doIntent(GetProfileAction()),
       child: const ProfileScreen(),
     ),
   ];
-
-  Key _cartKey = UniqueKey();
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: SafeArea(
-        child: IndexedStack(
-          index: _currentIndex,
-          children: [
-            _pages[0],
-            _pages[1],
-            _pages[2],
-          ],
-        ),
+        child: _pages[_currentIndex], // ✅ الصفحة الحالية فقط بدون IndexedStack
       ),
       bottomNavigationBar: BottomNavigationBar(
         type: BottomNavigationBarType.fixed,
@@ -59,11 +52,6 @@ class _AppSectionState extends State<AppSection> {
         onTap: (selectedIndex) {
           setState(() {
             _currentIndex = selectedIndex;
-
-            // 👇 Regenerate cart key on cart tab tap
-            // if (_currentIndex == 2) {
-            //   _cartKey = UniqueKey();
-            // }
           });
         },
         items: [
@@ -80,7 +68,7 @@ class _AppSectionState extends State<AppSection> {
           BottomNavigationBarItem(
             icon: _iconBar(SvgAsset.person),
             activeIcon: _activeIconBar(SvgAsset.person),
-            label: LocaleKeys.Home_Cart.tr(),
+            label: LocaleKeys.profile_Profile.tr(),
           ),
         ],
       ),

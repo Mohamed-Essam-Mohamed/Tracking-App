@@ -11,6 +11,9 @@ import 'package:tracking_app/core/dialogs/app_dialogs.dart';
 import 'package:tracking_app/core/extentions/media_query_extensions.dart';
 import 'package:tracking_app/core/routes/routes.dart';
 import 'package:tracking_app/core/theme/app_theme.dart';
+import 'package:tracking_app/features/auth/data/models/edit_vechile_model.dart';
+import 'package:tracking_app/features/auth/data/models/request/edit_profile_request.dart';
+import 'package:tracking_app/features/auth/domain/entities/edit_vechile_entite.dart';
 import 'package:tracking_app/features/profile/presentation/view_model/profile/profile_cubit.dart';
 import 'package:tracking_app/features/profile/presentation/view_model/profile/profile_state.dart';
 import 'package:tracking_app/features/profile/presentation/widgets/language_bottom_sheet.dart';
@@ -50,39 +53,58 @@ class ProfileScreen extends StatelessWidget {
               builder: (context, state) {
                 if (state.isGetProfileLoading || state.isGetProfileFailure) {
                   return const Skeletonizer(
-                    child: InkWell(
-                      child: Column(
-                        spacing: 24,
-                        children: [
-                          InfoDriverWidget(
-                            imageUrl: defaultImage,
-                            email: 'OxJt2@example.com',
-                            name: 'John Doe',
-                            phone: '+20123456789',
-                          ),
-                          InfoVehicleWidget(
-                            vehicleType: 'Truck',
-                            vehicleId: '1234567890',
-                          ),
-                        ],
-                      ),
+                    child: Column(
+                      spacing: 24,
+                      children: [
+                        InfoDriverWidget(
+                          imageUrl: defaultImage,
+                          email: 'OxJt2@example.com',
+                          name: 'John Doe',
+                          phone: '+20123456789',
+                        ),
+                        InfoVehicleWidget(
+                          vehicleType: 'Truck',
+                          vehicleId: '1234567890',
+                          vehicleLicense: "1234",
+                        ),
+                      ],
                     ),
                   );
                 }
                 return Column(
                   spacing: 24,
                   children: [
-                    InfoDriverWidget(
-                      imageUrl: state.profileData.driver.phone,
-                      email: state.profileData.driver.email,
-                      name:
-                          '${state.profileData.driver.firstName} ${state.profileData.driver.lastName}',
-                      phone: state.profileData.driver.phone,
+                    InkWell(
+                      onTap: () async {
+                        final result = await Navigator.of(context).pushNamed(
+                          Routes.editProfile,
+                          arguments: EditProfileRequest(
+                            firstName: state.profileData.driver.firstName,
+                            lastName: state.profileData.driver.lastName,
+                            email: state.profileData.driver.email,
+                            phone: state.profileData.driver.phone,
+                            url: state.profileData.driver.photo,
+                          ),
+                        );
+
+                        if (result == true && context.mounted) {
+                          context.read<ProfileCubit>().doIntent(GetProfileAction());
+                        }
+                      },
+                      child: InfoDriverWidget(
+                        imageUrl: state.profileData.driver.photo,
+                        email: state.profileData.driver.email,
+                        name:
+                            '${state.profileData.driver.firstName} ${state.profileData.driver.lastName}',
+                        phone: state.profileData.driver.phone,
+                      ),
                     ),
                     InfoVehicleWidget(
-                      vehicleType: 'Truck',
-                      vehicleId: state.profileData.driver.vehicleNumber,
-                    ),
+                        vehicleType: 'Truck',
+                        vehicleId: state.profileData.driver.vehicleNumber,
+                        vehicleLicense:state.profileData.driver.vehicleLicense
+                      ),
+                    
                   ],
                 );
               },
@@ -185,32 +207,37 @@ class InfoVehicleWidget extends StatelessWidget {
     super.key,
     required this.vehicleType,
     required this.vehicleId,
-    this.onPressed,
+    this.onPressed, required this.vehicleLicense,
   });
   final String vehicleType;
   final String vehicleId;
+  final String vehicleLicense;
   final void Function()? onPressed;
+
   @override
   Widget build(BuildContext context) {
-    return Card(
-      color: AppColors.white,
-      child: Padding(
-        padding: const EdgeInsets.all(16),
-        child: ListTile(
-          title: Text(
-            'Vehicle Info',
-            style: Theme.of(context).textTheme.titleMedium,
-          ),
-          subtitle: Text(
-            "$vehicleType\n$vehicleId",
-            style: Theme.of(context).textTheme.titleSmall,
-            textAlign: TextAlign.start,
-          ),
-          trailing: IconButton(
-            onPressed: onPressed,
-            icon: const Icon(
-              Icons.arrow_forward_ios,
-              size: 28,
+    return InkWell(
+      onTap: ()=>Navigator.of(context).pushNamed(Routes.editviechle,arguments: EditVechileModel(vehicleLicense:vehicleLicense,vehicleNumber:vehicleId ,vehicleType:vehicleType )),
+      child: Card(
+        color: AppColors.white,
+        child: Padding(
+          padding: const EdgeInsets.all(16),
+          child: ListTile(
+            title: Text(
+              'Vehicle Info',
+              style: Theme.of(context).textTheme.titleMedium,
+            ),
+            subtitle: Text(
+              "$vehicleType\n$vehicleId",
+              style: Theme.of(context).textTheme.titleSmall,
+              textAlign: TextAlign.start,
+            ),
+            trailing: IconButton(
+              onPressed: onPressed,
+              icon: const Icon(
+                Icons.arrow_forward_ios,
+                size: 28,
+              ),
             ),
           ),
         ),

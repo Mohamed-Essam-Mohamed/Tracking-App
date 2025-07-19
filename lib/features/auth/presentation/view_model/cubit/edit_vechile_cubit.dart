@@ -1,6 +1,8 @@
+import 'package:dio/dio.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:injectable/injectable.dart';
 import 'package:tracking_app/core/network/common/api_result.dart';
+import 'package:tracking_app/features/auth/data/models/apply_model.dart';
 import 'package:tracking_app/features/auth/domain/entities/vehicles_entitiy.dart';
 import 'package:tracking_app/features/auth/domain/use_cases/apply_use_cases.dart';
 import 'package:tracking_app/features/auth/domain/use_cases/edit_vechile_usecase.dart';
@@ -28,13 +30,12 @@ class VehicleCubit extends Cubit<ApplyState> {
       emit(VehiclesErrorState(e.toString()));
     }
   }
-  void apply() async {
+  void apply(FormData formData,String id) async {
     emit(VehiclesLoadingState());
     try {
-      final result = await editVechileUsecase.getAllVehicles();
-      if (result is SuccessResult<VehiclesModelEntity>) {
-        vehiclesList = result.data.vehicles ?? [];
-        emit(VehiclesSuccessState(result.data));
+      final result = await editVechileUsecase.apply(formData, id);
+      if (result is SuccessResult<ApplyModelDto>) {
+        emit(EditVehiclesSuccessState(result.toString()));
       } else if (result is FailureResult<VehiclesModelEntity>) {
         emit(VehiclesErrorState(result.exception.toString()));
       }

@@ -91,7 +91,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                           children: [
                             InkWell(
                               onTap: (){
-                                Navigator.pop(context, 'refresh');
+                                Navigator.of(context).pop(true);
                               },
                               child: Icon(
                                 Icons.arrow_back_ios_new_rounded,
@@ -187,7 +187,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                     ),
                     suffixWidget: InkWell(
                         onTap: () {
-                      //    Navigator.pushNamed(context, Routes.changePassword);
+                          Navigator.pushNamed(context, Routes.changePassword);
 
                         },
                         child: Text(LocaleKeys.Profile_Change.tr(),

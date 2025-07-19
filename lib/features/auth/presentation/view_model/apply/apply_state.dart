@@ -47,6 +47,16 @@ class VehiclesSuccessState extends ApplyState {
   List<Object> get props => [vehiclesModelEntity];
 }
 
+class EditVehiclesSuccessState extends ApplyState {
+  const EditVehiclesSuccessState(
+      this.message,
+      );
+  final String message;
+
+  @override
+  List<Object> get props => [message];
+}
+
 class VehiclesErrorState extends ApplyState {
   const VehiclesErrorState(this.error);
   final String error;

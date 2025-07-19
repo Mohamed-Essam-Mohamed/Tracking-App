@@ -1,4 +1,5 @@
 import 'package:injectable/injectable.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:tracking_app/core/network/common/api_result.dart';
 import 'package:tracking_app/core/network/remote/api_manager.dart';
 import 'package:tracking_app/features/home/data/api/home_retrofit_client.dart';
@@ -13,10 +14,10 @@ class HomeRemoteDataSourcesImp extends HomeRemoteDataSource {
   final HomeRetrofitClient _apiService;
   @override
   Future<Result<ItemOrderDetailsEntity>> getAllPendingOrders() async {
+    final pref = await SharedPreferences.getInstance();
+    final  String? token = pref.getString('token');
     final result = await _apiManager.execute<ItemOrderDetailsDto>(() async {
-      final String token =
-          'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkcml2ZXIiOiI2NzhhNTlmYTNjMzc5NzQ5Mjc0N2M4ZDQiLCJpYXQiOjE3MzcxMjAyNTB9.f-A1rvElymvDhEQM9bjqGl56O4c5Z8mhh7MkevnpqVQ';
-      final response = await _apiService.getAllPendingOrders(token);
+      final response = await _apiService.getAllPendingOrders(token!);
       return response;
     });
     switch (result) {
